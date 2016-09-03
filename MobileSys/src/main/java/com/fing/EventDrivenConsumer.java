@@ -1,61 +1,67 @@
 package com.fing;
 
-import javax.jms.Connection;
 import javax.jms.Destination;
-import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-import org.apache.activemq.ActiveMQConnection;
-import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.integration.handler.MessageProcessor;
 
-public class EventDrivenConsumer implements Runnable, ExceptionListener  {
-	
-	 public void run() {
-         try {
-        	 String direccion = ActiveMQConnection.DEFAULT_BROKER_URL;
-             // Create a ConnectionFactory
-             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(direccion);
 
-             // Create a Connection
-             Connection connection = connectionFactory.createConnection();
-             connection.start();
 
-             connection.setExceptionListener(this);
+public class EventDrivenConsumer implements MessageListener {
 
-             // Create a Session
-             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+	private String consumidor;
+	private Destination destination;
+	private Session session;
 
-             // Create the destination (Topic or Queue)
-             Destination destination = session.createQueue("Despachador-Mobile");
+	EventDrivenConsumer(String consumidor, Session session, Destination destination)
+	{
+		this.consumidor = consumidor;
+		this.destination = destination;
+		this.session = session;
+	}
 
-             // Create a MessageConsumer from the Session to the Topic or Queue
-             MessageConsumer consumer = session.createConsumer(destination);
+	EventDrivenConsumer(String consumidor)
+	{
+		this.consumidor = consumidor;
+	}   
 
-             // Wait for a message
-             Message message = consumer.receive(1000);
+	public void CrearDurableSubscriber() {
+		try {							
 
-             if (message instanceof TextMessage) {
-                 TextMessage textMessage = (TextMessage) message;
-                 String text = textMessage.getText();
-                 System.out.println("Received: " + text);
-             } else {
-                 System.out.println("Received: " + message);
-             }
+			MessageConsumer consumer = session.createConsumer(destination);	
+			consumer.setMessageListener(this);
 
-             consumer.close();
-             session.close();
-             connection.close();
-         } catch (Exception e) {
-             System.out.println("Caught: " + e);
-             e.printStackTrace();
-         }
-     }
+		} catch (JMSException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 
-     public synchronized void onException(JMSException ex) {
-         System.out.println("JMS Exception occured.  Shutting down client.");
-     }
+	private Log log = LogFactory.getLog(MessageProcessor.class);
+
+	@Override
+	public void onMessage(Message message) {
+		TextMessage msg = (TextMessage)message;
+		try {
+			String value = msg.getText();	      
+			process(value);
+		}
+		catch(JMSException e) {
+			log.error("Error processing message", e);
+		}
+	}
+
+	public void process(String value) {
+		System.out.println(consumidor + " " + value);
+	}
+
+
+
 }
