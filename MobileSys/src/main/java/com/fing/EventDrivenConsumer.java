@@ -25,14 +25,9 @@ public class EventDrivenConsumer implements MessageListener {
 		this.consumidor = consumidor;
 		this.destination = destination;
 		this.session = session;
-	}
+	}	
 
-	EventDrivenConsumer(String consumidor)
-	{
-		this.consumidor = consumidor;
-	}   
-
-	public void CrearDurableSubscriber() {
+	public void CrearConsumidor() {
 		try {							
 
 			MessageConsumer consumer = session.createConsumer(destination);	
@@ -51,15 +46,30 @@ public class EventDrivenConsumer implements MessageListener {
 		TextMessage msg = (TextMessage)message;
 		try {
 			String value = msg.getText();	      
-			process(value);
+			process(value);			
 		}
 		catch(JMSException e) {
 			log.error("Error processing message", e);
+			
 		}
 	}
 
 	public void process(String value) {
 		System.out.println(consumidor + " " + value);
+		//El ok es la respuesta del procesamiento del xml. Si da error se manda a la cola.
+		boolean ok = true;
+		try
+		{
+			if(!ok)
+			{
+				session.recover();
+			}			
+		}
+		catch(JMSException e)
+		{
+			log.error("Error processing message", e);
+		}
+		
 	}
 
 

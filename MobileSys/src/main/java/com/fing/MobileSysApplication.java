@@ -7,6 +7,10 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.RedeliveryPolicy;
+import org.apache.activemq.broker.region.policy.RedeliveryPolicyMap;
+import org.apache.activemq.command.ActiveMQDestination;
+import org.apache.activemq.filter.DestinationMapEntry;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -17,14 +21,17 @@ public class MobileSysApplication{
 		try
 		{
 			String direccion = ActiveMQConnection.DEFAULT_BROKER_URL;
+			
 	        // Create a ConnectionFactory
 	        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(direccion);
+	        RedeliveryPolicy redeliveryPolicy = connectionFactory.getRedeliveryPolicy();
+	        redeliveryPolicy.setMaximumRedeliveries(6);
 	        
 	        // Create a Connection
 	        Connection connection;
-			connection = connectionFactory.createConnection();	        
-
-	        // Create a Session
+			connection = connectionFactory.createConnection();	     
+			
+			// Create a Session
 	        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	        
 	        // Create the destination (Topic or Queue)
@@ -32,8 +39,8 @@ public class MobileSysApplication{
 	        
 	        EventDrivenConsumer consumidor1 = new EventDrivenConsumer("Consumidor 1", session, destination);
 	        EventDrivenConsumer consumidor2 = new EventDrivenConsumer("Consumidor 2", session, destination);
-	        consumidor1.CrearDurableSubscriber();
-	        consumidor2.CrearDurableSubscriber();
+	        consumidor1.CrearConsumidor();
+	        consumidor2.CrearConsumidor();
 	        connection.start();	        
 		}
 		catch(Exception e)
@@ -45,9 +52,7 @@ public class MobileSysApplication{
 	
 	public synchronized void onException(JMSException ex) {
         System.out.println("JMS Exception occured.  Shutting down client.");
-    }
-
-        
+    }        
 		
 }
 
