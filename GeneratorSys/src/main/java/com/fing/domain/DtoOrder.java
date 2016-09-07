@@ -1,5 +1,8 @@
 package com.fing.domain;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,11 +10,13 @@ import java.util.List;
 /**
  * Created by jmsmuy on 19/08/16.
  */
+@XmlRootElement
 public class DtoOrder {
 
     /**
      * Datos entrada
      */
+
 
     private int orderNumber;            //Numero de orden
     private Date creationDate;          //Fecha y Hora de creacion
@@ -36,6 +41,7 @@ public class DtoOrder {
         return orderNumber;
     }
 
+    @XmlAttribute
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }

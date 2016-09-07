@@ -1,5 +1,6 @@
 package com.fing;
 
+import com.fing.domain.DtoOrder;
 import com.fing.util.OrderGenerator;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -7,6 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.jms.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 
 @SpringBootApplication
 public class GeneratorSysApplication {
@@ -30,7 +34,19 @@ public class GeneratorSysApplication {
 
             for (int i = 0; i < 100; i++) {
                 System.out.println();
-                TextMessage message = session.createTextMessage(OrderGenerator.generateOrder().toString());
+                DtoOrder order = OrderGenerator.generateOrder();
+
+                JAXBContext jaxbContext = JAXBContext.newInstance(DtoOrder.class);
+                Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+                // output pretty printed
+                jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+                StringWriter writer = new StringWriter();
+
+                jaxbMarshaller.marshal(order, writer);
+
+                TextMessage message = session.createTextMessage(writer.toString());
                 // Here we are sending the message!
                 producer.send(message);
                 System.out.println("Sent message '" + message.getText() + "'");
