@@ -1,5 +1,6 @@
 package com.fing;
 
+import com.fing.util.OrderGenerator;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.boot.SpringApplication;
@@ -26,11 +27,14 @@ public class GeneratorSysApplication {
 
             MessageProducer producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
-            TextMessage message = session.createTextMessage(mensaje);
 
-            // Here we are sending the message!
-            producer.send(message);
-            System.out.println("Sent message '" + message.getText() + "'");
+            for (int i = 0; i < 100; i++) {
+                System.out.println();
+                TextMessage message = session.createTextMessage(OrderGenerator.generateOrder().toString());
+                // Here we are sending the message!
+                producer.send(message);
+                System.out.println("Sent message '" + message.getText() + "'");
+            }
 
             connection.close();
         } catch (Exception e) {
