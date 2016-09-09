@@ -21,7 +21,7 @@ public class RedStrawberryWS {
      */
     final static Logger fgen = Logger.getLogger(RedStrawberryWS.class);
     @WebMethod(operationName = "ProcesarItems")
-    public String ProcesarItems(@WebParam(name = "ListaItem") Item[] lista) {
+    public void ProcesarItems(@WebParam(name = "ListaItem") Item[] lista) {
         for (int i = 0; i < lista.length; i++) {
             
             Item pedido = lista[i];
