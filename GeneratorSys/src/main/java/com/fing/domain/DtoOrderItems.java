@@ -1,15 +1,26 @@
 package com.fing.domain;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  * Created by jmsmuy on 19/08/16.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtoOrderItems {
 
+    @XmlElement
     private Integer itemNumber;     //Numero de Item
+    @XmlElement
     private Integer category;       //Categoria
+    @XmlElement
     private Integer productId;      //Id Producto
+    @XmlElement
     private String description;     //Descripcion producto
+    @XmlElement
     private Integer amount;         //Cantidad
+    @XmlElement
     private Double price;           //Precio
 
     public Integer getItemNumber() {

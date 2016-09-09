@@ -137,7 +137,7 @@ public class OrderGenerator {
      * @return
      */
     private static Integer generateOrderItemProductId() {
-        return null;
+        return RandomGenerator.randomGen(0, 10000);
     }
 
     /**

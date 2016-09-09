@@ -41,7 +41,6 @@ public class DtoOrder {
         return orderNumber;
     }
 
-    @XmlAttribute
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }
