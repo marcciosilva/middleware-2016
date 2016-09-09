@@ -8,7 +8,7 @@ package com.fing.redstrawberry;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-
+import org.apache.log4j.Logger;
 /**
  *
  * @author javier
@@ -19,8 +19,18 @@ public class RedStrawberryWS {
     /**
      * This is a sample web service operation
      */
+    final static Logger fgen = Logger.getLogger(RedStrawberryWS.class);
     @WebMethod(operationName = "ProcesarItems")
     public String ProcesarItems(@WebParam(name = "ListaItem") Item[] lista) {
-        return "Hello " ;
+        for (int i = 0; i < lista.length; i++) {
+            
+            Item pedido = lista[i];
+            fgen.info("Identificador producto :" + pedido.getidentificadorproducto());
+            fgen.info("Cantidad :" + pedido.getcantidad().toString());
+            fgen.info("Identificador de la transacción :" + pedido.getidentificadortransaccion());
+            fgen.info("Fecha y hora :" + pedido.getfechaHora());          
+            
+            
+        }
     }
 }
