@@ -2,6 +2,9 @@ package com.fing;
 
 import java.io.ByteArrayInputStream;
 import java.math.RoundingMode;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 
 import javax.jms.Connection;
@@ -34,6 +37,7 @@ public class EventDrivenConsumer implements MessageListener {
 	private String consumidor;
 	private Destination destination;
 	private Destination invalidOrdersChannel;
+	private Destination validOrdersChannel;
 	private Session session;
 
 	private enum CurrencyEnum {
@@ -49,7 +53,7 @@ public class EventDrivenConsumer implements MessageListener {
 		}
 	}
 
-	EventDrivenConsumer(String consumidor, Session session, Destination destination, Destination invalidOrdersChannel) {
+	EventDrivenConsumer(String consumidor, Session session, Destination destination, Destination invalidOrdersChannel, Destination validOrdersChannel) {
 		this.consumidor = consumidor;
 		this.destination = destination;
 		this.session = session;
@@ -86,6 +90,7 @@ public class EventDrivenConsumer implements MessageListener {
 		boolean ok = checkCurrency(value) && filterXmlOrder(value);
 		if (ok) {
 			debugMsg("ok");
+			forwardValidOrder(value);
 		} else {
 			debugMsg("nok");
 			archiveInvalidOrder(value);
@@ -98,6 +103,25 @@ public class EventDrivenConsumer implements MessageListener {
 		// log.error("Error processing message", e);
 		// }
 
+	}
+
+	private void forwardValidOrder(String value) {
+		try {
+			ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
+					ActiveMQConnection.DEFAULT_BROKER_URL);
+			Connection connection = activeMQConnectionFactory.createConnection();
+			connection.start();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			MessageProducer producer = session.createProducer(validOrdersChannel);
+			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+			TextMessage message;
+			message = session.createTextMessage(value);
+			producer.send(message);
+			System.out.println("Orden invalida enviada a cola \"Despachador-Validas\"");
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 
 	private void archiveInvalidOrder(String value) {
@@ -180,5 +204,41 @@ public class EventDrivenConsumer implements MessageListener {
 			System.out.println(msg);
 		}
 	}
+	
+	public static void testDataSysInsert() {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out
+					.println("Driver de JDBC para PostgreSQL no incluído; incluir en library path del proyecto.");
+			e.printStackTrace();
+			return;
+		}
+		System.out.println("Driver de JDBC para PostgreSQL registrado.");
+		java.sql.Connection connection = null;
+		try {
+			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/DataSys",
+					"postgres", "1234");
+		} catch (SQLException e) {
+			System.out.println("Conexión fallida.");
+			e.printStackTrace();
+			return;
+		}
+		if (connection != null) {
+			System.out.println("Conexion con base exitosa.");
+			System.out.println("Insert random...");
+			try {
+				Statement statement = connection.createStatement();
+				statement
+						.executeUpdate("insert into orders(clientid, itemid, orderid, productid, quantity) "
+								+ "values(394, 3012, 11232, 2812311, 18122)");
+				System.out.println("Insert realizado.");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Conexion fallida.");
+		}
+	}	
 
 }
