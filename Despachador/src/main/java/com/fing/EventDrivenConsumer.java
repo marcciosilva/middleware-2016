@@ -4,11 +4,14 @@ import java.io.ByteArrayInputStream;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+import javax.jms.Connection;
+import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +20,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.activemq.ActiveMQConnection;
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.integration.handler.MessageProcessor;
@@ -28,18 +33,27 @@ public class EventDrivenConsumer implements MessageListener {
 	private boolean loggingEnabled = false;
 	private String consumidor;
 	private Destination destination;
+	private Destination invalidOrdersChannel;
 	private Session session;
+
 	private enum CurrencyEnum {
-	    Pesos(858), Dolares(840);
-	    private final int id;
-	    CurrencyEnum(int id) { this.id = id; }
-	    public int getValue() { return id; }
+		Pesos(858), Dolares(840);
+		private final int id;
+
+		CurrencyEnum(int id) {
+			this.id = id;
+		}
+
+		public int getValue() {
+			return id;
+		}
 	}
 
-	EventDrivenConsumer(String consumidor, Session session, Destination destination) {
+	EventDrivenConsumer(String consumidor, Session session, Destination destination, Destination invalidOrdersChannel) {
 		this.consumidor = consumidor;
 		this.destination = destination;
 		this.session = session;
+		this.invalidOrdersChannel = invalidOrdersChannel;
 	}
 
 	public void CrearConsumidor() {
@@ -74,31 +88,50 @@ public class EventDrivenConsumer implements MessageListener {
 			debugMsg("ok");
 		} else {
 			debugMsg("nok");
+			archiveInvalidOrder(value);
 		}
-//		try {
-//			if (!ok) {
-//				session.recover();
-//			}
-//		} catch (JMSException e) {
-//			log.error("Error processing message", e);
-//		}
+		// try {
+		// if (!ok) {
+		// session.recover();
+		// }
+		// } catch (JMSException e) {
+		// log.error("Error processing message", e);
+		// }
 
+	}
+
+	private void archiveInvalidOrder(String value) {
+		try {
+			ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
+					ActiveMQConnection.DEFAULT_BROKER_URL);
+			Connection connection = activeMQConnectionFactory.createConnection();
+			connection.start();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			MessageProducer producer = session.createProducer(invalidOrdersChannel);
+			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+			TextMessage message;
+			message = session.createTextMessage(value);
+			producer.send(message);
+			System.out.println("Orden invalida enviada a cola \"Despachador-Invalidas\"");
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private boolean checkCurrency(String value) {
 		try {
-			//Construccion de xPath.
+			// Construccion de xPath.
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = null;
 			builder = builderFactory.newDocumentBuilder();
 			Document xmlDocument = builder.parse(new ByteArrayInputStream(value.getBytes()));
 			XPath xPath = XPathFactory.newInstance().newXPath();
-			//Se obtiene moneda del xml.
+			// Se obtiene moneda del xml.
 			String expression = "/dtoOrder/currency";
 			int currency = Integer.parseInt(xPath.compile(expression).evaluate(xmlDocument));
-			//Si la moneda es en pesos o dolares, es valida.
-			return (currency == CurrencyEnum.Pesos.getValue() 
-					|| currency == CurrencyEnum.Dolares.getValue()); 
+			// Si la moneda es en pesos o dolares, es valida.
+			return (currency == CurrencyEnum.Pesos.getValue() || currency == CurrencyEnum.Dolares.getValue());
 		} catch (Exception e) {
 			return false;
 		}
@@ -141,7 +174,7 @@ public class EventDrivenConsumer implements MessageListener {
 			return false;
 		}
 	}
-	
+
 	private void debugMsg(String msg) {
 		if (loggingEnabled) {
 			System.out.println(msg);
