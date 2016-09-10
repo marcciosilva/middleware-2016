@@ -46,7 +46,7 @@ public class GeneratorSysApplication {
 			MessageProducer producer = session.createProducer(destination);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 10; i++) {
 				System.out.println();
 				DtoOrder order = OrderGenerator.generateOrder();
 

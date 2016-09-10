@@ -15,7 +15,6 @@ import org.springframework.integration.handler.MessageProcessor;
 
 
 public class EventDrivenConsumer implements MessageListener {
-
 	private String consumidor;
 	private Destination destination;
 	private Session session;

@@ -24,7 +24,7 @@ public class DataSysApplication {
 	        Connection connection;
 			connection = connectionFactory.createConnection();	     
 	        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-	        Destination destination = session.createQueue("Despachador-Validas");
+	        Destination destination = session.createQueue("Despachador-DataSys");
 	        EventDrivenConsumer consumidor = new EventDrivenConsumer("Consumidor", session, destination);
 	        consumidor.CrearConsumidor();
 	        connection.start();	        

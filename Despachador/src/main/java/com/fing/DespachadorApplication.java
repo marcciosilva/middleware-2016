@@ -46,10 +46,12 @@ public class DespachadorApplication {
 			
 			// Creo destino para ordenes invalidas
 			Destination invalidOrdersChannel = session.createQueue("Despachador-Invalidas");
-			Destination validOrdersChannel = session.createQueue("Despachador-Validas");
+			
+			// Creo destino para ordenes validas
+			Destination dataSysOrdersChannel = session.createQueue("Despachador-DataSys");
 
 			EventDrivenConsumer consumidor1 = new EventDrivenConsumer("Consumidor 1", session,
-					destination, invalidOrdersChannel, validOrdersChannel);
+					destination, invalidOrdersChannel, dataSysOrdersChannel);
 			consumidor1.CrearConsumidor();
 			connection.start();
 		} catch (Exception e) {

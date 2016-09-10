@@ -37,7 +37,7 @@ public class EventDrivenConsumer implements MessageListener {
 	private String consumidor;
 	private Destination destination;
 	private Destination invalidOrdersChannel;
-	private Destination validOrdersChannel;
+	private Destination dataSysOrdersChannel;
 	private Session session;
 
 	private enum CurrencyEnum {
@@ -58,6 +58,7 @@ public class EventDrivenConsumer implements MessageListener {
 		this.destination = destination;
 		this.session = session;
 		this.invalidOrdersChannel = invalidOrdersChannel;
+		this.dataSysOrdersChannel = validOrdersChannel;
 	}
 
 	public void CrearConsumidor() {
@@ -112,12 +113,12 @@ public class EventDrivenConsumer implements MessageListener {
 			Connection connection = activeMQConnectionFactory.createConnection();
 			connection.start();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			MessageProducer producer = session.createProducer(validOrdersChannel);
+			MessageProducer producer = session.createProducer(dataSysOrdersChannel);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 			TextMessage message;
 			message = session.createTextMessage(value);
 			producer.send(message);
-			System.out.println("Orden invalida enviada a cola \"Despachador-Validas\"");
+			System.out.println("Orden valida enviada a cola \"Despachador-DataSys\"");
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
