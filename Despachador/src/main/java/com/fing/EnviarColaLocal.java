@@ -17,7 +17,7 @@ public class EnviarColaLocal {
     }
 	
 	public void EnviarCola(String mensaje, String destino){
-		System.out.println("Mensaje " + mensaje);
+		System.out.println("Mensaje a transformar" + mensaje);
 		jmsTemplate.convertAndSend(destino, mensaje);
 		
 	}

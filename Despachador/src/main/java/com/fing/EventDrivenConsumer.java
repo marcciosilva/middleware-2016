@@ -60,6 +60,8 @@ public class EventDrivenConsumer implements MessageListener {
 		this.session = session;
 		this.invalidOrdersChannel = invalidOrdersChannel;
 		this.dataSysOrdersChannel = validOrdersChannel;
+		EventDrivenCanalValido consumidorCanalValido = new EventDrivenCanalValido(dataSysOrdersChannel,session);
+		consumidorCanalValido.CrearConsumidor();
 	}
 
 	public void CrearConsumidor() {
@@ -96,9 +98,7 @@ public class EventDrivenConsumer implements MessageListener {
 		boolean ok = checkCurrency(value) && filterXmlOrder(value);
 		if (ok) {
 			debugMsg("ok");
-			forwardValidOrder(value);
-			EventDrivenCanalValido consumidorCanalValido = new EventDrivenCanalValido(dataSysOrdersChannel,session);
-			consumidorCanalValido.CrearConsumidor();
+			forwardValidOrder(value);			
 		} else {
 			debugMsg("nok");
 			archiveInvalidOrder(value);
