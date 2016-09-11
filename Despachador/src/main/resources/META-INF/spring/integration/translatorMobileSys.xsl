@@ -6,11 +6,11 @@
 		<xsl:for-each select="/dtoOrder/itemsList">
 			<Item>
 				<idCliente><xsl:value-of select="/dtoOrder/customerId"></xsl:value-of></idCliente>
-				
+				<idProducto><xsl:value-of select="./productId"></xsl:value-of></idProducto>
 				<fechaCreacion><xsl:value-of select="/dtoOrder/creationDate"></xsl:value-of></fechaCreacion>
 				<idOrdenItem>
-					<xsl:value-of select="/dtoOrder/itemsList/itemNumber"></xsl:value-of>
-					<xsl:value-of select="@orderNumber"></xsl:value-of>
+					<xsl:value-of select="/dtoOrder/orderNumber"></xsl:value-of>
+					<xsl:value-of select="./itemNumber"></xsl:value-of>					
 				</idOrdenItem>
 			</Item>
 		</xsl:for-each>
