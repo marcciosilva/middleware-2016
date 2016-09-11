@@ -5,7 +5,8 @@ package com.fing.domain;
  */
 public enum EnumCurrency {
     PESOS("Pesos", 858),
-    DOLARES("Dolares", 840);
+    DOLARES("Dolares", 840),
+	ERROR("Error", 200);
 
     private final String friendlyName;
     private final Integer enumValue;
