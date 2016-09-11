@@ -5,10 +5,14 @@ import javax.jms.Destination;
 import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnection;
+/*import org.apache.activemq.ActiveMQConnection;*/
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.RedeliveryPolicy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+/*import org.springframework.messaging.SubscribableChannel;*/
 
 @SpringBootApplication
 public class DespachadorApplication {
@@ -16,11 +20,18 @@ public class DespachadorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DespachadorApplication.class, args);
 		
-		EnviarMobileSys mobileSys = new EnviarMobileSys();
+		ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");	
+		
+		
+	    
+			// Simple Service
+	
+		
+		/*EnviarMobileSys mobileSys = new EnviarMobileSys();
 		mobileSys.EnviarMensaje("Primer mensaje despachador");
 		mobileSys.EnviarMensaje("Segundo mensaje despachador");
 		mobileSys.EnviarMensaje("Tercer mensaje despachador");
-		mobileSys.EnviarMensaje("Cuarto mensaje despachador");
+		mobileSys.EnviarMensaje("Cuarto mensaje despachador");*/
 		
 		try
 		{
@@ -43,8 +54,8 @@ public class DespachadorApplication {
 	        
 	        EventDrivenConsumer consumidor1 = new EventDrivenConsumer("Consumidor 1", session, destination);
 	        consumidor1.CrearConsumidor();
-	        connection.start();	        
-		}
+	        connection.start();	       
+	    }
 		catch(Exception e)
 		{
 			System.out.println(e.getMessage());

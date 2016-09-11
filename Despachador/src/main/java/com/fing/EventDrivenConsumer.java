@@ -1,5 +1,7 @@
 package com.fing;
 
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -10,8 +12,9 @@ import javax.jms.TextMessage;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.integration.handler.MessageProcessor;
-
 
 
 public class EventDrivenConsumer implements MessageListener {
@@ -55,15 +58,22 @@ public class EventDrivenConsumer implements MessageListener {
 	}
 
 	public void process(String value) {
-		System.out.println(consumidor + " " + value);
+		/*System.out.println(consumidor + " " + value);*/
 		//El ok es la respuesta del procesamiento del xml. Si da error se manda a la cola.
 		boolean ok = true;
 		try
 		{
+			ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");
+			/*ConnectionFactory cf = (ConnectionFactory) context.getBean("connectionFactory");
+			Connection connection = cf.createConnection();
+			connection.start();*/
+			EnviarColaLocal endpoint = (EnviarColaLocal) context.getBean("entrada", EnviarColaLocal.class);
+			endpoint.EnviarCola(value, "ColaTranslator");
 			if(!ok)
 			{
 				session.recover();
-			}			
+			}		
+			
 		}
 		catch(JMSException e)
 		{

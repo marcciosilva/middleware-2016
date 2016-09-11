@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int-xml="http://www.springframework.org/schema/integration/xml"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.3.xsd
+		http://www.springframework.org/schema/integration/xml http://www.springframework.org/schema/integration/xml/spring-integration-xml-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms-4.1.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd">
+							
+	
+	
+	<int-jms:inbound-channel-adapter channel="ColaTranslator"
+		auto-startup="true" jms-template="jmsTemplate"
+		destination-name="ColaTranslator">
+		<int:poller fixed-delay="500" />
+	</int-jms:inbound-channel-adapter>
+
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="vm://localhost?broker.persistent=false" />				
+			</bean>
+		</property>
+		<property name="sessionCacheSize" value="10" />
+		<property name="cacheProducers" value="false" />		
+	</bean>
+	
+	<int:channel id="ColaTranslator">	
+	
+	</int:channel>
+
+	<bean id="MobileSys" class="com.fing.EnviarMobileSys">
+ 	
+ 	</bean>
+
+	<int:service-activator ref="MobileSys" input-channel="enviarMobile"
+		method="EnviarMensaje" requires-reply="false">
+	</int:service-activator>
+
+	<int:channel id="enviarMobile"></int:channel>
+ 	
+ 	<int-xml:xslt-transformer input-channel="ColaTranslator"
+ 		id="translate" output-channel="enviarMobile"
+ 		xsl-resource="/META-INF/spring/integration/translatorMobileSys.xsl">
+ 	</int-xml:xslt-transformer>
+
+ 	<!-- <int-xml:xpath-splitter id="splitter" input-channel="colaSplitter"
+ 		output-channel="enviarMobile" 		
+ 		create-documents="true">
+ 		<int-xml:xpath-expression expression="/ListItems/Items"/>
+ 	</int-xml:xpath-splitter> -->
+ 	
+ 	<int:channel id="colaSplitter"></int:channel>
+ 	
+ 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+	</bean>
+ 	
+ 	<bean id="entrada"
+		class="com.fing.EnviarColaLocal">
+		<property name="jmsTemplate" ref="jmsTemplate" />
+	</bean>
+	
+	
+	
+</beans>

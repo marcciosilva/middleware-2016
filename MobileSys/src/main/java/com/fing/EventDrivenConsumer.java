@@ -50,7 +50,18 @@ public class EventDrivenConsumer implements MessageListener {
 		}
 		catch(JMSException e) {
 			log.error("Error processing message", e);
-			
+			try
+			{
+				session.recover();
+			}
+			catch(Exception ex)
+			{
+				log.error("Error processing message", e);
+			}
+		}
+		catch(Exception e)
+		{
+			log.error("Error processing message", e);
 		}
 	}
 
