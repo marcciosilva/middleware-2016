@@ -15,7 +15,7 @@
     <security-role>
         <role-name>roleNuevo</role-name>
     </security-role>
-     <security-constraint>
+    <security-constraint>
         <display-name>SecurityConstraint1</display-name>
         <web-resource-collection>
             <web-resource-name>RedStrawberryWS</web-resource-name>
@@ -26,7 +26,7 @@
         </auth-constraint>
     </security-constraint>
     <login-config>
-      	<auth-method>BASIC</auth-method>   
+        <auth-method>BASIC</auth-method>
     </login-config>
     <session-config>
         <session-timeout>
