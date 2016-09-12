@@ -66,19 +66,7 @@ public class EventDrivenConsumer implements MessageListener {
 
 	public void process(String value) {
 		System.out.println(consumidor + " " + value);
-		//El ok es la respuesta del procesamiento del xml. Si da error se manda a la cola.
-		boolean ok = true;
-		try
-		{
-			if(!ok)
-			{
-				session.recover();
-			}			
-		}
-		catch(JMSException e)
-		{
-			log.error("Error processing message", e);
-		}
+		//El ok es la respuesta del procesamiento del xml. Si da error se manda a la cola.	
 		
 	}
 

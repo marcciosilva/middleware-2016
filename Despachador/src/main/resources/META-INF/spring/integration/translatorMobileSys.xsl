@@ -7,7 +7,17 @@
 			<Item>
 				<idCliente><xsl:value-of select="/dtoOrder/customerId"></xsl:value-of></idCliente>
 				<idProducto><xsl:value-of select="./productId"></xsl:value-of></idProducto>
-				<fechaCreacion><xsl:value-of select="/dtoOrder/creationDate"></xsl:value-of></fechaCreacion>
+				<xsl:variable name="dateTime" select="/dtoOrder/creationDate"/>
+				<fechaCreacion><xsl:value-of select="concat(
+                      substring($dateTime, 9, 2),
+                      '/',
+                      substring($dateTime, 6, 2),
+                      '/',
+                      substring($dateTime, 1, 4),
+                      ' ',
+                      substring($dateTime, 12, 8)                      
+                      )">
+                      </xsl:value-of></fechaCreacion>
 				<idOrdenItem>
 					<xsl:value-of select="/dtoOrder/orderNumber"></xsl:value-of>
 					<xsl:value-of select="./itemNumber"></xsl:value-of>					
