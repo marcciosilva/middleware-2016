@@ -54,6 +54,18 @@ public class EventDrivenConsumer implements MessageListener {
 		}
 	}
 
+	public void CrearConsumidor() {
+		try {
+
+			MessageConsumer consumer = session.createConsumer(destination);
+			consumer.setMessageListener(this);
+
+		} catch (JMSException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
 	EventDrivenConsumer(String consumidor, Session session, Destination destination, Destination invalidOrdersChannel, Destination validOrdersChannel) {
 		this.consumidor = consumidor;
 		this.destination = destination;
@@ -62,18 +74,6 @@ public class EventDrivenConsumer implements MessageListener {
 		this.dataSysOrdersChannel = validOrdersChannel;
 		EventDrivenCanalValido consumidorCanalValido = new EventDrivenCanalValido(dataSysOrdersChannel,session);
 		consumidorCanalValido.CrearConsumidor();
-	}
-
-	public void CrearConsumidor() {
-		try {							
-
-			MessageConsumer consumer = session.createConsumer(destination);	
-			consumer.setMessageListener(this);
-
-		} catch (JMSException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 	}
 
 	private Log log = LogFactory.getLog(MessageProcessor.class);

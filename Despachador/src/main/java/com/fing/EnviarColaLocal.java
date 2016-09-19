@@ -1,7 +1,5 @@
 package com.fing;
 
-/*import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;*/
 import org.springframework.jms.core.JmsTemplate;
 
 public class EnviarColaLocal {
