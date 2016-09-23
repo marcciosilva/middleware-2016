@@ -47,17 +47,17 @@
 	<int:channel id="enviarMobile"></int:channel>
  	
  	<int-xml:xslt-transformer input-channel="ColaTranslator2"
- 		id="translate" output-channel="colaSplitter"
+ 		id="translate" output-channel="enviarMobile"
  		xsl-resource="/META-INF/spring/integration/translatorMobileSys.xsl">
  	</int-xml:xslt-transformer>
 
 
- 	<int-xml:xpath-splitter id="splitter" input-channel="colaSplitter"
+ 	<!-- <int-xml:xpath-splitter id="splitter" input-channel="colaSplitter"
  		output-channel="enviarMobile" create-documents="true">
  		<int-xml:xpath-expression expression="/ListaItems/Item"/>
- 	</int-xml:xpath-splitter>
+ 	</int-xml:xpath-splitter> -->
 
-	<int:channel id="colaSplitter"></int:channel>
+	<!-- <int:channel id="colaSplitter"></int:channel> -->
 
 	<int:channel id="colaRouter"></int:channel>
 
