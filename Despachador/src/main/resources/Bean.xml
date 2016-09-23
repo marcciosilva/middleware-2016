@@ -42,9 +42,7 @@
 						   method="EnviarMensaje" requires-reply="false">
 	</int:service-activator>
 
-	<int:service-activator ref="pepebean" input-channel="enviarMobile"
-						   method="EnviarMensaje" requires-reply="false">
-	</int:service-activator>
+	
 
 	<int:channel id="enviarMobile"></int:channel>
  	
@@ -64,12 +62,20 @@
 	<int:channel id="colaRouter"></int:channel>
 
 	<int:channel id="router-invalido"></int:channel>
+        
+        <int:channel id="colaRedStrawberry"></int:channel>
+        
+        <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" output-channel="nullChannel"/>               
+           
+        <bean id="agrregateBean" class="com.fing.Aggregate"/>
 
 	<int-xml:xpath-router id="router" input-channel="colaRouter" default-output-channel="nullChannel">
 		<int-xml:xpath-expression expression="/dtoOrder/itemsList/category"/>
 		<int-xml:mapping value="1" channel="ColaTranslator2"/>
 		<int-xml:mapping value="2" channel="ColaTranslator2"/>
 		<int-xml:mapping value="3" channel="ColaTranslator2"/>
+                
+                
 	</int-xml:xpath-router>
 
  	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
@@ -86,7 +92,7 @@
 				  input-channel="ColaTranslator1"
 				  output-channel="colaRouter"/>
 
-	<bean id="pepebean" class="com.fing.Pepe"/>
+	
 
 	<bean id="splitterBean" class="com.fing.SplitterBean"/>
 
