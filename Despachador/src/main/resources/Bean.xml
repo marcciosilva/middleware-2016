@@ -65,7 +65,7 @@
         
         <int:channel id="colaRedStrawberry"></int:channel>
         
-        <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" release-strategy="releaseStrategyBean"  release-strategy-method="canRelease" output-channel="nullChannel"/>               
+        <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" method="AddXml" release-strategy="releaseStrategyBean" release-strategy-method="canRelease" output-channel="nullChannel"/>               
            
         <bean id="agrregateBean" class="com.fing.Aggregate"/>
         <bean id="releaseStrategyBean" class="com.fing.Strategy"/>

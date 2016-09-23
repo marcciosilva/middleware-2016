@@ -31,6 +31,7 @@ public class Aggregate {
   
     public Long AddXml(List<String> listaXml) {
       try {
+          System.out.println("LLego");
            List<DtoOrder> listaordenes = new ArrayList();
            for (String xmlorder : listaXml) {
 
@@ -60,24 +61,19 @@ public class Aggregate {
          SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
          SOAPConnection soapConnection = soapConnectionFactory.createConnection();
          String soapRequestXml="<?xml version=\"1.0\" encoding=\"utf-16\"?>\n" +
-"<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n" +
-"  <soap:Body>\n" +
-"    <ProcesarItems xmlns=\"http://redstrawberry.fing.com.main/\">\n" +
-"      <ListaItem xmlns=\"\">\n" +
-"        <cantidad>2</cantidad>\n" +
-"        <fechaHora>SADSA</fechaHora>\n" +
-"        <identificadorproducto>0</identificadorproducto>\n" +
-"        <identificadortransaccion>12332</identificadortransaccion>\n" +
-"      </ListaItem>\n" +
-"      <ListaItem xmlns=\"\">\n" +
-"        <cantidad>33333</cantidad>\n" +
-"        <fechaHora>SADSA</fechaHora>\n" +
-"        <identificadorproducto>0</identificadorproducto>\n" +
-"        <identificadortransaccion>12332</identificadortransaccion>\n" +
-"      </ListaItem>\n" +
-"    </ProcesarItems>\n" +
-"  </soap:Body>\n" +
-"</soap:Envelope>";
+                                "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n" +
+                                "  <soap:Body>\n" +
+                                "    <ProcesarItems xmlns=\"http://redstrawberry.fing.com.main/\">\n";
+         
+          for (DtoOrder order : listaOrdenes) {
+          
+            String descitem= ArmarItem(order);
+            soapRequestXml= soapRequestXml +descitem;
+          }
+          soapRequestXml= soapRequestXml +"    </ProcesarItems>\n" +
+                                          "  </soap:Body>\n" +
+                                          "</soap:Envelope>";        
+
          TrustManager[] trustAllCerts = new TrustManager[] {
                          new X509TrustManager() {
                         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
@@ -104,7 +100,7 @@ public class Aggregate {
                         // Install the all-trusting host verifier
                         HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
          
-         
+                         //12 es el usuario y 12 es la constraseña de mi user en el tomcat 
                          String authorization = new sun.misc.BASE64Encoder().encode(("12:12").getBytes());
   
          
@@ -128,5 +124,29 @@ public class Aggregate {
     
     
     }
-  
+    
+    
+    public String ArmarItem(DtoOrder order)
+    {   
+        String retorno="      <ListaItem xmlns=\"\">\n";
+        try {
+            
+            String cantidad =order.getItemsList().get(0).getAmount().toString();
+            String fechahora= order.getCreationDate().toString();
+            String identificadorproducto=order.getItemsList().get(0).getProductId().toString();
+            int ordernumber= order.getOrderNumber();
+            String indetificadortransacion= ordernumber +":"+ order.getItemsList().get(0).getItemNumber().toString();
+            retorno = retorno +"<cantidad>"+cantidad+"</cantidad>\n";
+            retorno = retorno +"<fechaHora>"+fechahora+"</fechaHora>\n";
+            retorno = retorno +"<identificadorproducto>"+identificadorproducto+"</identificadorproducto>\n";
+            retorno = retorno +"<identificadortransaccion>"+indetificadortransacion+"</identificadortransaccion>\n";
+            retorno= retorno +"      </ListaItem>\n";
+            
+            //+":"+order.getItemsList().get(0).getItemNumber().toString();
+            
+        } catch (Exception e) {
+        }
+        return retorno;
+    
+    }  
   }

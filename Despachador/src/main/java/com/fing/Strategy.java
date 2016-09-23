@@ -18,6 +18,6 @@ public class Strategy {
       sum += 1;
     }
     // aca tengo q poner los 1000
-    return sum >= 2;
+    return sum >= 1000;
   }
 }
