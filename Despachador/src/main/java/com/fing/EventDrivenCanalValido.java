@@ -43,7 +43,7 @@ public class EventDrivenCanalValido implements MessageListener {
 			System.out.println("mensaje del canal valido " + value);
 			ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");				
 			EnviarColaLocal endpoint = (EnviarColaLocal) context.getBean("entrada", EnviarColaLocal.class);
-			endpoint.EnviarCola(value, "ColaTranslator1");
+			endpoint.EnviarCola(value, "colaSplitterInicial");
 			
 		} catch (JMSException e) {
 			log.error("Error processing message", e);
