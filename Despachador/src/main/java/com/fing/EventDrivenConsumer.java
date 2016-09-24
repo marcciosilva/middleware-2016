@@ -2,9 +2,6 @@ package com.fing;
 
 import java.io.ByteArrayInputStream;
 import java.math.RoundingMode;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DecimalFormat;
 
 import javax.jms.Connection;
@@ -36,9 +33,9 @@ public class EventDrivenConsumer implements MessageListener {
 
 	private boolean loggingEnabled = false;
 	private String consumidor;
-	private Destination destination;
+	private Destination source;
 	private Destination invalidOrdersChannel;
-	private Destination dataSysOrdersChannel;
+	private Destination validOrdersChannel;
 	private Session session;
 
 	private enum CurrencyEnum {
@@ -57,7 +54,7 @@ public class EventDrivenConsumer implements MessageListener {
 	public void CrearConsumidor() {
 		try {
 
-			MessageConsumer consumer = session.createConsumer(destination);
+			MessageConsumer consumer = session.createConsumer(source);
 			consumer.setMessageListener(this);
 
 		} catch (JMSException e1) {
@@ -66,13 +63,13 @@ public class EventDrivenConsumer implements MessageListener {
 		}
 	}
 
-	EventDrivenConsumer(String consumidor, Session session, Destination destination, Destination invalidOrdersChannel, Destination validOrdersChannel) {
+	EventDrivenConsumer(String consumidor, Session session, Destination source, Destination invalidOrdersChannel, Destination validOrdersChannel) {
 		this.consumidor = consumidor;
-		this.destination = destination;
+		this.source = source;
 		this.session = session;
 		this.invalidOrdersChannel = invalidOrdersChannel;
-		this.dataSysOrdersChannel = validOrdersChannel;
-		EventDrivenCanalValido consumidorCanalValido = new EventDrivenCanalValido(dataSysOrdersChannel,session);
+		this.validOrdersChannel = validOrdersChannel;
+		EventDrivenCanalValido consumidorCanalValido = new EventDrivenCanalValido(this.validOrdersChannel,session);
 		consumidorCanalValido.CrearConsumidor();
 	}
 
@@ -113,12 +110,12 @@ public class EventDrivenConsumer implements MessageListener {
 			Connection connection = activeMQConnectionFactory.createConnection();
 			connection.start();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			MessageProducer producer = session.createProducer(dataSysOrdersChannel);
+			MessageProducer producer = session.createProducer(validOrdersChannel);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 			TextMessage message;
 			message = session.createTextMessage(value);
 			producer.send(message);
-			System.out.println("Orden valida enviada a cola \"Despachador-DataSys\"");
+			System.out.println("Orden valida enviada a cola");
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();

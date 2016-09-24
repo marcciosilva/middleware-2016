@@ -12,88 +12,106 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms-4.1.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd">
-							
-	
-	
-	<int-jms:inbound-channel-adapter channel="ColaTranslator1"
-		auto-startup="true" jms-template="jmsTemplate"
-		destination-name="ColaTranslator1">
-		<int:poller fixed-delay="500" />
-	</int-jms:inbound-channel-adapter>
 
-	<bean id="connectionFactory"
-		class="org.springframework.jms.connection.CachingConnectionFactory">
-		<property name="targetConnectionFactory">
-			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
-				<property name="brokerURL" value="vm://localhost?broker.persistent=false" />				
-			</bean>
-		</property>
-		<property name="sessionCacheSize" value="10" />
-		<property name="cacheProducers" value="false" />		
-	</bean>
+    <!-- ###################### BEANS ###################### -->
 
-	<int:channel id="ColaTranslator1"/>
+    <bean id="connectionFactory"
+          class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="vm://localhost?broker.persistent=false" />
+            </bean>
+        </property>
+        <property name="sessionCacheSize" value="10" />
+        <property name="cacheProducers" value="false" />
+    </bean>
 
-	<int:channel id="ColaTranslator2"/>
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+    </bean>
 
-	<bean id="MobileSys" class="com.fing.EnviarMobileSys"/>
+    <bean id="entrada"
+          class="com.fing.EnviarColaLocal">
+        <property name="jmsTemplate" ref="jmsTemplate" />
+    </bean>
 
-	<int:service-activator ref="MobileSys" input-channel="enviarMobile"
-						   method="EnviarMensaje" requires-reply="false">
-	</int:service-activator>
+    <!-- Splitter inicial (Divide las Ordenes de varios ítems en Ordenes de 1 item) -->
 
-	
+    <bean id="splitterBean" class="com.fing.SplitterBean"/>
 
-	<int:channel id="enviarMobile"></int:channel>
- 	
- 	<int-xml:xslt-transformer input-channel="ColaTranslator2"
- 		id="translate" output-channel="enviarMobile"
- 		xsl-resource="/META-INF/spring/integration/translatorMobileSys.xsl">
- 	</int-xml:xslt-transformer>
+    <!-- Bean encargado de enviar las ordenes a mobileSys -->
 
+    <bean id="mobileSys" class="com.fing.EnviarMobileSys"/>
 
- 	<!-- <int-xml:xpath-splitter id="splitter" input-channel="colaSplitter"
- 		output-channel="enviarMobile" create-documents="true">
- 		<int-xml:xpath-expression expression="/ListaItems/Item"/>
- 	</int-xml:xpath-splitter> -->
+    <bean id="dataSys" class="com.fing.EnviarDataSys"/>
 
-	<!-- <int:channel id="colaSplitter"></int:channel> -->
+    <!-- Bean encargado de juntar las ordenes que van a RedStrawberry -->
 
-	<int:channel id="colaRouter"></int:channel>
+    <bean id="agrregateBean" class="com.fing.Aggregate"/>
 
-	<int:channel id="router-invalido"></int:channel>
-        
-        <int:channel id="colaRedStrawberry"></int:channel>
-        
-        <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" method="AddXml" release-strategy="releaseStrategyBean" release-strategy-method="canRelease" output-channel="nullChannel"/>               
-           
-        <bean id="agrregateBean" class="com.fing.Aggregate"/>
-        <bean id="releaseStrategyBean" class="com.fing.Strategy"/>
-	<int-xml:xpath-router id="router" input-channel="colaRouter" default-output-channel="nullChannel">
-		<int-xml:xpath-expression expression="/dtoOrder/itemsList/category"/>
-		<int-xml:mapping value="1" channel="colaRedStrawberry"/>
-		<int-xml:mapping value="2" channel="colaRedStrawberry"/>
-		<int-xml:mapping value="3" channel="colaRedStrawberry"/>
-                
-                
-	</int-xml:xpath-router>
+    <!-- Bean encargado de decidir cuando enviar la cola destinada a RedStrawberry -->
+    
+    <bean id="releaseStrategyBean" class="com.fing.Strategy"/>
 
- 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="connectionFactory" />
-	</bean>
+    <!--  ###################### CHANNELS ######################  -->
 
-	<bean id="entrada"
-		  class="com.fing.EnviarColaLocal">
-		<property name="jmsTemplate" ref="jmsTemplate" />
-	</bean>
+    <int:channel id="colaSplitterInicial"/>
 
-	<int:splitter id="splitterInicial"
-				  ref="splitterBean"
-				  input-channel="ColaTranslator1"
-				  output-channel="colaRouter"/>
+    <int:channel id="colaTranslatorMobileSys"/>
 
-	
+    <int:channel id="colaMobileSys"/>
 
-	<bean id="splitterBean" class="com.fing.SplitterBean"/>
+    <int:channel id="colaRouter"/>
+
+    <int:channel id="router-invalido"/>
+
+    <int:channel id="colaRedStrawberry"/>
+
+    <!-- ###################### ELEMENTOS DE SPRING ###################### -->
+
+    <!-- Entrada de mensajes desde el validador -->
+
+    <int-jms:inbound-channel-adapter channel="colaSplitterInicial"
+                                     auto-startup="true" jms-template="jmsTemplate"
+                                     destination-name="colaSplitterInicial">
+        <int:poller fixed-delay="500" />
+    </int-jms:inbound-channel-adapter>
+
+    <!-- Splitter encargado de dividir las ordenes de varios ítems en ordenes de 1 item -->
+
+    <int:splitter id="splitterInicial"
+                  ref="splitterBean"
+                  input-channel="colaSplitterInicial"
+                  output-channel="colaRouter"/>
+
+    <!-- Router divisor de las órdenes del elemento anterior hacia los distintos sistemas -->
+
+    <int-xml:xpath-router id="router" input-channel="colaRouter" default-output-channel="nullChannel">
+        <int-xml:xpath-expression expression="/dtoOrder/itemsList/category"/>
+        <int-xml:mapping value="1" channel="colaDataSys"/>
+        <int-xml:mapping value="2" channel="colaTranslatorMobileSys"/>
+        <int-xml:mapping value="3" channel="colaRedStrawberry"/>
+    </int-xml:xpath-router>
+
+    <!-- Translator particular para MobileSys -->
+
+    <int-xml:xslt-transformer input-channel="colaTranslatorMobileSys"
+                              id="translate" output-channel="colaMobileSys"
+                              xsl-resource="/META-INF/spring/integration/translatorMobileSys.xsl">
+    </int-xml:xslt-transformer>
+
+    <!-- Service Activator para redirigir los mensajes a MobileSys -->
+
+    <int:service-activator ref="mobileSys" input-channel="colaMobileSys"
+                           method="EnviarMensaje" requires-reply="false">
+    </int:service-activator>
+
+    <int:service-activator ref="dataSys" input-channel="colaDataSys"
+                           method="EnviarMensaje" requires-reply="false">
+    </int:service-activator>
+
+    <!-- Agregator para RedStrawberry -->
+
+    <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" method="AddXml" release-strategy="releaseStrategyBean" release-strategy-method="canRelease" output-channel="nullChannel"/>
 
 </beans>
