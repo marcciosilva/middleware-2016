@@ -43,6 +43,8 @@
 
     <bean id="mobileSys" class="com.fing.EnviarMobileSys"/>
 
+    <bean id="dataSys" class="com.fing.EnviarDataSys"/>
+
     <!-- Bean encargado de juntar las ordenes que van a RedStrawberry -->
 
     <bean id="agrregateBean" class="com.fing.Aggregate"/>
@@ -86,7 +88,7 @@
 
     <int-xml:xpath-router id="router" input-channel="colaRouter" default-output-channel="nullChannel">
         <int-xml:xpath-expression expression="/dtoOrder/itemsList/category"/>
-        <int-xml:mapping value="1" channel="colaTranslatorMobileSys"/>
+        <int-xml:mapping value="1" channel="colaDataSys"/>
         <int-xml:mapping value="2" channel="colaTranslatorMobileSys"/>
         <int-xml:mapping value="3" channel="colaRedStrawberry"/>
     </int-xml:xpath-router>
@@ -101,6 +103,10 @@
     <!-- Service Activator para redirigir los mensajes a MobileSys -->
 
     <int:service-activator ref="mobileSys" input-channel="colaMobileSys"
+                           method="EnviarMensaje" requires-reply="false">
+    </int:service-activator>
+
+    <int:service-activator ref="dataSys" input-channel="colaDataSys"
                            method="EnviarMensaje" requires-reply="false">
     </int:service-activator>
 

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fing</groupId>
-	<artifactId>MobileSys</artifactId>
+	<artifactId>DataSys</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>MobileSys</name>
+	<name>DataSys</name>
 	<description>Proceso de ordenes de compra de tipo Mobile</description>
 
 	<parent>
