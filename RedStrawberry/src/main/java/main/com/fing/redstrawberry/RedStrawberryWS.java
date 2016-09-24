@@ -25,6 +25,7 @@ public class RedStrawberryWS {
 
 	@WebMethod(operationName = "ProcesarItems")
 	public void ProcesarItems(@WebParam(name = "ListaItem") Item[] lista) {
+                fgen.info("Entro");
 		for (int i = 0; i < lista.length; i++) {
 
 			Item pedido = lista[i];

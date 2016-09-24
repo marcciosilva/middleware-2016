@@ -32,6 +32,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
+		 <exclusions>
+		  <exclusion>
+		   <groupId>org.apache.tomcat.embed</groupId>
+		   <artifactId>tomcat-embed-core</artifactId>
+		  </exclusion>
+		  <exclusion>
+		   <groupId>org.apache.tomcat.embed</groupId>
+		   <artifactId>tomcat-embed-el</artifactId>
+		  </exclusion>
+		  <exclusion>
+		   <groupId>org.apache.tomcat.embed</groupId>
+		   <artifactId>tomcat-embed-websocket</artifactId>
+		  </exclusion>
+		 </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -61,16 +75,30 @@
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-xml</artifactId>
 		</dependency>
+               <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                <version>2.7.7</version>
+            </dependency>            
+	 <dependency>
+	  <groupId>com.fing</groupId>
+	  <artifactId>Despachador</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <type>jar</type>
+	 </dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+				<artifactId>spring-boot-maven-plugin</artifactId>                               
+			</plugin>                       
+                        
 		</plugins>
 	</build>
-
+        
+        
+        
 
 </project>

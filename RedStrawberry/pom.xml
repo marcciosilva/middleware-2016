@@ -8,6 +8,7 @@
     <packaging>war</packaging>
 
     <name>RedStrawberry</name>
+    
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
