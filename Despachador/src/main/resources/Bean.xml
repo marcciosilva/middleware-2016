@@ -112,6 +112,6 @@
 
     <!-- Agregator para RedStrawberry -->
 
-    <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" method="AddXml" release-strategy="releaseStrategyBean" release-strategy-method="canRelease" output-channel="nullChannel"/>
+    <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean"  release-strategy="releaseStrategyBean" release-strategy-method="canRelease" output-channel="nullChannel"/>
 
 </beans>

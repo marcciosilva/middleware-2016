@@ -28,7 +28,7 @@ import javax.xml.soap.*;
  */
 
 public class Aggregate {
-  
+    //public static List<String> lista2 =new ArrayList();
     public Long AddXml(List<String> listaXml) {
       try {
           System.out.println("LLego");
