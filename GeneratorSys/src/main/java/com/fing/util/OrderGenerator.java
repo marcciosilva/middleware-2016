@@ -165,7 +165,7 @@ public class OrderGenerator {
      * @return
      */
     private static Integer generateOrderItemCategory() {
-        int selectedValue = RandomGenerator.randomGen(1, EnumItemCategory.values().length);
+        int selectedValue = RandomGenerator.randomGen(0, EnumItemCategory.values().length - 1);
         return EnumItemCategory.values()[selectedValue].getEnumValue();
     }
 
