@@ -39,7 +39,7 @@ public final class Strategy {
     Boolean b= false;
     for (String xmlorder: listaXml) {
       //sum += 1;
-       if (Strategy.lista.size() == 100)
+       if (Strategy.lista.size() == 2)
        {
           b=true;
           AddXml();

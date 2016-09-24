@@ -29,12 +29,48 @@ import javax.xml.soap.*;
 
 public class Aggregate {
     //public static List<String> lista2 =new ArrayList();
+    private static List<String> lista2 =new ArrayList(); 
     public Long AddXml(List<String> listaXml) {
       try {
-          System.out.println("LLego");
-           List<DtoOrder> listaordenes = new ArrayList();
+          System.out.println("LLego");  
+          System.out.println("Tamaño " + lista2.size());
+          
+           //List<DtoOrder> listaordenes = new ArrayList();
            for (String xmlorder : listaXml) {
+              int tam = lista2.size();
+              if (tam==100)
+              {
+               InvocarWebService();
+               lista2= null;
+               lista2= new ArrayList(); 
+              }              
+              lista2.add(xmlorder);
+              
+           }
+              /*JAXBContext jc = JAXBContext.newInstance(DtoOrder.class);
+              Unmarshaller u = jc.createUnmarshaller();
+              StringBuffer xmlStr = new StringBuffer( xmlorder );
+              Object o = u.unmarshal( new StreamSource( new StringReader( xmlStr.toString() ) ) );
+              DtoOrder order = (DtoOrder) o;               
+              listaordenes.add(order);
+           }
+           //invocar web service            
+           invokeService(listaordenes);*/
+      }
+      catch (Exception e) {
+              System.out.println(e.getMessage());
+      }
 
+      long total = 0;
+      System.out.println("LLego");
+      return total;
+    }
+    
+    public void InvocarWebService()
+    {
+      try{
+          List<DtoOrder> listaordenes = new ArrayList();
+          for (String xmlorder : lista2) {             
               JAXBContext jc = JAXBContext.newInstance(DtoOrder.class);
               Unmarshaller u = jc.createUnmarshaller();
               StringBuffer xmlStr = new StringBuffer( xmlorder );
@@ -47,11 +83,9 @@ public class Aggregate {
       }
       catch (Exception e) {
               System.out.println(e.getMessage());
-      }
-
-      long total = 0;
-      System.out.println("LLego");
-      return total;
+      }  
+          
+    
     }
     
     

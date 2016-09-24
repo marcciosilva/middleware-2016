@@ -51,7 +51,7 @@
 
     <!-- Bean encargado de decidir cuando enviar la cola destinada a RedStrawberry -->
     
-    <bean id="releaseStrategyBean" class="com.fing.Strategy"/>
+   
 
     <!--  ###################### CHANNELS ######################  -->
 
@@ -112,6 +112,6 @@
 
     <!-- Agregator para RedStrawberry -->
 
-    <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean"  release-strategy="releaseStrategyBean" release-strategy-method="canRelease" output-channel="nullChannel"/>
+    <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" method="AddXml"  output-channel="nullChannel"/>
 
 </beans>
