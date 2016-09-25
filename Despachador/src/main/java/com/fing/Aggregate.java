@@ -38,7 +38,7 @@ public class Aggregate {
            //List<DtoOrder> listaordenes = new ArrayList();
            for (String xmlorder : listaXml) {
               int tam = lista2.size();
-              if (tam==100)
+              if (tam==1000)
               {
                InvocarWebService();
                lista2= null;

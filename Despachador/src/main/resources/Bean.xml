@@ -110,7 +110,7 @@
                            method="EnviarMensaje" requires-reply="false">
     </int:service-activator>
     
-     <int:service-activator ref="agrregateBean" input-channel="colaRedStrawberry"
+     <int:service-activator ref="agrregateBean" input-channel="colaRedStrawberry" output-channel="nullChannel"
                            method="AddXml" requires-reply="false">
     </int:service-activator>
 
