@@ -109,9 +109,13 @@
     <int:service-activator ref="dataSys" input-channel="colaDataSys"
                            method="EnviarMensaje" requires-reply="false">
     </int:service-activator>
+    
+     <int:service-activator ref="agrregateBean" input-channel="colaRedStrawberry"
+                           method="AddXml" requires-reply="false">
+    </int:service-activator>
 
     <!-- Agregator para RedStrawberry -->
 
-    <int:aggregator input-channel="colaRedStrawberry" ref="agrregateBean" method="AddXml"  output-channel="nullChannel"/>
+  
 
 </beans>
