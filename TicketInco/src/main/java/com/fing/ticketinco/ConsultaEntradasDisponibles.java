@@ -5,6 +5,9 @@
  */
 package com.fing.ticketinco;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -19,8 +22,17 @@ public class ConsultaEntradasDisponibles {
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
+    @WebMethod(operationName = "ConsultarEntradasDisponibles")
+    public List<Horario> ConsultarEntradas(@WebParam(name = "idEvento") int idEvento, @WebParam(name = "fechaEvento") Date fechaEvento) {
+        ListaEventos eventos = new ListaEventos();
+        Evento e = eventos.buscarEvento(idEvento, fechaEvento);
+        List<Horario> horariosRetornar = new ArrayList<Horario>();
+        if(e != null)
+        {
+            horariosRetornar = e.getHoarios();
+        }        
+        return horariosRetornar;
     }
+    
+    
 }
