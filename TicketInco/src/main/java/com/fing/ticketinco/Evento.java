@@ -6,6 +6,7 @@
 package com.fing.ticketinco;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,17 +16,17 @@ import java.util.List;
  */
 public class Evento {
     int idEvento;
-    Date fechaEvento;
+    Calendar fechaEvento;
     List<Horario> horarios;
     
     public Evento()
     {
         idEvento = 0;
-        fechaEvento = new Date();
+        fechaEvento = Calendar.getInstance();
         horarios = new ArrayList<Horario>();
     }
     
-    public Evento(int idEvento, Date fechaEvento, List<Horario> horarios)
+    public Evento(int idEvento, Calendar fechaEvento, List<Horario> horarios)
     {
         this.idEvento = idEvento;
         this.fechaEvento = fechaEvento;
@@ -42,12 +43,12 @@ public class Evento {
         this.idEvento = idEvento;
     }
     
-    public Date getFechaEvento()
+    public Calendar getFechaEvento()
     {
         return fechaEvento;
     }
     
-    public void setFechaEvento(Date fechaEvento)
+    public void setFechaEvento(Calendar fechaEvento)
     {
         this.fechaEvento = fechaEvento;
     }

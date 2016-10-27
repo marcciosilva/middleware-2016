@@ -6,6 +6,7 @@
 package com.fing.ticketinco;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -14,27 +15,27 @@ import java.util.List;
  * @author Cami
  */
 public class Horario {
-    Date horario;
+    Calendar horario;
     List<Disponibilidad> disponibilidades;
     
     public Horario()
     {
-        horario = new Date();
+        horario = Calendar.getInstance();
         disponibilidades = new ArrayList<Disponibilidad>();
     }
     
-    public Horario(Date date, List<Disponibilidad> disponibilidades)
+    public Horario(Calendar date, List<Disponibilidad> disponibilidades)
     {
         this.horario = date;
         this.disponibilidades = disponibilidades;
     }
     
-    public Date getHorario()
+    public Calendar getHorario()
     {
         return horario;
     }
     
-    public void setHorario(Date horario)
+    public void setHorario(Calendar horario)
     {
         this.horario = horario;
     }

@@ -5,7 +5,10 @@
  */
 package com.fing.ticketinco;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +19,7 @@ import java.util.List;
 public class ListaEventos {
     public static List<Evento> listaEventos;
     
-    public ListaEventos()
+    public ListaEventos() throws ParseException
     {
         if(listaEventos == null)
         {
@@ -29,13 +32,18 @@ public class ListaEventos {
        return listaEventos;
    }
    
-   public Evento buscarEvento(int idEvento, Date fechaEvento)
+   public Evento buscarEvento(int idEvento, Calendar fechaEvento)
    {       
        for(Evento e : listaEventos)
        {
-           if(e.idEvento == idEvento && e.fechaEvento == fechaEvento)
-           {
-               return e;
+           Date fechaE = e.fechaEvento.getTime();           
+           Date fechaEventoDate = fechaEvento.getTime();           
+           if(e.idEvento == idEvento)
+           {             
+               if(fechaE.equals(fechaEventoDate))
+               {
+                   return e;
+               }               
            }
        }
        return null;
@@ -46,7 +54,7 @@ public class ListaEventos {
         listaEventos.add(evento);
     }
     
-    private List<Evento> crearEventos()
+    private List<Evento> crearEventos() throws ParseException
     {
         listaEventos = new ArrayList<Evento>();
         
@@ -55,8 +63,12 @@ public class ListaEventos {
         Disponibilidad d3 = new Disponibilidad("Sector 3", 800, 100);
         Disponibilidad d4 = new Disponibilidad("Sector 4", 1000, 100);  
         
+        //Date fecha = new Date();
+        Calendar c = Calendar.getInstance();
+        c.set(2016, 10, 19,0,0,0);    
+        c.set(Calendar.MILLISECOND, 0);  
         Horario h = new Horario();
-        h.horario = new Date(2016, 19, 11);
+        h.horario = c;
         h.disponibilidades.add(d1);
         h.disponibilidades.add(d2);
         h.disponibilidades.add(d3);
@@ -64,7 +76,7 @@ public class ListaEventos {
         List<Horario> horarios = new ArrayList<Horario>();
         horarios.add(h);
         
-        Evento e = new Evento(1,new Date(2016, 19, 11), horarios);
+        Evento e = new Evento(1,c, horarios);
         
         listaEventos.add(e);
         return listaEventos;
