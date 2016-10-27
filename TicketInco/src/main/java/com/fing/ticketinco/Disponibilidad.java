@@ -5,13 +5,15 @@
  */
 package com.fing.ticketinco;
 
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  *
  * @author Cami
  */
-public class Disponibilidad {
-    String sector;
-    double precio;
+public class Disponibilidad {    
+    String sector;    
+    double precio;    
     int cantidad;
 
     public Disponibilidad()

@@ -17,7 +17,7 @@ import java.util.List;
 public class Evento {
     int idEvento;
     Calendar fechaEvento;
-    List<Horario> horarios;
+    ArrayList<Horario> horarios;
     
     public Evento()
     {
@@ -26,7 +26,7 @@ public class Evento {
         horarios = new ArrayList<Horario>();
     }
     
-    public Evento(int idEvento, Calendar fechaEvento, List<Horario> horarios)
+    public Evento(int idEvento, Calendar fechaEvento, ArrayList<Horario> horarios)
     {
         this.idEvento = idEvento;
         this.fechaEvento = fechaEvento;
@@ -53,12 +53,12 @@ public class Evento {
         this.fechaEvento = fechaEvento;
     }
     
-    public List<Horario> getHoarios()
+    public ArrayList<Horario> getHoarios()
     {
         return horarios;
     }
     
-    public void setHorarios(List<Horario> horarios)
+    public void setHorarios(ArrayList<Horario> horarios)
     {
         this.horarios = horarios;
     }
