@@ -17,7 +17,7 @@ import java.util.List;
  * @author Cami
  */
 public class ListaEventos {
-    public static List<Evento> listaEventos;
+    public static ArrayList<Evento> listaEventos;
     
     public ListaEventos() throws ParseException
     {
@@ -27,7 +27,7 @@ public class ListaEventos {
         }
     }
     
-   public List<Evento> getListaEventos()
+   public ArrayList<Evento> getListaEventos()
    {
        return listaEventos;
    }
@@ -54,7 +54,7 @@ public class ListaEventos {
         listaEventos.add(evento);
     }
     
-    private List<Evento> crearEventos() throws ParseException
+    private ArrayList<Evento> crearEventos()
     {
         listaEventos = new ArrayList<Evento>();
         
@@ -68,12 +68,12 @@ public class ListaEventos {
         c.set(2016, 10, 19,0,0,0);    
         c.set(Calendar.MILLISECOND, 0);  
         Horario h = new Horario();
-        h.horario = c;
-        h.disponibilidades.add(d1);
-        h.disponibilidades.add(d2);
-        h.disponibilidades.add(d3);
-        h.disponibilidades.add(d4);
-        List<Horario> horarios = new ArrayList<Horario>();
+        h.hora = c;
+        h.agregarDisponibilidad(d1);
+        h.agregarDisponibilidad(d2);
+        h.agregarDisponibilidad(d3);
+        h.agregarDisponibilidad(d4);
+        ArrayList<Horario> horarios = new ArrayList<Horario>();
         horarios.add(h);
         
         Evento e = new Evento(1,c, horarios);

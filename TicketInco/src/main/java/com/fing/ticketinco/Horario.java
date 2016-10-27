@@ -9,35 +9,39 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author Cami
  */
 public class Horario {
-    Calendar horario;
-    List<Disponibilidad> disponibilidades;
+    @XmlElement
+    Calendar hora;
+    @XmlElement
+    ArrayList<Disponibilidad> disponibilidades;
     
     public Horario()
     {
-        horario = Calendar.getInstance();
+        hora = Calendar.getInstance();
         disponibilidades = new ArrayList<Disponibilidad>();
+        
     }
     
-    public Horario(Calendar date, List<Disponibilidad> disponibilidades)
+    public Horario(Calendar date, ArrayList<Disponibilidad> disponibilidades)
     {
-        this.horario = date;
+        this.hora = date;
         this.disponibilidades = disponibilidades;
     }
     
     public Calendar getHorario()
     {
-        return horario;
+        return hora;
     }
     
     public void setHorario(Calendar horario)
     {
-        this.horario = horario;
+        this.hora = horario;
     }
     
     public void agregarDisponibilidad(Disponibilidad disponibilidad)
