@@ -8,6 +8,7 @@ package com.fing.ticketinco;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -15,12 +16,17 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "ConsultaEstadoReserva")
 public class ConsultaEstadoReserva {
+  final static Logger fgen = Logger.getLogger(ConsultaEstadoReserva.class);
 
     /**
-     * This is a sample web service operation
+     * Web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
+    @WebMethod(operationName = "consulta_estado_reserva")
+    public EstadoReserva consulta_estado_reserva(@WebParam(name = "identificador_reserva") long identificador_reserva) {
+        //TODO write your implementation code here:
+        
+         fgen.info ("Identificador de la reserva : " + identificador_reserva);
+         EstadoReserva e = new EstadoReserva();
+         return e;
     }
 }
