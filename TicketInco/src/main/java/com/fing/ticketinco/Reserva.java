@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * @author javier
  */
 public class Reserva {
-    public long idReserva;    
+    public long idReserva; 
+    int idEvento;
     public ArrayList<Horario> horarios;
     public int Estado;
 }

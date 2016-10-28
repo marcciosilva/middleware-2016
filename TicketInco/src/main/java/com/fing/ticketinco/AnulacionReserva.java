@@ -19,8 +19,32 @@ public class AnulacionReserva {
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
+    @WebMethod(operationName = "AnularReserva")
+    public String AnularReserva(@WebParam(name = "idConfirmacionPago") long idConfirmacionPago, @WebParam(name = "idMedioPago") long idMedioPago) {
+                
+        ListaPagos listaPagos = new ListaPagos();
+        Pago pago = listaPagos.buscarPago(idConfirmacionPago);
+        if(pago != null)
+        {
+            if(idMedioPago == 1000)
+            {
+                //LLamamos al servicio local para anular el pago
+                return "Servicio local";
+            }
+            else if(idMedioPago == 2000)
+            {
+                //Llamar al servicio de PagosYa para anular el pago
+                return "Servicio PagosYa";
+            }
+            else
+            {
+                return "El medio de pago no existe";
+            }
+        }
+        else
+        {
+            return "No existe el pago con ese identificador.";
+        }
+        
     }
 }
