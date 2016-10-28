@@ -14,6 +14,7 @@ import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -22,12 +23,16 @@ import javax.jws.WebParam;
 @WebService(serviceName = "ConsultaEntradas")
 public class ConsultaEntradasDisponibles {
 
+    final static Logger fgen = Logger.getLogger(ConsultaEntradasDisponibles.class);
     /**
      * This is a sample web service operation
      */
     @WebMethod(operationName = "ConsultarEntradasDisponibles")
     public ListaHorariosRetornar ConsultarEntradas(@WebParam(name = "idEvento") int idEvento, @WebParam(name = "fechaEvento") Calendar fechaEvento) throws ParseException {
-        String res = "No encontre";
+        
+        fgen.info ("Identificador del evento" + idEvento);
+        fgen.info ("Fecha del evento" + fechaEvento);
+        
         ListaEventos eventos = new ListaEventos();     
         //DateFormat df = DateFormat.getInstance();
         //Date fecha = df.parse(fechaEvento);
@@ -35,13 +40,11 @@ public class ConsultaEntradasDisponibles {
         ArrayList<Horario> horariosRetornar = new ArrayList<Horario>();
         if(e != null)
         {
-            horariosRetornar = e.getHoarios();
-            res = "Encontre el evento";
+            horariosRetornar = e.getHoarios();            
         }        
         
         ListaHorariosRetornar horarios = new ListaHorariosRetornar(horariosRetornar);
-        return horarios;  
-        //return res;
+        return horarios;          
     }
     
     

@@ -8,6 +8,7 @@ package com.fing.ticketinco;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -15,13 +16,17 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "AnulacionReserva")
 public class AnulacionReserva {
-
+    
+    final static Logger fgen = Logger.getLogger(AnulacionReserva.class);
     /**
      * This is a sample web service operation
      */
     @WebMethod(operationName = "AnularReserva")
     public String AnularReserva(@WebParam(name = "idConfirmacionPago") long idConfirmacionPago, @WebParam(name = "idMedioPago") long idMedioPago) {
-                
+        
+        fgen.info ("Identificador de la confirmación del pago " + idConfirmacionPago);
+        fgen.info ("Identificador del medio de pago " + idMedioPago);
+        
         ListaPagos listaPagos = new ListaPagos();
         Pago pago = listaPagos.buscarPago(idConfirmacionPago);
         if(pago != null)

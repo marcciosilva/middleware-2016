@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import org.apache.log4j.Logger;
 //import org.apache.cxf.endpoint.Endpoint;
 //import org.apache.cxf.jaxws.EndpointImpl;
 
@@ -21,7 +22,8 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "ConfirmacionReserva")
 public class ConfirmacionReserva {
-
+    
+    final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
     /**
      * This is a sample web service operation
      */
@@ -42,7 +44,20 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
 
     @WebMethod(operationName = "ConfirmarReserva")
     public String ConfirmarReserva(@WebParam(name = "idReserva") long idReserva, @WebParam(name = "idMedioPago")long idMedioPago, @WebParam(name = "nroTarjeta") String nroTarjeta, @WebParam(name = "fechaVencimeinto") Date fechaVencimiento, @WebParam(name = "digitoVerificador") int digitoVerificador) throws ParseException {
+        try
+        {
+            fgen.info ("Identificador de la reserva " + idReserva);
+            fgen.info ("Identificador del medio de pago " + idMedioPago);
+            //fgen.info("Número tarjeta ", nroTarjeta);
+            //fgen.info("Fecha vencimiento ", fechaVencimiento);
+            //fgen.info("Dígito verificador ", digitoVerificador);
+        }
+        catch(Exception e)
+        {
+            
+        }
         
+           
         //TODO: Hay que agregar WS-Addressing y WS-Security
         ListaReservas listaReservas = new ListaReservas();
         Reserva reserva = listaReservas.buscarReserva(idReserva);
