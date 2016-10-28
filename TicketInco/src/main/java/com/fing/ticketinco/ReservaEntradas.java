@@ -75,6 +75,7 @@ public class ReservaEntradas {
                                    Reserva reserv= new Reserva();
                                    reservas.contador_Id= reservas.contador_Id +1;
                                    reserv.idReserva= reservas.contador_Id;
+                                   reserv.Estado=1;
                                    reservas.listaReserva.add(reserv);
                                    return reserv.idReserva;
                                 }
