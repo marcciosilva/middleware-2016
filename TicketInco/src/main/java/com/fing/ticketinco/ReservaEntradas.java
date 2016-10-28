@@ -44,7 +44,9 @@ public class ReservaEntradas {
              }           
              
              
-        }         
+        }       
+        //Inicializo o tomo lo que esta en memoria de la lista de reservas
+        ListaReservas reservas= new ListaReservas();        
         // busco el evento y que la lista de horarios sea en la que quiero reservar
         ListaEventos eventos = new ListaEventos();
         Calendar c = Calendar.getInstance();
@@ -60,15 +62,21 @@ public class ReservaEntradas {
         {
             for (int i = 0; i < horariosRetornar.size(); i++) {
                 for (int j = 0; j < listahorarios.length; j++) {
-                    if (horariosRetornar.get(i).hora==listahorarios[j].hora)
+                    Date fechaE = horariosRetornar.get(i).getHorario().getTime();           
+                    Date fechaEventoDate = listahorarios[j].hora.getTime();              
+                    if(fechaE.equals(fechaEventoDate))                   
                     {   for (int k = 0; k < horariosRetornar.get(i).disponibilidades.size(); k++) {
                             for (int l = 0; l < listahorarios[j].disponibilidades.size(); l++) {
                                 Disponibilidad d= horariosRetornar.get(i).disponibilidades.get(k);
                                 Disponibilidad r= listahorarios[j].disponibilidades.get(l);
-                                if  (d.cantidad >= r.cantidad && d.sector== r.sector)
+                                if  (d.cantidad >= r.cantidad && d.sector.equalsIgnoreCase(r.sector) && d.precio==r.precio)
                                 {
-                                    // genero el identificador de reserva para retornar
-                                    return 1;
+                                   d.setCantidad(d.cantidad-r.cantidad);
+                                   Reserva reserv= new Reserva();
+                                   reservas.contador_Id= reservas.contador_Id +1;
+                                   reserv.idReserva= reservas.contador_Id;
+                                   reservas.listaReserva.add(reserv);
+                                   return reserv.idReserva;
                                 }
                                 
                             }
