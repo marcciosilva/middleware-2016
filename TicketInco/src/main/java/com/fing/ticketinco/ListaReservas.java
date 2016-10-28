@@ -27,4 +27,16 @@ public class ListaReservas {
         }
     }    
     
+    public Reserva buscarReserva(long idReserva)
+    {        
+        for(Reserva r : listaReserva)
+        {
+            if(r.idReserva == idReserva)
+            {
+                return r;
+            }
+        }
+        return null;
+    }
+    
 }
