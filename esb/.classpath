@@ -10,5 +10,6 @@
 	<classpathentry kind="src" path="src/main/api"/>
 	<classpathentry kind="src" path="src/main/wsdl"/>
 	<classpathentry kind="src" path="src/test/munit"/>
+	<classpathentry kind="lib" path="C:/Users/Cami/Documents/Fing/Middleware/Obligatorio 2/apache-activemq-5.14.1-bin/apache-activemq-5.14.1/activemq-all-5.14.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

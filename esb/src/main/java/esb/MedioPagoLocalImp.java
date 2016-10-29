@@ -40,6 +40,8 @@ public class MedioPagoLocalImp implements MedioPagoLocal{
 			e1.printStackTrace();
 		}
         //return sw.toString();
+		EnviarMensajeACola enviarMensajeCola = new EnviarMensajeACola();
+		enviarMensajeCola.EnviarMensaje(sw.toString());
 		System.out.println(sw.toString());
 	}
 }
