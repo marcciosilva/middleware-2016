@@ -5,6 +5,9 @@
  */
 package com.fing.ticketinco;
 
+import com.fing.ws.MedioPagoLocal;
+import com.fing.ws.MedioPagoLocalService;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +15,8 @@ import java.util.Map;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import org.apache.log4j.Logger;
 //import org.apache.cxf.endpoint.Endpoint;
 //import org.apache.cxf.jaxws.EndpointImpl;
@@ -65,7 +70,19 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
         {
             if(idMedioPago == 1000)
             {
-                // Ir al servicio local
+                try
+                {                    
+                    MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
+                    MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
+                    String digitoVerificadorStr = String.valueOf(digitoVerificador);
+                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, "1000");
+                    
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Error " + e.getMessage());
+                }
+                
                 return "Medio de pago local";
             }
             else if(idMedioPago == 2000)
