@@ -58,9 +58,9 @@ public class ListaEventos {
     {
         listaEventos = new ArrayList<Evento>();
         
-        Disponibilidad d1 = new Disponibilidad("Sector 1", 300, 100);
-        Disponibilidad d2 = new Disponibilidad("Sector 2", 450, 100);
-        Disponibilidad d3 = new Disponibilidad("Sector 3", 800, 100);
+        Disponibilidad d1 = new Disponibilidad("Sector 1", 300.25, 100);
+        Disponibilidad d2 = new Disponibilidad("Sector 2", 450.30, 100);
+        Disponibilidad d3 = new Disponibilidad("Sector 3", 800.75, 100);
         Disponibilidad d4 = new Disponibilidad("Sector 4", 1000, 100);  
         
         //Date fecha = new Date();
