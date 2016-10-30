@@ -31,11 +31,12 @@ public class ReservaEntradas {
         //TODO write your implementation code here:
         fgen.info ("Identificador del evento" + identificador_evento);
         fgen.info ("Fecha del evento" + fechaevento);
-        
+        ArrayList<Horario> horariosReserva = new ArrayList<Horario>();
         for (int i = 0; i < listahorarios.length; i++) {
-        
-             fgen.info ("Horario : " + listahorarios[i].getHorario().toString());
-             
+            
+            Horario horario = listahorarios[i];
+             fgen.info ("Horario : " + horario.getHorario().toString());             
+             horariosReserva.add(horario);
              List<Disponibilidad> listadisponibles = listahorarios[i].disponibilidades;
              for (int j = 0; j < listadisponibles.size() ; j++) {                
                 fgen.info ("   Disponibilidad - Cantidad: " + listadisponibles.get(j).getCantidad());
@@ -72,13 +73,20 @@ public class ReservaEntradas {
                                 if  (d.cantidad >= r.cantidad && d.sector.equalsIgnoreCase(r.sector) && d.precio==r.precio)
                                 {
                                    d.setCantidad(d.cantidad-r.cantidad);
-                                   Reserva reserv= new Reserva();
-                                   reservas.contador_Id= reservas.contador_Id +1;
-                                   reserv.idReserva= reservas.contador_Id;
-                                   reserv.Estado=1;
-                                   reserv.idEvento = identificador_evento;
-                                   reservas.listaReserva.add(reserv);
-                                   return reserv.idReserva;
+                                   //Reserva reserv= new Reserva();
+                                   //reservas.contador_Id= reservas.contador_Id +1;
+                                   //reserv.idReserva= reservas.contador_Id;
+                                   //reserv.Estado=1;
+                                   //reserv.idEvento = identificador_evento;
+                                   //reserv.horarios.add(listahorarios[j]);
+                                   //reservas.listaReserva.add(reserv);
+                                   //return reserv.idReserva;
+                                }
+                                else if(d.cantidad < r.cantidad && d.sector.equalsIgnoreCase(r.sector) && d.precio==r.precio)
+                                {
+                                    //Si hay alguna solicitud de de reserva que no se pueda cumplir. Re reorna 0.
+                                    //TODO: Hay que volver para atras las cantidades modificadas.
+                                    return 0;
                                 }
                                 
                             }
@@ -87,6 +95,14 @@ public class ReservaEntradas {
                     }
                 }
             }
+            Reserva reserv= new Reserva();
+            reservas.contador_Id= reservas.contador_Id +1;
+            reserv.idReserva= reservas.contador_Id;
+            reserv.Estado=1;
+            reserv.idEvento = identificador_evento;
+            reserv.horarios = horariosReserva;
+            reservas.listaReserva.add(reserv);
+            return reserv.idReserva;
         }
         
         return 0;

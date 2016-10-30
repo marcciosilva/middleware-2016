@@ -9,6 +9,7 @@ import com.fing.ws.MedioPagoLocal;
 import com.fing.ws.MedioPagoLocalService;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,9 +66,10 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
            
         //TODO: Hay que agregar WS-Addressing y WS-Security
         ListaReservas listaReservas = new ListaReservas();
-        Reserva reserva = listaReservas.buscarReserva(idReserva);
+        Reserva reserva = listaReservas.buscarReserva(idReserva);        
         if(reserva != null)
         {
+            double monto = calcularMonto(reserva);
             if(idMedioPago == 1000)
             {
                 try
@@ -75,7 +77,8 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
                     MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
                     MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
                     String digitoVerificadorStr = String.valueOf(digitoVerificador);
-                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, "1000");
+                    String montoStr = String.valueOf(monto);
+                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);
                     
                 }
                 catch(Exception e)
@@ -96,5 +99,21 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
             }
         }
         return "No existe la reserva";
+    }
+    
+    private double calcularMonto(Reserva r)
+    {
+        double monto = 0;
+        ArrayList<Horario> horarios = r.horarios;
+        
+        for(Horario h : horarios)
+        {
+            ArrayList<Disponibilidad> disponibilidades = h.disponibilidades;
+            for(Disponibilidad d : disponibilidades)
+            {
+                monto = monto + (d.cantidad * d.precio);
+            }
+        }
+        return monto;
     }
 }
