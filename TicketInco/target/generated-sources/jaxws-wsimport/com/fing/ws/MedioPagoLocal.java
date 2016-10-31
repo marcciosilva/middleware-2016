@@ -24,6 +24,17 @@ public interface MedioPagoLocal {
 
     /**
      * 
+     * @param idConfirmacionPago
+     */
+    @WebMethod
+    @RequestWrapper(localName = "anularPago", targetNamespace = "http://esb/", className = "com.fing.ws.AnularPago")
+    @ResponseWrapper(localName = "anularPagoResponse", targetNamespace = "http://esb/", className = "com.fing.ws.AnularPagoResponse")
+    public void anularPago(
+        @WebParam(name = "idConfirmacionPago", targetNamespace = "")
+        String idConfirmacionPago);
+
+    /**
+     * 
      * @param digitoVerificador
      * @param monto
      * @param nroTarjeta

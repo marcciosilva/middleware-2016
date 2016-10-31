@@ -18,6 +18,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+import javax.xml.ws.soap.Addressing;
 import org.apache.log4j.Logger;
 //import org.apache.cxf.endpoint.Endpoint;
 //import org.apache.cxf.jaxws.EndpointImpl;
@@ -27,6 +28,7 @@ import org.apache.log4j.Logger;
  * @author javier
  */
 @WebService(serviceName = "ConfirmacionReserva")
+//@Addressing(enabled=true, required=true)
 public class ConfirmacionReserva {
     
     final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
@@ -78,8 +80,13 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
                     MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
                     String digitoVerificadorStr = String.valueOf(digitoVerificador);
                     String montoStr = String.valueOf(monto);
-                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);
-                    
+                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);                    
+                    Pago pago = new Pago();
+                    pago.reservas.add(reserva);
+                    Pago.contadorIdConfPagoLocal++;
+                    pago.idConfPago = Pago.contadorIdConfPagoLocal;
+                    ListaPagos listaPagos = new ListaPagos();
+                     listaPagos.agregarPago(pago);                    
                 }
                 catch(Exception e)
                 {

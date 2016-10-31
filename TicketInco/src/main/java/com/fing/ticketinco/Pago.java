@@ -12,6 +12,14 @@ import java.util.ArrayList;
  * @author Cami
  */
 public class Pago {
+    public static long contadorIdConfPagoLocal;
+    long medioPago;
     long idConfPago;
-    ArrayList<Reserva> reservas;
+    ArrayList<Reserva> reservas;   
+    
+    public Pago()
+    {
+        reservas = new ArrayList<Reserva>();
+    }
+    
 }

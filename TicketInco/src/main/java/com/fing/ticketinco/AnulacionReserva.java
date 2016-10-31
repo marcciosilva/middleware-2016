@@ -5,6 +5,8 @@
  */
 package com.fing.ticketinco;
 
+import com.fing.ws.MedioPagoLocal;
+import com.fing.ws.MedioPagoLocalService;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -34,6 +36,10 @@ public class AnulacionReserva {
             if(idMedioPago == 1000)
             {
                 //LLamamos al servicio local para anular el pago
+                MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
+                MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
+                String idConfirmacionPagoStr = String.valueOf(idConfirmacionPago);                
+                medioPagoLocal.anularPago(idConfirmacionPagoStr);
                 return "Servicio local";
             }
             else if(idMedioPago == 2000)

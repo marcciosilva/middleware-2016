@@ -12,9 +12,10 @@ import java.util.ArrayList;
  * @author Cami
  */
 public class ListaPagos {
-    static ArrayList<Pago> pagos;
     
-    public void ListaPagos()
+    public static ArrayList<Pago> pagos;    
+    
+    public ListaPagos()
     {
         if(pagos == null)
         {
@@ -33,5 +34,10 @@ public class ListaPagos {
         }
         
         return null;
+    }
+    
+    public void agregarPago(Pago pago)
+    {
+        pagos.add(pago);
     }
 }
