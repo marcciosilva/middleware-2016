@@ -5,7 +5,12 @@
  */
 package com.fing.ticketinco;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -16,8 +21,21 @@ import org.quartz.JobExecutionException;
  */
 public class CancelarReservasJob implements Job{
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-    // Say Hello to the World and display the date/time
-    System.out.println("Ejecutando cancelar reserva " + new Date());
+    public void execute(JobExecutionContext context) throws JobExecutionException {    
+        
+        System.out.println("Ejecutando cancelar reserva " + new Date());
+        //ListaReservas listaReserva = new ListaReservas();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, -1);
+        ArrayList<Reserva> reservas = ListaReservas.listaReserva;
+        for(Reserva r : reservas)
+        {
+            if(r.Estado == 1 && r.fechaCreacion.before(calendar.getTime()))
+            {
+                r.Estado = 0;
+            }
+        }  
+        
+        
 }
 }

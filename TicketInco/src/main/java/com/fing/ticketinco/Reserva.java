@@ -7,6 +7,7 @@ package com.fing.ticketinco;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -18,4 +19,5 @@ public class Reserva {
     Calendar fechaEvento;
     public ArrayList<Horario> horarios;
     public int Estado;
+    Date fechaCreacion = new Date();
 }
