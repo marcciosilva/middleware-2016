@@ -21,4 +21,5 @@ com\fing\ticketinco\AnulacionReserva.class
 com\fing\ticketinco\Horario.class
 com\fing\ticketinco\Evento.class
 com\fing\ticketinco\ConsultaEstadoReserva.class
+com\fing\ticketinco\CancelarReservasJob.class
 com\fing\ticketinco\ListaHorariosRetornar.class

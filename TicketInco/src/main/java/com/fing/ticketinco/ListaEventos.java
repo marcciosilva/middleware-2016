@@ -11,6 +11,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.DateBuilder.evenMinuteDate;
+import static org.quartz.JobBuilder.newJob;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.Trigger;
+import static org.quartz.TriggerBuilder.newTrigger;
+import org.quartz.impl.StdSchedulerFactory;
 
 /**
  *
@@ -22,8 +34,9 @@ public class ListaEventos {
     public ListaEventos() throws ParseException
     {
         if(listaEventos == null)
-        {
-            listaEventos = crearEventos();            
+        {            
+            listaEventos = crearEventos();
+            inicializarScheduler();
         }
     }
     
@@ -80,5 +93,37 @@ public class ListaEventos {
         
         listaEventos.add(e);
         return listaEventos;
+    }
+    
+    private void inicializarScheduler()
+    {
+                try {
+                    //Inicializo el scheduler
+                    SchedulerFactory sf = new StdSchedulerFactory();
+                    Scheduler sched = sf.getScheduler();
+                    
+                    JobDetail job = newJob(CancelarReservasJob.class)
+                            .withIdentity("job1", "group1")
+                            .build();
+                    
+                    Date runTime = evenMinuteDate(new Date());
+                    
+                    // Trigger the job to run on the next round minute
+                    Trigger trigger = newTrigger()
+                            .withIdentity("trigger1", "group1")
+                            .withSchedule(cronSchedule("0 0/1 * 1/1 * ? *"))
+                            .startAt(runTime)
+                            .build();
+                    
+                    // Cada 2 minutos: 	0 0/2 * 1/1 * ? *
+                    // Cada 3 mintuos: 	0 0/3 * 1/1 * ? *
+                    // Cada 5 minutos: 	0 0/5 * 1/1 * ? *
+                    // Cada 10 minutoas: 	0 0/10 * 1/1 * ? *
+                    sched.scheduleJob(job, trigger);
+                    sched.start();
+                    
+                } catch (SchedulerException ex) {
+                    Logger.getLogger(ListaEventos.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }
 }
