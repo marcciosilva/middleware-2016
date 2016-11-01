@@ -48,5 +48,17 @@ public class Horario {
     {
         disponibilidades.add(disponibilidad);
     }
+    
+    public Disponibilidad buscarDisponibilidad(String sector)
+    {
+        for(Disponibilidad d : disponibilidades)
+        {
+            if(d.getSector().equals(sector))
+            {
+                return d;
+            }
+        }
+        return null;
+    }
         
 }

@@ -13,13 +13,17 @@ import java.util.ArrayList;
  */
 public class Pago {
     public static long contadorIdConfPagoLocal;
+    public static long contadorIdConfAnulacionLocal;
     long medioPago;
     long idConfPago;
+    long idConfAnulacionPago;
     ArrayList<Reserva> reservas;   
     
     public Pago()
     {
         reservas = new ArrayList<Reserva>();
+        idConfAnulacionPago = -1;
+        idConfPago = -1;
     }
     
 }

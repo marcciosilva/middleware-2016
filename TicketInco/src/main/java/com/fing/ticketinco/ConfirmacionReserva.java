@@ -71,6 +71,14 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
         Reserva reserva = listaReservas.buscarReserva(idReserva);        
         if(reserva != null)
         {
+            if(reserva.Estado == 2)
+            {
+                return "La reserva ya fue confirmada";
+            }
+            else if(reserva.Estado == 0)
+            {
+                return "La reserva se encuentra en estado cancelado";
+            }
             double monto = calcularMonto(reserva);
             if(idMedioPago == 1000)
             {
@@ -80,7 +88,8 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
                     MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
                     String digitoVerificadorStr = String.valueOf(digitoVerificador);
                     String montoStr = String.valueOf(monto);
-                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);                    
+                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);           
+                    reserva.Estado = 2;
                     Pago pago = new Pago();
                     pago.reservas.add(reserva);
                     Pago.contadorIdConfPagoLocal++;

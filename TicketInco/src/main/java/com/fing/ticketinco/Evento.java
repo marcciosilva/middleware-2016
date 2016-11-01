@@ -67,4 +67,18 @@ public class Evento {
     {
         horarios.add(horario);
     }
+    
+    public Horario buscarHorario(Calendar hora)
+    {
+        for(Horario h : horarios)
+        {
+            Date horaH = h.hora.getTime();           
+            Date horaBuscar = hora.getTime();    
+            if(horaH.equals(horaBuscar))
+            {
+                return h;
+            }
+        }
+        return null;
+    }
 }

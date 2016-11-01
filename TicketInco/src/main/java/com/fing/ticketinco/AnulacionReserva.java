@@ -7,6 +7,9 @@ package com.fing.ticketinco;
 
 import com.fing.ws.MedioPagoLocal;
 import com.fing.ws.MedioPagoLocalService;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -33,14 +36,28 @@ public class AnulacionReserva {
         Pago pago = listaPagos.buscarPago(idConfirmacionPago);
         if(pago != null)
         {
-            if(idMedioPago == 1000)
+            //Si el pago ya fue anulado retorno el mismo id de confirmación de anulación
+            if(pago.idConfAnulacionPago != -1)
             {
+                String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
+                return idconfAnulacionPagoStr;
+            }
+            boolean okAnular = anular(pago);
+            if(!okAnular)
+            {
+                return "Ocurrió un error anulando el pago.";
+            }
+            if(idMedioPago == 1000)
+            {                
                 //LLamamos al servicio local para anular el pago
                 MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
                 MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
                 String idConfirmacionPagoStr = String.valueOf(idConfirmacionPago);                
                 medioPagoLocal.anularPago(idConfirmacionPagoStr);
-                return "Servicio local";
+                Pago.contadorIdConfAnulacionLocal++;
+                pago.idConfAnulacionPago = Pago.contadorIdConfAnulacionLocal;
+                String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
+                return idconfAnulacionPagoStr;
             }
             else if(idMedioPago == 2000)
             {
@@ -57,5 +74,37 @@ public class AnulacionReserva {
             return "No existe el pago con ese identificador.";
         }
         
+    }
+    
+    private boolean anular(Pago pago)
+    {
+        ArrayList<Reserva> reservas = pago.reservas;
+        for(Reserva r :reservas)
+        {
+            try {
+                ArrayList<Horario> horarios = r.horarios;
+                ListaEventos listaEventos = new ListaEventos();
+                Evento evento = listaEventos.buscarEvento(r.idEvento, r.fechaEvento);
+                for(Horario h : horarios)
+                {
+                    Horario horarioModificar = evento.buscarHorario(h.hora);
+                    ArrayList<Disponibilidad> disponibilidadesReservadas = h.disponibilidades;
+                    if(horarioModificar == null)
+                    {
+                        return false;
+                    }
+                    //ArrayList<Disponibilidad> disponibilidadesModificar = horarioModificar.disponibilidades;
+                    for(Disponibilidad d : disponibilidadesReservadas)
+                    {
+                        Disponibilidad disponibilidadModificar = horarioModificar.buscarDisponibilidad(d.getSector());
+                        disponibilidadModificar.cantidad = disponibilidadModificar.getCantidad() + d.getCantidad();
+                    }
+                }
+                
+            } catch (ParseException ex) {
+                java.util.logging.Logger.getLogger(AnulacionReserva.class.getName()).log(Level.SEVERE, null, ex);
+            }            
+        }
+        return true;
     }
 }

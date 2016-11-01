@@ -101,6 +101,7 @@ public class ReservaEntradas {
             reserv.Estado=1;
             reserv.idEvento = identificador_evento;
             reserv.horarios = horariosReserva;
+            reserv.fechaEvento = c;
             reservas.listaReserva.add(reserv);
             return reserv.idReserva;
         }
