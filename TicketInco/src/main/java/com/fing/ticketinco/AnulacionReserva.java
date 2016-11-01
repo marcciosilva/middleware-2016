@@ -100,7 +100,9 @@ public class AnulacionReserva {
                         disponibilidadModificar.cantidad = disponibilidadModificar.getCantidad() + d.getCantidad();
                     }
                 }
-                
+                ListaReservas listaReservas = new ListaReservas();
+                Reserva reservaModificar = listaReservas.buscarReserva(r.idReserva);
+                reservaModificar.Estado = 0;
             } catch (ParseException ex) {
                 java.util.logging.Logger.getLogger(AnulacionReserva.class.getName()).log(Level.SEVERE, null, ex);
             }            
