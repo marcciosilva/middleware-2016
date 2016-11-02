@@ -25,12 +25,42 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf</artifactId>
-            <version>2.4.3</version>
-            <type>pom</type>
-        </dependency>
+            <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-rt-core</artifactId>
+             <version>2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-rt-frontend-simple</artifactId>
+             <version>2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-rt-frontend-jaxws</artifactId>
+             <version>2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-rt-transports-local</artifactId>
+             <version>2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-rt-transports-http</artifactId>
+             <version>2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-common-utilities</artifactId>
+             <version>2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <version>4.4</version>
+             <scope>test</scope>
+         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
