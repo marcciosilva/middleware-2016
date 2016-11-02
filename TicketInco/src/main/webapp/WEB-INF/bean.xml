@@ -10,31 +10,31 @@
 <jaxws:endpoint
        id="ReservaEntradas"
        implementor="com.fing.ticketinco.ReservaEntradas"
-       address="/ReservaEntradas" />
+       address="/Reserva_Entradas" />
 
 <jaxws:endpoint
        id="ConsultaEntradas"
        implementor="com.fing.ticketinco.ConsultaEntradasDisponibles"
-       address="/ConsultarEntradas" />
+       address="/Consultar_Entradas" />
 
 <jaxws:endpoint
        id="ConsultaEstadoReserva"
        implementor="com.fing.ticketinco.ConsultaEstadoReserva"
-       address="/ConsultaEstadoReserva" />
+       address="/Consulta_EstadoReserva" />
 
 <jaxws:endpoint
        id="ConfirmacionReserva"
        implementor="com.fing.ticketinco.ConfirmacionReserva"
-       address="/ConfirmacionReserva" />
+       address="/Confirmacion_Reserva" />
 
 <jaxws:endpoint
        id="NotificacionConfirmacionReservaEntrada"
        implementor="com.fing.ticketinco.NotificacionConfirmacionReservaEntrada"
-       address="/NotificacionConfirmacionReservaEntrada" />
+       address="/Notificacion_ConfirmacionReservaEntrada" />
 
 <jaxws:endpoint
        id="AnulacionReserva"
        implementor="com.fing.ticketinco.AnulacionReserva"
-       address="/AnulacionReserva" />
+       address="/Anulacion_Reserva" />
 
 </beans>
