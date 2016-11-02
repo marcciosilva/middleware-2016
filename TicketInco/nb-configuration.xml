@@ -18,4 +18,10 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-jaxws.generate_5f_nonjsr109>true</org-netbeans-modules-maven-jaxws.generate_5f_nonjsr109>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_MedioPagoLocal>http://localhost:63081/MedioPagoLocal?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_MedioPagoLocal>
     </properties>
+    <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
+        <config-files>
+            <config-file>src/main/webapp/WEB-INF/bean.xml</config-file>
+        </config-files>
+        <config-file-groups/>
+    </spring-data>
 </project-shared-configuration>

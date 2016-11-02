@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anularPago complex type.
+ * <p>Clase Java para anularPago complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="anularPago">
@@ -34,7 +34,7 @@ public class AnularPago {
     protected String idConfirmacionPago;
 
     /**
-     * Gets the value of the idConfirmacionPago property.
+     * Obtiene el valor de la propiedad idConfirmacionPago.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class AnularPago {
     }
 
     /**
-     * Sets the value of the idConfirmacionPago property.
+     * Define el valor de la propiedad idConfirmacionPago.
      * 
      * @param value
      *     allowed object is
