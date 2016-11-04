@@ -111,10 +111,10 @@ public class ListaEventos {
                     // Trigger the job to run on the next round minute
                     Trigger trigger = newTrigger()
                             .withIdentity("trigger1", "group1")
-                            .withSchedule(cronSchedule("0 0/1 * 1/1 * ? *"))
+                            .withSchedule(cronSchedule("0 0/10 * 1/1 * ? *"))
                             .startAt(runTime)
                             .build();
-                    
+                    // Cada 1 minuto:   0 0/1 * 1/1 * ? *
                     // Cada 2 minutos: 	0 0/2 * 1/1 * ? *
                     // Cada 3 mintuos: 	0 0/3 * 1/1 * ? *
                     // Cada 5 minutos: 	0 0/5 * 1/1 * ? *

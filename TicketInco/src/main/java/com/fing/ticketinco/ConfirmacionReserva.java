@@ -7,18 +7,25 @@ package com.fing.ticketinco;
 
 import com.fing.ws.MedioPagoLocal;
 import com.fing.ws.MedioPagoLocalService;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import javax.imageio.ImageIO;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
 import javax.xml.ws.soap.Addressing;
+import javax.xml.ws.soap.SOAPBinding;
 import org.apache.log4j.Logger;
 //import org.apache.cxf.endpoint.Endpoint;
 //import org.apache.cxf.jaxws.EndpointImpl;
@@ -28,6 +35,7 @@ import org.apache.log4j.Logger;
  * @author javier
  */
 @WebService(serviceName = "ConfirmacionReserva")
+@Addressing(required = true)
 //@Addressing(enabled=true, required=true)
 public class ConfirmacionReserva {
     
@@ -71,47 +79,75 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
         Reserva reserva = listaReservas.buscarReserva(idReserva);        
         if(reserva != null)
         {
-            if(reserva.Estado == 2)
-            {
-                return "La reserva ya fue confirmada";
-            }
-            else if(reserva.Estado == 0)
-            {
-                return "La reserva se encuentra en estado cancelado";
-            }
-            double monto = calcularMonto(reserva);
-            if(idMedioPago == 1000)
-            {
+            try {
+                if(reserva.Estado == 2)
+                {
+                    return "La reserva ya fue confirmada";                    
+                }
+                else if(reserva.Estado == 0)
+                {
+                    return "La reserva se encuentra en estado cancelado";
+                }
+                double monto = calcularMonto(reserva);
+                if(idMedioPago == 1000)
+                {
+                    try
+                    {
+                        MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
+                        MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
+                        String digitoVerificadorStr = String.valueOf(digitoVerificador);
+                        String montoStr = String.valueOf(monto);
+                        medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);
+                        
+                        Pago pago = new Pago();
+                        pago.reservas.add(reserva);
+                        Pago.contadorIdConfPagoLocal++;
+                        pago.idConfPago = Pago.contadorIdConfPagoLocal;
+                        ListaPagos listaPagos = new ListaPagos();
+                        listaPagos.agregarPago(pago);
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("Error " + e.getMessage());
+                    }
+                    
+                    //return "Medio de pago local";
+                }
+                else if(idMedioPago == 2000)
+                {
+                    // Ir a al servicio de Pagos Ya
+                    //return "Medio de pago PagosYa!";
+                }
+                else
+                {
+                    //return "El medio de pago no existe";
+                }
+                
+                //Generar entradas en formato binario para enviar a las notificaciones
+                //URL url = new URL("\\resources\\Entradas\\cinemaTicket.jpg");
+                Image imgEntrada = ImageIO.read(new File("C:\\Users\\Cami\\Documents\\Fing\\Middleware\\Obligatorio2\\ImagenesEntradas\\cinemaTicket.jpg"));
+                ArrayList<Image> imagenesEntradas = new ArrayList<Image>();
+                imagenesEntradas.add(imgEntrada);
+                //enable MTOM in client
+                
                 try
-                {                    
-                    MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
-                    MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
-                    String digitoVerificadorStr = String.valueOf(digitoVerificador);
-                    String montoStr = String.valueOf(monto);
-                    medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);           
+                {
+                    NotificacionConfirmacionReservaEntrada notificacionWS = new NotificacionConfirmacionReservaEntrada();
+                    //BindingProvider bp = (BindingProvider) notificacionWS;
+                    //SOAPBinding binding = (SOAPBinding) bp.getBinding();
+                    //binding.setMTOMEnabled(true);
+                    String respuesta = notificacionWS.notificacionConfirmacionReserva(1, imagenesEntradas);
                     reserva.Estado = 2;
-                    Pago pago = new Pago();
-                    pago.reservas.add(reserva);
-                    Pago.contadorIdConfPagoLocal++;
-                    pago.idConfPago = Pago.contadorIdConfPagoLocal;
-                    ListaPagos listaPagos = new ListaPagos();
-                     listaPagos.agregarPago(pago);                    
+                    return respuesta;
                 }
                 catch(Exception e)
                 {
-                    System.out.println("Error " + e.getMessage());
+                    System.out.println("Error inesperado: " + e.getMessage());
                 }
                 
-                return "Medio de pago local";
-            }
-            else if(idMedioPago == 2000)
-            {
-                // Ir a al servicio de Pagos Ya
-                return "Medio de pago PagosYa!";
-            }
-            else
-            {
-                return "El medio de pago no existe";
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(ConfirmacionReserva.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
         }
         return "No existe la reserva";

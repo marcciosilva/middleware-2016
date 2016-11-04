@@ -8,7 +8,6 @@ com\fing\ticketinco\Pago.class
 com\fing\ws\ConfirmarPago.class
 com\fing\ticketinco\ListaEventos.class
 com\fing\ticketinco\Reserva.class
-com\fing\ws\ObjectFactory.class
 com\fing\ticketinco\ReservaEntradas.class
 com\fing\ws\AnularPago.class
 com\fing\ticketinco\EstadoReserva.class
@@ -16,7 +15,6 @@ com\fing\ticketinco\NotificacionConfirmacionReservaEntrada.class
 com\fing\ticketinco\Disponibilidad.class
 com\fing\ws\MedioPagoLocalService.class
 com\fing\ticketinco\ListaReservas.class
-com\fing\ws\ConfirmarPagoResponse.class
 com\fing\ticketinco\AnulacionReserva.class
 com\fing\ticketinco\Horario.class
 com\fing\ticketinco\Evento.class
