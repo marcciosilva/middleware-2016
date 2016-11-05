@@ -5,6 +5,7 @@ com\fing\ticketinco\ConfirmacionReserva.class
 com\fing\ticketinco\ListaPagos.class
 com\fing\ws\AnularPagoResponse.class
 com\fing\ticketinco\Pago.class
+com\fing\ticketinco\ServerPasswordCallback.class
 com\fing\ws\ConfirmarPago.class
 com\fing\ticketinco\ListaEventos.class
 com\fing\ticketinco\Reserva.class
