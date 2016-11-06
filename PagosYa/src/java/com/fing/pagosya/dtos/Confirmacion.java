@@ -9,9 +9,7 @@ public class Confirmacion {
 	private boolean aprobada;
 	private long idConfirmacion;
 
-	public Confirmacion(boolean aprobada, long idConfirmacion) {
-		this.aprobada = aprobada;
-		this.idConfirmacion = idConfirmacion;
+	public Confirmacion() {
 	}
 
 	public boolean isAprobada() {

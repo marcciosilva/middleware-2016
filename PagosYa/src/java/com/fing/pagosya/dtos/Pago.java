@@ -1,12 +1,16 @@
 package com.fing.pagosya.dtos;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Objects;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marccio
  */
-public class Pago {
+@XmlRootElement
+public class Pago implements Serializable {
 
 	private long numeroTarjeta;
 	private Calendar fechaVencimiento;
@@ -51,6 +55,31 @@ public class Pago {
 
 	public void setMonto(double monto) {
 		this.monto = monto;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Pago other = (Pago) obj;
+		if (this.numeroTarjeta != other.numeroTarjeta) {
+			return false;
+		}
+		if (!Objects.equals(this.fechaVencimiento, other.fechaVencimiento)) {
+			return false;
+		}
+		if (this.digitoVerificador != other.digitoVerificador) {
+			return false;
+		}
+		if (Double.doubleToLongBits(this.monto) != Double.doubleToLongBits(
+				other.monto)) {
+			return false;
+		}
+		return true;
 	}
 
 }

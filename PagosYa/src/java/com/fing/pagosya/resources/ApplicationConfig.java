@@ -28,6 +28,7 @@ public class ApplicationConfig extends Application {
 	 * out calling this method in getClasses().
 	 */
 	private void addRestResourceClasses(Set<Class<?>> resources) {
+		resources.add(com.fing.pagosya.resources.ConfirmacionPagoResource.class);
 		resources.add(com.fing.pagosya.resources.HelloResource.class);
 	}
 
