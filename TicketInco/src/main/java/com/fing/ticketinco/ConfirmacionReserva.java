@@ -89,7 +89,7 @@ public class ConfirmacionReserva {
 	 WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 	 cxfEndpoint.getOutInterceptors().add(wssOut);*/
 	@WebMethod(operationName = "ConfirmarReserva")
-	public ReservasRetornar ConfirmarReserva(@WebParam(name = "idReserva") long idReserva,
+	public String ConfirmarReserva(@WebParam(name = "idReserva") long idReserva,
 			@WebParam(name = "idMedioPago") long idMedioPago, @WebParam(name
 					= "nroTarjeta") String nroTarjeta, @WebParam(name
 					= "fechaVencimeinto") Date fechaVencimiento, @WebParam(name
@@ -116,13 +116,13 @@ public class ConfirmacionReserva {
                 {
                     //entradasRetornar.descripcion = "La reserva ya fue confirmada";
                     //entradasRetornar.i = idReserva;                    
-                    return entradasRetornar;
+                    //return entradasRetornar;
                 }
                 else if(reserva.Estado == 0)
                 {
                     //entradasRetornar.descripcion = "La reserva se encuentra en estado cancelado";
                     //entradasRetornar.idReserva = idReserva;                    
-                    return entradasRetornar;                    
+                    //return entradasRetornar;                    
                 }
                 
                 
@@ -167,10 +167,10 @@ public class ConfirmacionReserva {
 					String msg = response.readEntity(String.class);
 					client.close();
 
-					/*if (helloMsg == null) {
-						//return "Todo mal viejo";
+					if (msg == null) {
+						return "Todo mal viejo";
 					} else {
-						//return "PagosYa! dice: " + helloMsg;
+						return "PagosYa! dice: " + msg;
 					}
 				} catch (Exception e) {
 					//return e.getStackTrace().toString();
@@ -179,9 +179,9 @@ public class ConfirmacionReserva {
 					} else {
 						return "PagosYa! dice: " + msg;
 					}*/
-				} catch (Exception e) {
+				//} catch (Exception e) {
 					logger.info(e.getMessage());
-					//return e.getMessage();
+					return e.getMessage();
 
 				}
 			} else {
@@ -210,7 +210,8 @@ public class ConfirmacionReserva {
                 
                 //return null;
 		}
-		return entradasRetornar;
+		//return entradasRetornar;
+                return "Fin ";
 	}  
 
         private byte[] obtenerByteImagen(String filePath)

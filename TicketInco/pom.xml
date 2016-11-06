@@ -109,24 +109,6 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_63081/MedioPagoLocal.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>ws.MedioPagoLocal</packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://localhost:63081/MedioPagoLocal?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/MedioPagoLocal_1.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-MedioPagoLocal_1</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
                                 <wsdlFile>localhost_8084/WSCallback/NotificarConfirmacionReserva.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>ws.callback</packageName>
