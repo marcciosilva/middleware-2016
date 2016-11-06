@@ -18,6 +18,7 @@ package com.fing.pagosya.resources;
 import com.fing.pagosya.dtos.Confirmacion;
 import com.fing.pagosya.dtos.Pago;
 import com.fing.pagosya.logica.ConfirmacionPago;
+import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -37,6 +38,8 @@ public class ConfirmacionPagoResource {
 
 	@Context
 	private UriInfo context;
+	final static Logger logger = java.util.logging.Logger.
+			getLogger(ConfirmacionPagoResource.class.getName());
 
 	/**
 	 * Creates a new instance of ConfirmacionPagoResource

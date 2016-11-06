@@ -21,6 +21,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -30,9 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 //@Addressing(enabled=true, required=true)
 public class ConfirmacionReserva {
 
-//	final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
-	final static java.util.logging.Logger logger = java.util.logging.Logger.
-			getLogger(ConfirmacionReserva.class.getName());
+	final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
+//	final static java.util.logging.Logger logger = java.util.logging.Logger.
+//			getLogger(ConfirmacionReserva.class.getName());
 
 	/**
 	 * This is a sample web service operation
@@ -59,13 +60,11 @@ public class ConfirmacionReserva {
 					= "digitoVerificador") int digitoVerificador) throws
 			ParseException {
 		try {
-			logger.info("Identificador de la reserva " + idReserva);
-			logger.info("Identificador del medio de pago " + idMedioPago);
-//			fgen.info("Identificador de la reserva " + idReserva);
-//			fgen.info("Identificador del medio de pago " + idMedioPago);
-			//fgen.info("Número tarjeta ", nroTarjeta);
-			//fgen.info("Fecha vencimiento ", fechaVencimiento);
-			//fgen.info("Dígito verificador ", digitoVerificador);
+			fgen.info("Identificador de la reserva " + idReserva);
+			fgen.info("Identificador del medio de pago " + idMedioPago);
+//			fgen.info("Número tarjeta ", nroTarjeta);
+//			fgen.info("Fecha vencimiento ", fechaVencimiento);
+//			fgen.info("Dígito verificador ", digitoVerificador);
 		} catch (Exception e) {
 
 		}
@@ -129,7 +128,7 @@ public class ConfirmacionReserva {
 						return "PagosYa! dice: " + msg;
 					}
 				} catch (Exception e) {
-					logger.info(e.getMessage());
+					fgen.info(e.getMessage());
 					return e.getMessage();
 				}
 			} else {
@@ -152,7 +151,7 @@ public class ConfirmacionReserva {
 		return monto;
 	}
 
-	@XmlRootElement
+	@XmlRootElement(name = "pago")
 	private class PagoPagosYa implements Serializable {
 
 		private long numeroTarjeta;
