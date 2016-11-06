@@ -42,6 +42,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
+import ws.MedioPagoLocal.MedioPagoLocal;
+import ws.MedioPagoLocal.MedioPagoLocalService;
 
 /**
  *
@@ -110,11 +112,11 @@ public class ConfirmacionReserva {
 			double monto = calcularMonto(reserva);
 			if (idMedioPago == 1000) {
 				try {
-					//MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
-					//MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
+					MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
+					MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
 					String digitoVerificadorStr = String.valueOf(digitoVerificador);
 					String montoStr = String.valueOf(monto);
-					//medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);
+					medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr, montoStr);
 					reserva.Estado = 2;
 					Pago pago = new Pago();
 					pago.reservas.add(reserva);
