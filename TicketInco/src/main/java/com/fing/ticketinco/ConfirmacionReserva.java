@@ -8,7 +8,9 @@ package com.fing.ticketinco;
 import com.fing.ws.MedioPagoLocal;
 import com.fing.ws.MedioPagoLocalService;
 import java.awt.Image;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -25,6 +27,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
 import javax.xml.ws.soap.Addressing;
+import javax.xml.ws.soap.MTOMFeature;
 import javax.xml.ws.soap.SOAPBinding;
 import org.apache.log4j.Logger;
 //import org.apache.cxf.endpoint.Endpoint;
@@ -59,7 +62,7 @@ WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 cxfEndpoint.getOutInterceptors().add(wssOut);*/
 
     @WebMethod(operationName = "ConfirmarReserva")
-    public String ConfirmarReserva(@WebParam(name = "idReserva") long idReserva, @WebParam(name = "idMedioPago")long idMedioPago, @WebParam(name = "nroTarjeta") String nroTarjeta, @WebParam(name = "fechaVencimeinto") Date fechaVencimiento, @WebParam(name = "digitoVerificador") int digitoVerificador) throws ParseException {
+    public ReservasRetornar ConfirmarReserva(@WebParam(name = "idReserva") long idReserva, @WebParam(name = "idMedioPago")long idMedioPago, @WebParam(name = "nroTarjeta") String nroTarjeta, @WebParam(name = "fechaVencimeinto") Date fechaVencimiento, @WebParam(name = "digitoVerificador") int digitoVerificador) throws ParseException {
         try
         {
             fgen.info ("Identificador de la reserva " + idReserva);
@@ -76,18 +79,24 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
            
         //TODO: Hay que agregar WS-Addressing y WS-Security
         ListaReservas listaReservas = new ListaReservas();
-        Reserva reserva = listaReservas.buscarReserva(idReserva);        
+        Reserva reserva = listaReservas.buscarReserva(idReserva);       
+        ReservasRetornar entradasRetornar = new ReservasRetornar();
         if(reserva != null)
         {
             try {
                 if(reserva.Estado == 2)
                 {
-                    return "La reserva ya fue confirmada";                    
+                    //entradasRetornar.descripcion = "La reserva ya fue confirmada";
+                    entradasRetornar.idReserva = idReserva;                    
+                    return entradasRetornar;
                 }
                 else if(reserva.Estado == 0)
                 {
-                    return "La reserva se encuentra en estado cancelado";
+                    //entradasRetornar.descripcion = "La reserva se encuentra en estado cancelado";
+                    entradasRetornar.idReserva = idReserva;                    
+                    return entradasRetornar;                    
                 }
+                
                 double monto = calcularMonto(reserva);
                 if(idMedioPago == 1000)
                 {
@@ -125,32 +134,35 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
                 
                 //Generar entradas en formato binario para enviar a las notificaciones
                 //URL url = new URL("\\resources\\Entradas\\cinemaTicket.jpg");
-                Image imgEntrada = ImageIO.read(new File("C:\\Users\\Cami\\Documents\\Fing\\Middleware\\Obligatorio2\\ImagenesEntradas\\cinemaTicket.jpg"));
+                //Image imgEntrada = ImageIO.read(new File("C:\\Users\\Cami\\Documents\\Fing\\Middleware\\Obligatorio2\\ImagenesEntradas\\cinemaTicket.jpg"));
+                String pathFile = "C:\\Users\\Cami\\Documents\\Fing\\Middleware\\Obligatorio2\\ImagenesEntradas\\cinemaTicket.jpg";
                 ArrayList<Image> imagenesEntradas = new ArrayList<Image>();
-                imagenesEntradas.add(imgEntrada);
+                //imagenesEntradas.add(imgEntrada);
                 //enable MTOM in client
                 
-                try
-                {
-                    NotificacionConfirmacionReservaEntrada notificacionWS = new NotificacionConfirmacionReservaEntrada();
-                    //BindingProvider bp = (BindingProvider) notificacionWS;
-                    //SOAPBinding binding = (SOAPBinding) bp.getBinding();
-                    //binding.setMTOMEnabled(true);
-                    String respuesta = notificacionWS.notificacionConfirmacionReserva(1, imagenesEntradas);
-                    reserva.Estado = 2;
-                    return respuesta;
-                }
-                catch(Exception e)
-                {
-                    System.out.println("Error inesperado: " + e.getMessage());
-                }
-                
-            } catch (IOException ex) {
-                java.util.logging.Logger.getLogger(ConfirmacionReserva.class.getName()).log(Level.SEVERE, null, ex);
-                
+                NotificarConfirmacionReserva_Service service = new NotificarConfirmacionReserva_Service();
+                NotificarConfirmacionReserva port = service.getNotificarConfirmacionReservaPort(new MTOMFeature());
+                //NotificacionConfirmacionReservaEntrada notificacionWS = new NotificacionConfirmacionReservaEntrada();
+                BindingProvider bp = (BindingProvider) port;
+                SOAPBinding binding = (SOAPBinding) bp.getBinding();
+                binding.setMTOMEnabled(true);
+                byte[] imagenBinaria = obtenerByteImagen(pathFile);
+                ReservasRetornar retornarNotificacion = port.notificarConfirmacionResreva(1, imagenBinaria);
+                reserva.Estado = 2;
+                                
+                //entradasRetornar.idReserva = idReserva;
+                //entradasRetornar.respuesta = "Imagenes procesadas con exito";
+                return retornarNotificacion;
+                //return null;
             }
+            catch(Exception e)
+            {
+                System.out.println("Error inesperado: " + e.getMessage());
+            }
+                
+            
         }
-        return "No existe la reserva";
+        return null;
     }
     
     private double calcularMonto(Reserva r)
@@ -167,5 +179,21 @@ cxfEndpoint.getOutInterceptors().add(wssOut);*/
             }
         }
         return monto;
+    }
+    
+    private byte[] obtenerByteImagen(String filePath)
+    {
+        try {
+            File file = new File(filePath);
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream inputStream = new BufferedInputStream(fis);
+            byte[] fileBytes = new byte[(int) file.length()];
+            inputStream.read(fileBytes);
+            inputStream.close();
+            return fileBytes;
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(ConfirmacionReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

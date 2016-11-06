@@ -26,11 +26,11 @@ public class NotificacionConfirmacionReservaEntrada {
      */
     @MTOM
     @WebMethod(operationName = "notificacionConfirmacionReserva")
-    public String notificacionConfirmacionReserva(@WebParam(name = "idReserva") long idReserva, @WebParam(name = "listaEntradas") ArrayList<Image> listaEntradas) {
+    public ArrayList<byte[]> notificacionConfirmacionReserva(@WebParam(name = "idReserva") long idReserva, @WebParam(name = "listaEntradas") ArrayList<byte[]> listaEntradas) {
         if( listaEntradas != null)
         {
-            return "Llegaron las entradas correctamente";
+            return listaEntradas;
         }
-        return "Ocurrió un error recibiendo las entradas";
+        return null;
     }
 }
