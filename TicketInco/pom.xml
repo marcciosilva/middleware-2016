@@ -121,6 +121,24 @@
                         <id>wsimport-generate-MedioPagoLocal_1</id>
                         <phase>generate-sources</phase>
                     </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8084/WSCallback/NotificarConfirmacionReserva.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>ws.callback</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:8084/WSCallback/NotificarConfirmacionReserva?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/NotificarConfirmacionReserva.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-NotificarConfirmacionReserva</id>
+                        <phase>generate-sources</phase>
+                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>

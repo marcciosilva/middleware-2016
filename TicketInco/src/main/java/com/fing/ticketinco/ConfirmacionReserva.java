@@ -53,6 +53,9 @@ import org.apache.log4j.Logger;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
+import ws.callback.NotificarConfirmacionReserva;
+import ws.callback.NotificarConfirmacionReserva_Service;
+import ws.callback.ReservasRetornar;
 
 
 /**
@@ -112,13 +115,13 @@ public class ConfirmacionReserva {
 			if(reserva.Estado == 2)
                 {
                     //entradasRetornar.descripcion = "La reserva ya fue confirmada";
-                    entradasRetornar.idReserva = idReserva;                    
+                    //entradasRetornar.i = idReserva;                    
                     return entradasRetornar;
                 }
                 else if(reserva.Estado == 0)
                 {
                     //entradasRetornar.descripcion = "La reserva se encuentra en estado cancelado";
-                    entradasRetornar.idReserva = idReserva;                    
+                    //entradasRetornar.idReserva = idReserva;                    
                     return entradasRetornar;                    
                 }
                 
@@ -199,7 +202,7 @@ public class ConfirmacionReserva {
                 SOAPBinding binding = (SOAPBinding) bp.getBinding();
                 binding.setMTOMEnabled(true);
                 byte[] imagenBinaria = obtenerByteImagen(pathFile);
-                ReservasRetornar retornarNotificacion = port.notificarConfirmacionResreva(1, imagenBinaria);
+                ReservasRetornar retornarNotificacion = port.notificarEntradas(1, imagenBinaria);
                 reserva.Estado = 2;
                                 
                 //entradasRetornar.idReserva = idReserva;

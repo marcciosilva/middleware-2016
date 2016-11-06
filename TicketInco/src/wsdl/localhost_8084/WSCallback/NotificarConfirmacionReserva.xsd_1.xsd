@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://callback.ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://callback.ws/">
+
+<xs:element name="NotificarEntradas" type="tns:NotificarEntradas" />
+
+<xs:element name="NotificarEntradasResponse" type="tns:NotificarEntradasResponse" />
+
+<xs:complexType name="NotificarEntradas">
+<xs:sequence>
+<xs:element name="idReserva" type="xs:long" />
+<xs:element name="entradaImagen" type="xs:base64Binary" nillable="true" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificarEntradasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:reservasRetornar" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reservasRetornar">
+<xs:sequence />
+</xs:complexType>
+</xs:schema>
