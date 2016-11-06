@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+ 
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+<jaxws:endpoint
+       id="ReservaEntradas"
+       implementor="com.fing.ticketinco.ReservaEntradas"
+       address="/Reserva_Entradas" />
+
+<jaxws:endpoint
+       id="ConsultaEntradas"
+       implementor="com.fing.ticketinco.ConsultaEntradasDisponibles"
+       address="/Consultar_Entradas" />
+
+<jaxws:endpoint
+       id="ConsultaEstadoReserva"
+       implementor="com.fing.ticketinco.ConsultaEstadoReserva"
+       address="/Consulta_EstadoReserva" />
+
+<jaxws:endpoint
+       id="ConfirmacionReserva"
+       implementor="com.fing.ticketinco.ConfirmacionReserva"
+       address="/Confirmacion_Reserva" />
+
+<jaxws:endpoint
+       id="NotificacionConfirmacionReservaEntrada"
+       implementor="com.fing.ticketinco.NotificacionConfirmacionReservaEntrada"
+       address="/Notificacion_ConfirmacionReservaEntrada" />
+
+<jaxws:endpoint
+       id="AnulacionReserva"
+       implementor="com.fing.ticketinco.AnulacionReserva"
+       address="/Anulacion_Reserva" />
+
+</beans>
