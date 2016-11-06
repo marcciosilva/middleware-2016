@@ -109,24 +109,6 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8084/WebCallBack/NotificarConfirmacionReserva.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.fing.ticketinco</packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://localhost:8084/WebCallBack/NotificarConfirmacionReserva?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/NotificarConfirmacionReserva.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-NotificarConfirmacionReserva</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
                                 <wsdlFile>localhost_63081/MedioPagoLocal.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>ws.MedioPagoLocal</packageName>

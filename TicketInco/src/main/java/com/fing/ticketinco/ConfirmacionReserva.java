@@ -191,7 +191,7 @@ public class ConfirmacionReserva {
                 ArrayList<Image> imagenesEntradas = new ArrayList<Image>();
                 //imagenesEntradas.add(imgEntrada);
                 //enable MTOM in client
-                /*
+                
                 NotificarConfirmacionReserva_Service service = new NotificarConfirmacionReserva_Service();
                 NotificarConfirmacionReserva port = service.getNotificarConfirmacionReservaPort(new MTOMFeature());
                 //NotificacionConfirmacionReservaEntrada notificacionWS = new NotificacionConfirmacionReservaEntrada();
@@ -200,7 +200,7 @@ public class ConfirmacionReserva {
                 binding.setMTOMEnabled(true);
                 byte[] imagenBinaria = obtenerByteImagen(pathFile);
                 ReservasRetornar retornarNotificacion = port.notificarConfirmacionResreva(1, imagenBinaria);
-                reserva.Estado = 2;*/
+                reserva.Estado = 2;
                                 
                 //entradasRetornar.idReserva = idReserva;
                 //entradasRetornar.respuesta = "Imagenes procesadas con exito";
