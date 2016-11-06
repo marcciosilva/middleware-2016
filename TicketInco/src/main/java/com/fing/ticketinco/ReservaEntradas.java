@@ -56,7 +56,7 @@ public class ReservaEntradas {
         List<Horario> horariosRetornar = new ArrayList<Horario>();
         if(e != null)
         {
-            horariosRetornar = e.getHoarios();
+            horariosRetornar = e.getHorarios();
         }     
         
         if (horariosRetornar != null)

@@ -53,7 +53,7 @@ public class Evento {
         this.fechaEvento = fechaEvento;
     }
     
-    public ArrayList<Horario> getHoarios()
+    public ArrayList<Horario> getHorarios()
     {
         return horarios;
     }
