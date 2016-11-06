@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 
 /**
  *
@@ -31,7 +30,8 @@ import javax.annotation.PostConstruct;
 public class ConfirmacionPago {
 
 	private long idConfirmacionPago;
-	final static Logger logger = Logger.getLogger("Logger");
+	final static Logger logger = java.util.logging.Logger.
+			getLogger(ConfirmacionPago.class.getName());
 	private List<Pago> pagosConfirmados;
 	private static ConfirmacionPago instance;
 
@@ -42,8 +42,7 @@ public class ConfirmacionPago {
 		return instance;
 	}
 
-	@PostConstruct
-	public void init() {
+	public ConfirmacionPago() {
 		idConfirmacionPago = 0;
 		pagosConfirmados = new ArrayList<>();
 		logger.log(Level.INFO,
@@ -54,7 +53,7 @@ public class ConfirmacionPago {
 	public Confirmacion confirmarPago(Pago pago) {
 		// Se loggea informacion de pago.
 		logger.info(
-				"########## START --> Servicio Confirmar Pago --> Confirmar pago ##########");
+				"########## Iniciado el proceso de confirmación de pago ##########");
 		logger.log(Level.INFO, "Numero de tarjeta de credito: {0}", Long.
 				toString(pago.
 						getNumeroTarjeta()));
@@ -79,18 +78,18 @@ public class ConfirmacionPago {
 			confirmacion.setIdConfirmacion(idConfirmacionPago);
 			confirmacion.setAprobada(true);
 			logger.info("El pago se confirmó exitosamente.");
-			logger.log(Level.INFO, "Se gener\u00f3 el id de confirmacion: {0}",
+			logger.log(Level.INFO, "Se generó el id de confirmacion: {0}",
 					Long.toString(
 							idConfirmacionPago));
 		} catch (Exception ex) {
 			logger.info("Ocurrió un error al intentar confirmar el pago.");
-			logger.log(Level.INFO, "Mensaje de excepci\u00f3n:{0}", ex.
+			logger.log(Level.INFO, "Mensaje de excepción:{0}", ex.
 					getMessage());
 			confirmacion.setIdConfirmacion(-1);
 			confirmacion.setAprobada(false);
 		}
 		logger.info(
-				"########## END --> Servicio Confirmar Pago --> Confirmar pago ##########");
+				"########## Finalizado el proceso de confirmación de pago ##########");
 		return confirmacion;
 	}
 }

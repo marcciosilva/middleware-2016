@@ -7,17 +7,20 @@ package com.fing.ticketinco;
 
 import com.fing.ws.MedioPagoLocal;
 import com.fing.ws.MedioPagoLocalService;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import org.apache.log4j.Logger;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,7 +30,9 @@ import org.apache.log4j.Logger;
 //@Addressing(enabled=true, required=true)
 public class ConfirmacionReserva {
 
-	final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
+//	final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
+	final static java.util.logging.Logger logger = java.util.logging.Logger.
+			getLogger(ConfirmacionReserva.class.getName());
 
 	/**
 	 * This is a sample web service operation
@@ -54,8 +59,10 @@ public class ConfirmacionReserva {
 					= "digitoVerificador") int digitoVerificador) throws
 			ParseException {
 		try {
-			fgen.info("Identificador de la reserva " + idReserva);
-			fgen.info("Identificador del medio de pago " + idMedioPago);
+			logger.info("Identificador de la reserva " + idReserva);
+			logger.info("Identificador del medio de pago " + idMedioPago);
+//			fgen.info("Identificador de la reserva " + idReserva);
+//			fgen.info("Identificador del medio de pago " + idMedioPago);
 			//fgen.info("Número tarjeta ", nroTarjeta);
 			//fgen.info("Fecha vencimiento ", fechaVencimiento);
 			//fgen.info("Dígito verificador ", digitoVerificador);
@@ -102,18 +109,28 @@ public class ConfirmacionReserva {
 				try {
 					Client client = ClientBuilder.newClient();
 					WebTarget target = client.target(
-							"http://192.168.1.11:8080/PagosYa/webresources/hello");
+							"http://192.168.1.11:8080/PagosYa/webresources/confirmacionPago");
+					// Genero un objeto con los datos que precisa PagosYa!
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(fechaVencimiento);
+					PagoPagosYa pagoPagosYa = new PagoPagosYa(
+							idReserva, calendar,
+							digitoVerificador,
+							monto);
+					// Genero una request y obtengo su response.
 					javax.ws.rs.core.Response response = target.request(
-							MediaType.TEXT_HTML).get();
-					String helloMsg = response.readEntity(String.class);
+							MediaType.APPLICATION_JSON).post(
+									Entity.json(pagoPagosYa));
+					String msg = response.readEntity(String.class);
 					client.close();
-					if (helloMsg == null) {
-						return "Todo mal viejo";
+					if (msg == null) {
+						return "Respuesta nula";
 					} else {
-						return "PagosYa! dice: " + helloMsg;
+						return "PagosYa! dice: " + msg;
 					}
 				} catch (Exception e) {
-					return e.getStackTrace().toString();
+					logger.info(e.getMessage());
+					return e.getMessage();
 				}
 			} else {
 				return "El medio de pago no existe";
@@ -134,4 +151,26 @@ public class ConfirmacionReserva {
 		}
 		return monto;
 	}
+
+	@XmlRootElement
+	private class PagoPagosYa implements Serializable {
+
+		private long numeroTarjeta;
+		private Calendar fechaVencimiento;
+		private int digitoVerificador;
+		private double monto;
+
+		public PagoPagosYa() {
+		}
+
+		public PagoPagosYa(long numeroTarjeta, Calendar fechaVencimiento,
+				int digitoVerificador, double monto) {
+			this.numeroTarjeta = numeroTarjeta;
+			this.fechaVencimiento = fechaVencimiento;
+			this.digitoVerificador = digitoVerificador;
+			this.monto = monto;
+		}
+
+	}
+
 }

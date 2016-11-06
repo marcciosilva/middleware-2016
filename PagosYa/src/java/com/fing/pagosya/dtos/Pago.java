@@ -17,6 +17,9 @@ public class Pago implements Serializable {
 	private int digitoVerificador;
 	private double monto;
 
+	public Pago() {
+	}
+
 	public Pago(long numeroTarjeta, Calendar fechaVencimiento,
 			int digitoVerificador, double monto) {
 		this.numeroTarjeta = numeroTarjeta;
