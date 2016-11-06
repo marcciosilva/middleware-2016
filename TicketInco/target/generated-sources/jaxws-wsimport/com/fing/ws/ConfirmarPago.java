@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para confirmarPago complex type.
+ * <p>Java class for confirmarPago complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="confirmarPago">
@@ -43,7 +43,7 @@ public class ConfirmarPago {
     protected String monto;
 
     /**
-     * Obtiene el valor de la propiedad nroTarjeta.
+     * Gets the value of the nroTarjeta property.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Define el valor de la propiedad nroTarjeta.
+     * Sets the value of the nroTarjeta property.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaVencimiento.
+     * Gets the value of the fechaVencimiento property.
      * 
      * @return
      *     possible object is
@@ -79,7 +79,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Define el valor de la propiedad fechaVencimiento.
+     * Sets the value of the fechaVencimiento property.
      * 
      * @param value
      *     allowed object is
@@ -91,7 +91,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Obtiene el valor de la propiedad digitoVerificador.
+     * Gets the value of the digitoVerificador property.
      * 
      * @return
      *     possible object is
@@ -103,7 +103,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Define el valor de la propiedad digitoVerificador.
+     * Sets the value of the digitoVerificador property.
      * 
      * @param value
      *     allowed object is
@@ -115,7 +115,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Obtiene el valor de la propiedad monto.
+     * Gets the value of the monto property.
      * 
      * @return
      *     possible object is
@@ -127,7 +127,7 @@ public class ConfirmarPago {
     }
 
     /**
-     * Define el valor de la propiedad monto.
+     * Sets the value of the monto property.
      * 
      * @param value
      *     allowed object is
