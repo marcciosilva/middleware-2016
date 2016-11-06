@@ -114,7 +114,7 @@ public class ConfirmacionReserva {
 					if (helloMsg == null) {
 						return "Todo mal viejo";
 					} else {
-						return "PagosYa! dice: ";
+						return "PagosYa! dice: " + helloMsg;
 					}
 				} catch (Exception e) {
 					return e.getStackTrace().toString();
