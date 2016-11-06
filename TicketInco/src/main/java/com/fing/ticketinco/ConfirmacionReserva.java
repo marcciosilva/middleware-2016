@@ -106,11 +106,7 @@ public class ConfirmacionReserva {
 					javax.ws.rs.core.Response response = target.request(
 							MediaType.TEXT_HTML).get();
 					String helloMsg = response.readEntity(String.class);
-//				Client client = ClientBuilder.newClient();
-//				String helloMsg = client.target(
-//						"http://192.168.1.11:8080/PagosYa/webresources/hello")
-//						.request(MediaType.TEXT_HTML)
-//						.get(String.class);
+					client.close();
 					if (helloMsg == null) {
 						return "Todo mal viejo";
 					} else {
