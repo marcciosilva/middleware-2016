@@ -22,16 +22,22 @@ public class NotificarConfirmacionReserva {
     /**
      * This is a sample web service operation
      */
+    
     @WebMethod(operationName = "NotificarEntradas")
-    @MTOM
+    @MTOM(enabled = true)    
     public ReservasRetornar notificarConfirmacionResreva(@WebParam(name = "idReserva") long idReserva, @WebParam(name = "entradaImagen") byte[] entradaImagen) {
-        ReservasRetornar reservas = new ReservasRetornar();
-        reservas.idReserva = idReserva;
-        if(entradaImagen != null)
+        try
         {
-            reservas.imagenEntrada = entradaImagen;
+            ReservasRetornar reservas = new ReservasRetornar();
+            reservas.idReserva = idReserva;        
+            reservas.imagenEntrada = entradaImagen;        
+        
+            return reservas;
+        }
+        catch(Exception e)
+        {
+            return null;
         }
         
-        return reservas;
     }
 }

@@ -58,6 +58,7 @@ import ws.callback.NotificarConfirmacionReserva;
 import ws.callback.NotificarConfirmacionReserva_Service;
 import ws.callback.ReservasRetornar;
 
+
 /**
  *
  * @author javier
@@ -89,7 +90,7 @@ public class ConfirmacionReserva {
 	 WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 	 cxfEndpoint.getOutInterceptors().add(wssOut);*/
 	@WebMethod(operationName = "ConfirmarReserva")
-	public String ConfirmarReserva(@WebParam(name = "idReserva") long idReserva,
+	public byte[] ConfirmarReserva(@WebParam(name = "idReserva") long idReserva,
 			@WebParam(name = "idMedioPago") long idMedioPago, @WebParam(name
 					= "nroTarjeta") String nroTarjeta, @WebParam(name
 					= "fechaVencimeinto") Date fechaVencimiento, @WebParam(name
@@ -166,14 +167,14 @@ public class ConfirmacionReserva {
 					client.close();
 
 					if (msg == null) {
-						return "Todo mal viejo";
+						//return "Todo mal viejo";
 					} else {
-						return "PagosYa! dice: " + msg;
+						//return "PagosYa! dice: " + msg;
 					}
 				} catch (Exception e) {					
 				
 					fgen.info(e.getMessage());
-					return e.getMessage();
+					//return e.getMessage();
 
 				}
 			} else {
@@ -188,22 +189,24 @@ public class ConfirmacionReserva {
                 //enable MTOM in client
                 
                 NotificarConfirmacionReserva_Service service = new NotificarConfirmacionReserva_Service();
-                NotificarConfirmacionReserva port = service.getNotificarConfirmacionReservaPort(new MTOMFeature());
+                NotificarConfirmacionReserva port = service.getNotificarConfirmacionReservaPort(new MTOMFeature(true));
                 //NotificacionConfirmacionReservaEntrada notificacionWS = new NotificacionConfirmacionReservaEntrada();
-                BindingProvider bp = (BindingProvider) port;
-                SOAPBinding binding = (SOAPBinding) bp.getBinding();
-                binding.setMTOMEnabled(true);
+                //BindingProvider bp = (BindingProvider) port;
+                //SOAPBinding binding = (SOAPBinding) bp.getBinding();
+                //binding.setMTOMEnabled(true);
                 byte[] imagenBinaria = obtenerByteImagen(pathFile);
-                ReservasRetornar retornarNotificacion = port.notificarEntradas(1, imagenBinaria);
+                ReservasRetornar retornarNotificacion = port.notificarEntradas(idReserva, imagenBinaria);
+                byte[] imagenRet = retornarNotificacion.getImagenEntrada();
                 reserva.Estado = 2;
                                 
                 //entradasRetornar.idReserva = idReserva;
                 //entradasRetornar.respuesta = "Imagenes procesadas con exito";
                 
                 //return null;
+                return imagenRet;
 		}
 		//return entradasRetornar;
-                return "Fin ";
+                return null;
 	}  
 
         private byte[] obtenerByteImagen(String filePath)
