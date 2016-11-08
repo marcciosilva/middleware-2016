@@ -5,3 +5,5 @@
 TicketInco/target/
 /WSCallback/nbproject/private/
 .metadata/
+/WSCallback/build/
+/WSCallback/dist/
