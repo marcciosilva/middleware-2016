@@ -13,6 +13,6 @@ see implementation details http://jersey.java.net/nonav/documentation/latest/jax
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Jersey Web Application</servlet-name>
-		<url-pattern>/recursos/*</url-pattern>
+		<url-pattern>/servicios/*</url-pattern>
 	</servlet-mapping>
 </web-app>

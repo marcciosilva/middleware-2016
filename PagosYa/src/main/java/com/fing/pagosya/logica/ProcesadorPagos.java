@@ -15,11 +15,12 @@
  */
 package com.fing.pagosya.logica;
 
+import com.fing.pagosya.dtos.Anulacion;
 import com.fing.pagosya.dtos.Confirmacion;
 import com.fing.pagosya.dtos.Pago;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,27 +28,31 @@ import java.util.logging.Logger;
  *
  * @author marccio
  */
-public class ConfirmacionPago {
+public class ProcesadorPagos {
 
-	private long idConfirmacionPago;
+	// Contador que almacena el id de confirmacion a
+	// presentar ante un pago valido y ya no existente en el sistema.
+	private long idConfirmacionPagoActual;
 	final static Logger logger = java.util.logging.Logger.
-			getLogger(ConfirmacionPago.class.getName());
-	private List<Pago> pagosConfirmados;
-	private static ConfirmacionPago instance;
+			getLogger(ProcesadorPagos.class.getName());
+	private static Map<Long, Pago> pagosConfirmados;
+	private static Map<Long, Anulacion> anulaciones;
+	private static ProcesadorPagos instance;
 
-	public static ConfirmacionPago getInstance() {
+	public static ProcesadorPagos getInstance() {
 		if (instance == null) {
-			instance = new ConfirmacionPago();
+			instance = new ProcesadorPagos();
 		}
 		return instance;
 	}
 
-	public ConfirmacionPago() {
-		idConfirmacionPago = 0;
-		pagosConfirmados = new ArrayList<>();
+	public ProcesadorPagos() {
+		idConfirmacionPagoActual = 0;
+		pagosConfirmados = new HashMap<>();
+		anulaciones = new HashMap<>();
 		logger.log(Level.INFO,
 				"Se inicializa idConfirmacionPago en el valor: {0}", Long.
-				toString(idConfirmacionPago));
+				toString(idConfirmacionPagoActual));
 	}
 
 	public Confirmacion confirmarPago(Pago pago) {
@@ -68,28 +73,60 @@ public class ConfirmacionPago {
 		Confirmacion confirmacion = new Confirmacion();
 		try {
 			// Si ya hay un pago para la orden se retorna error. {"idConfirmacionPago":-1}
-			if (pagosConfirmados.contains(pago)) {
+			if (pagosConfirmados.values().contains(pago)) {
 				throw new Exception("Ya se procesó un pago con datos idénticos.");
 			}
 			// Si no se tenia un pag, entonces se genera un id de confirmacion.
 			// Se genera un nuevo id.
-			idConfirmacionPago++;
-			pagosConfirmados.add(pago);
-			confirmacion.setIdConfirmacion(idConfirmacionPago);
-			confirmacion.setAprobada(true);
+			idConfirmacionPagoActual++;
+			pagosConfirmados.put(idConfirmacionPagoActual, pago);
+			confirmacion.setIdConfirmacionPago(idConfirmacionPagoActual);
 			logger.info("El pago se confirmó exitosamente.");
 			logger.log(Level.INFO, "Se generó el id de confirmacion: {0}",
 					Long.toString(
-							idConfirmacionPago));
+							idConfirmacionPagoActual));
 		} catch (Exception ex) {
 			logger.info("Ocurrió un error al intentar confirmar el pago.");
 			logger.log(Level.INFO, "Mensaje de excepción:{0}", ex.
 					getMessage());
-			confirmacion.setIdConfirmacion(-1);
-			confirmacion.setAprobada(false);
+			confirmacion.setIdConfirmacionPago(-1);
 		}
 		logger.info(
 				"########## Finalizado el proceso de confirmación de pago ##########");
 		return confirmacion;
 	}
+
+	public Anulacion anularPago(long idConfirmacionPago) {
+		// Se loggea informacion de pago.
+		logger.info(
+				"########## Iniciado el proceso de anulación de pago ##########");
+		logger.log(Level.INFO, "Id de confirmación de pago recibido: {0}", Long.
+				toString(
+						idConfirmacionPago));
+		Anulacion anulacion;
+		// Busco el pago confirmado en mis pagos confirmados.
+		Pago pago = pagosConfirmados.get(idConfirmacionPago);
+		if (pago == null) {
+			logger.info("Ocurrió un error al intentar anular el pago.");
+			logger.info(
+					"El id de confirmacion recibido no se encontró en el sistema.");
+			anulacion = new Anulacion();
+			// Se devuelve una anulacion invalida.
+			anulacion.setIdConfirmacionAnulacionPago(-1);
+		} else {
+			anulacion = anulaciones.get(idConfirmacionPago);
+			// Si el pago ya no estaba anulado, se genera una anulacion.
+			if (anulacion == null) {
+				anulacion = new Anulacion();
+				anulacion.setIdConfirmacionAnulacionPago(idConfirmacionPago);
+				// La agrego al map de anulaciones.
+				anulaciones.put(idConfirmacionPago, anulacion);
+				logger.info("El pago se anuló exitosamente.");
+			} else {
+				logger.info("El pago se encontraba anulado.");
+			}
+		}
+		return anulacion;
+	}
+
 }

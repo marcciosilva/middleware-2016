@@ -17,7 +17,7 @@ package com.fing.pagosya.rest;
 
 import com.fing.pagosya.dtos.Confirmacion;
 import com.fing.pagosya.dtos.Pago;
-import com.fing.pagosya.logica.ConfirmacionPago;
+import com.fing.pagosya.logica.ProcesadorPagos;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -51,7 +51,7 @@ public class ConfirmacionPagoResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response recibirPago(Pago pago) {
-		Confirmacion resultado = ConfirmacionPago.getInstance().confirmarPago(
+		Confirmacion resultado = ProcesadorPagos.getInstance().confirmarPago(
 				pago);
 		return Response.ok(resultado, MediaType.APPLICATION_JSON).build();
 	}

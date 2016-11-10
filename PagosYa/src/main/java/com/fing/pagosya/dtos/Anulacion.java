@@ -6,26 +6,17 @@ package com.fing.pagosya.dtos;
  */
 public class Anulacion {
 
-	private boolean aprobada;
-	private long idConfirmacion;
+	private long idConfirmacionAnulacionPago;
 
 	public Anulacion() {
 	}
 
-	public boolean isAprobada() {
-		return aprobada;
+	public long getIdConfirmacionAnulacionPago() {
+		return idConfirmacionAnulacionPago;
 	}
 
-	public void setAprobada(boolean aprobada) {
-		this.aprobada = aprobada;
-	}
-
-	public long getIdConfirmacion() {
-		return idConfirmacion;
-	}
-
-	public void setIdConfirmacion(long idConfirmacion) {
-		this.idConfirmacion = idConfirmacion;
+	public void setIdConfirmacionAnulacionPago(long idConfirmacionAnulacionPago) {
+		this.idConfirmacionAnulacionPago = idConfirmacionAnulacionPago;
 	}
 
 }
