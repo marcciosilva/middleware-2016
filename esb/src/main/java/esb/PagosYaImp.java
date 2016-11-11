@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -17,8 +18,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 @WebService(endpointInterface = "esb",
-            serviceName = "MedioPagoLocal")
-public class MedioPagoLocalImp implements MedioPagoLocal{
+            serviceName = "PagosYa")
+public class PagosYaImp implements MedioPagoLocal{
 	public void confirmarPago(String nroTarjeta, String fechaVencimiento, String digitoVerificador, String monto){		
 		
 		nroTarjeta = cambiarFormatoNroTarjeta(nroTarjeta);
