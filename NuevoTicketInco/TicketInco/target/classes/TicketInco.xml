@@ -73,4 +73,9 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 		</cxf:jaxws-service>
 		<component class="test2.SecurityBean" doc:name="Java" />
 	</flow>
+    <flow name="AnulacionReservaFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/Anular_Reserva" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="test2.IAnulacionReserva" doc:name="CXF"/>
+        <component class="test2.AnulacionReserva" doc:name="Java"/>
+    </flow>
 </mule>

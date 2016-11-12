@@ -20,6 +20,7 @@ test2\ListaHorariosRetornar.class
 test2\ConfirmacionReserva$PagoPagosYa.class
 test2\ISecurityBean.class
 test2\ConfirmacionReserva.class
+test2\IAnulacionReserva.class
 test2\ConsultaEntradasDisponibles.class
 test2\ReservaEntradas.class
 test2\IConsultarEntradas.class

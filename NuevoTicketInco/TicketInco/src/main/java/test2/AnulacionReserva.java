@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  * @author javier
  */
 @WebService(serviceName = "AnulacionReserva")
-public class AnulacionReserva {
+public class AnulacionReserva  implements IAnulacionReserva{
     
     final static Logger fgen = Logger.getLogger(AnulacionReserva.class);
     /**
