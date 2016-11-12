@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="62bf419f-aae3-4e55-8310-d1e1d9d287a1" activeEnvironment="Default" name="Ticketinco" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="ec67e83a-4e37-4f91-b4ae-2c5faeac17b8" wsaVersion="NONE" name="IReservaEntradasServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IReservaEntradasServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/Reserva_Entradas?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/Reserva_Entradas?wsdl"><con:part><con:url>http://localhost:8082/Reserva_Entradas?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IReservaEntradasService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="reserva_de_entradas" type="tns:reserva_de_entradas"/>
+      <xs:element name="reserva_de_entradasResponse" type="tns:reserva_de_entradasResponse"/>
+      <xs:complexType name="reserva_de_entradas">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="arg2" type="tns:horario"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="horario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="hora" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="disponibilidades" type="tns:disponibilidad"/>
+          <xs:element minOccurs="0" name="horario" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="disponibilidad">
+        <xs:sequence>
+          <xs:element name="cantidad" type="xs:int"/>
+          <xs:element name="precio" type="xs:double"/>
+          <xs:element minOccurs="0" name="sector" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="reserva_de_entradasResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ParseException" type="tns:ParseException"/>
+      <xs:complexType name="ParseException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorOffset" type="xs:int"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="reserva_de_entradas">
+    <wsdl:part element="tns:reserva_de_entradas" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reserva_de_entradasResponse">
+    <wsdl:part element="tns:reserva_de_entradasResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ParseException">
+    <wsdl:part element="tns:ParseException" name="ParseException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IReservaEntradas">
+    <wsdl:operation name="reserva_de_entradas">
+      <wsdl:input message="tns:reserva_de_entradas" name="reserva_de_entradas"></wsdl:input>
+      <wsdl:output message="tns:reserva_de_entradasResponse" name="reserva_de_entradasResponse"></wsdl:output>
+      <wsdl:fault message="tns:ParseException" name="ParseException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IReservaEntradasServiceSoapBinding" type="tns:IReservaEntradas">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="reserva_de_entradas">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="reserva_de_entradas">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="reserva_de_entradasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParseException">
+        <soap:fault name="ParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IReservaEntradasService">
+    <wsdl:port binding="tns:IReservaEntradasServiceSoapBinding" name="IReservaEntradasPort">
+      <soap:address location="http://localhost:8082/Reserva_Entradas"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/Reserva_Entradas</con:endpoint></con:endpoints><con:operation id="7d25c3e6-edf1-44bf-ba82-07264902bd16" isOneWay="false" action="" name="reserva_de_entradas" bindingOperationName="reserva_de_entradas" type="Request-Response" outputName="reserva_de_entradasResponse" inputName="reserva_de_entradas" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4fb403d6-811d-4c5a-9d24-b02921c0f4ee" name="Request 1" outgoingWss="outgoing_signed"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/Reserva_Entradas</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tes:reserva_de_entradas>\r
+         <arg0>1</arg0>\r
+         <!--Optional:-->\r
+         <arg1>2011-11-11T16:00:00</arg1>\r
+         <!--Zero or more repetitions:-->\r
+         <arg2>\r
+            <!--Optional:-->\r
+            <hora>2011-11-11T17:00:00</hora>\r
+            <!--Zero or more repetitions:-->\r
+            <disponibilidades>\r
+               <cantidad>1</cantidad>\r
+               <precio>10</precio>\r
+               <!--Optional:-->\r
+               <sector>Sector 10</sector>\r
+            </disponibilidades>\r
+         </arg2>\r
+      </tes:reserva_de_entradas>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IReservaEntradas/reserva_de_entradas"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="810103bd-834c-4c62-ab7e-b2397c78ec92" wsaVersion="NONE" name="ISecurityBeanServiceSoapBinding" type="wsdl" bindingName="{http://test2/}ISecurityBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/test?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/test?wsdl"><con:part><con:url>http://localhost:8082/test?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ISecurityBeanService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://test2/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="sayHi" type="tns:sayHi"/>
+      <xs:element name="sayHiResponse" type="tns:sayHiResponse"/>
+      <xs:complexType name="sayHi">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sayHiResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHiResponse">
+    <wsdl:part element="tns:sayHiResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHi">
+    <wsdl:part element="tns:sayHi" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISecurityBean">
+    <wsdl:operation name="sayHi">
+      <wsdl:input message="tns:sayHi" name="sayHi"></wsdl:input>
+      <wsdl:output message="tns:sayHiResponse" name="sayHiResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ISecurityBeanServiceSoapBinding" type="tns:ISecurityBean">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHi">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHi">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISecurityBeanService">
+    <wsdl:port binding="tns:ISecurityBeanServiceSoapBinding" name="ISecurityBeanPort">
+      <soap:address location="http://localhost:8082/test"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/test</con:endpoint></con:endpoints><con:operation id="1a6f42c9-5a1e-4d27-a445-382af5720518" isOneWay="false" action="" name="sayHi" bindingOperationName="sayHi" type="Request-Response" outputName="sayHiResponse" inputName="sayHi" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e0227fd8-c990-4f7a-8c74-031efd3402be" name="Request 1" outgoingWss="outgoing_signed"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/test</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tes:sayHi>\r
+         <!--Optional:-->\r
+         <arg0>?</arg0>\r
+      </tes:sayHi>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/ISecurityBean/sayHi"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:crypto><con:source>C:/workspace/fing/midd/middleware3/middleware-2016/NuevoTicketInco/TicketInco/src/main/resources/keystore.jks</con:source><con:password>password</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing_signed</con:name><con:entry type="Username" username="joe" password="password"><con:configuration><addCreated>true</addCreated><addNonce>true</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="alias" password="password"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
