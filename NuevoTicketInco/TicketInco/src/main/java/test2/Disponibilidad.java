@@ -5,6 +5,7 @@ package test2;
 */
 public class Disponibilidad {
 
+	
 	String sector;
 	double precio;
 	int cantidad;
