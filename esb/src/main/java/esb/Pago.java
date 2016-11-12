@@ -2,8 +2,11 @@ package esb;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  *
@@ -11,15 +14,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 public class Pago implements Serializable {
 
+	@SerializedName("numeroTarjeta")
 	private long numeroTarjeta;
-	private Calendar fechaVencimiento;
+	
+	@SerializedName("fechaVencimiento")
+	private Date fechaVencimiento;
+	
+	@SerializedName("digitoVerificador")
 	private int digitoVerificador;
+	
+	@SerializedName("monto")
 	private double monto;
 
 	public Pago() {
 	}
 
-	public Pago(long numeroTarjeta, Calendar fechaVencimiento, int digitoVerificador, double monto) {
+	public Pago(long numeroTarjeta, Date fechaVencimiento, int digitoVerificador, double monto) {
 		this.numeroTarjeta = numeroTarjeta;
 		this.fechaVencimiento = fechaVencimiento;
 		this.digitoVerificador = digitoVerificador;
@@ -34,11 +44,11 @@ public class Pago implements Serializable {
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public Calendar getFechaVencimiento() {
+	public Date getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFechaVencimiento(Calendar fechaVencimiento) {
+	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
