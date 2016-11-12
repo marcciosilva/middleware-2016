@@ -17,14 +17,13 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <component class="esb.MedioPagoLocalImp" doc:name="Java"/>
     </flow>
 		
-<!-- 	<flow name="MedioPagoLocal"> -->
-<!-- 		<http:listener config-ref="listener-config" path="MedioPagoLocal" /> -->
-<!-- 		<cxf:jaxws-service serviceClass="esb.MedioPagoLocal" /> -->
-<!-- 		<component class="esb.MedioPagoLocalImp" /> -->
-<!-- 	</flow> -->
+ 	<flow name="MedioPagoLocal"><http:listener config-ref="listener-config" path="/MedioPagoLocal" doc:name="HTTP"/> 
+ 		<cxf:jaxws-service serviceClass="esb.MedioPagoLocal" doc:name="CXF"/>
+ 		<component class="esb.MedioPagoLocalImp" doc:name="Java"/> 
+	</flow> 
 
 	<flow name="MedioPagosYa">
-		<http:listener config-ref="listener-config" path="MedioPagosYa" doc:name="HTTP"/>
+		<http:listener config-ref="listener-config" path="/MedioPagosYa" doc:name="HTTP"/>
 		<cxf:jaxws-service serviceClass="esb.MedioPagoLocal" doc:name="CXF"/>
 		<component class="esb.MedioPagosYaImp" doc:name="Java"/>
 	</flow>
