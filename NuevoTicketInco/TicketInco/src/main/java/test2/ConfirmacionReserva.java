@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
 @WebService(serviceName = "ConfirmacionReserva")
 @Addressing(required = true)
 //@Addressing(enabled=true, required=true)
-public class ConfirmacionReserva {
+public class ConfirmacionReserva implements IConfirmacionReserva {
 
 	final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
 	final static java.util.logging.Logger logger = java.util.logging.Logger.
@@ -58,12 +58,7 @@ public class ConfirmacionReserva {
 
 	 WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 	 cxfEndpoint.getOutInterceptors().add(wssOut);*/
-	@WebMethod(operationName = "ConfirmarReserva")
-	public byte[] ConfirmarReserva(@WebParam(name = "idReserva") long idReserva,
-			@WebParam(name = "idMedioPago") long idMedioPago, @WebParam(name
-					= "nroTarjeta") String nroTarjeta, @WebParam(name
-					= "fechaVencimeinto") Date fechaVencimiento, @WebParam(name
-					= "digitoVerificador") int digitoVerificador) throws
+	public byte[] ConfirmarReserva(long idReserva, long idMedioPago, String nroTarjeta, Date fechaVencimiento, int digitoVerificador) throws
 			ParseException {
 		try {
 			fgen.info("Identificador de la reserva " + idReserva);

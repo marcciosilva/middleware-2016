@@ -15,6 +15,7 @@ test2\ServerPasswordCallback.class
 test2\Evento.class
 test2\AnulacionReserva.class
 test2\CancelarReservasJob.class
+test2\IConfirmacionReserva.class
 test2\Disponibilidad.class
 test2\ListaHorariosRetornar.class
 test2\ConfirmacionReserva$PagoPagosYa.class

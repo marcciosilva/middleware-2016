@@ -22,8 +22,8 @@ public class ConsultaEstadoReserva implements IConsultarEstadoReserva{
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "ConsultaEstadoReserva")
-    public EstadoReserva ConsultaEstadoReserva(long identificador_reserva) throws ParseException {
+    @WebMethod(operationName = "Consulta_EstadoReserva")
+    public EstadoReserva Consulta_EstadoReserva(long identificador_reserva) throws ParseException {
         //TODO write your implementation code here:
          ListaReservas reservas= new ListaReservas();
          for (int i = 0; i < reservas.listaReserva.size(); i++) {

@@ -6,7 +6,5 @@ import javax.jws.WebService;
 
 @WebService
 public interface IConsultarEstadoReserva {
-	
-	public EstadoReserva ConsultaEstadoReserva(long identificador_reserva) throws ParseException;
-
+	EstadoReserva Consulta_EstadoReserva(long identificador_reserva) throws ParseException;
 }
