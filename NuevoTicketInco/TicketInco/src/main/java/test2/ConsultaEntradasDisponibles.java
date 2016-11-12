@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  * @author javier
  */
 @WebService(serviceName = "ConsultaEntradas")
-public class ConsultaEntradasDisponibles {
+public class ConsultaEntradasDisponibles implements IConsultarEntradas {
 
 	final static Logger fgen = Logger.getLogger(
 			ConsultaEntradasDisponibles.class);

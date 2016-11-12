@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * @author javier
  */
 @WebService(serviceName = "ConsultaEstadoReserva")
-public class ConsultaEstadoReserva {
+public class ConsultaEstadoReserva implements IConsultarEstadoReserva{
   final static Logger fgen = Logger.getLogger(ConsultaEstadoReserva.class);
 
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "consulta_estado_reserva")
-    public EstadoReserva consulta_estado_reserva(@WebParam(name = "identificador_reserva") long identificador_reserva) throws ParseException {
+    @WebMethod(operationName = "ConsultaEstadoReserva")
+    public EstadoReserva ConsultaEstadoReserva(long identificador_reserva) throws ParseException {
         //TODO write your implementation code here:
          ListaReservas reservas= new ListaReservas();
          for (int i = 0; i < reservas.listaReserva.size(); i++) {

@@ -5,23 +5,23 @@
  */
 package test2;
 
-import java.text.DateFormat;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.DateBuilder.evenMinuteDate;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.TriggerBuilder.newTrigger;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static org.quartz.CronScheduleBuilder.cronSchedule;
-import static org.quartz.DateBuilder.evenMinuteDate;
-import static org.quartz.JobBuilder.newJob;
+
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.Trigger;
-import static org.quartz.TriggerBuilder.newTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 
 /**

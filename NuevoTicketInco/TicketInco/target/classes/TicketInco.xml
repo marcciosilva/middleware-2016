@@ -26,7 +26,17 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 			<spring:prop key="org.apache.ws.security.crypto.merlin.keystore.file">keystore.jks</spring:prop>
 		</util:properties>
 	</spring:beans>
-	<flow name="TicketIncoFlow">
+    <flow name="ConsultarEstadoReservaFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/Consulta_EstadoReserva" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="test2.IConsultarEstadoReserva" doc:name="CXF"/>
+        <component doc:name="Java" class="test2.ConsultaEntradasDisponibles"/>
+    </flow>
+    <flow name="ConsultarEntradasFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/Consultar_Entradas" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="test2.IConsultarEntradas" doc:name="CXF"/>
+        <component class="test2.ConsultaEntradasDisponibles" doc:name="Java"/>
+    </flow>
+	<flow name="ReservaEntradasFlow">
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="/Reserva_Entradas" doc:name="HTTP" />
 		<cxf:jaxws-service serviceClass="test2.IReservaEntradas"

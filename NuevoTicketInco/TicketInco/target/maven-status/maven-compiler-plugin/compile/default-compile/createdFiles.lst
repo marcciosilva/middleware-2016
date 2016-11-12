@@ -5,6 +5,7 @@ test2\EstadoReserva.class
 test2\ConsultaEstadoReserva.class
 test2\ListaEventos.class
 test2\ListaReservas.class
+test2\IConsultarEstadoReserva.class
 test2\NotificacionConfirmacionReservaEntrada.class
 test2\EntradasRetornar.class
 test2\IReservaEntradas.class
@@ -21,3 +22,4 @@ test2\ISecurityBean.class
 test2\ConfirmacionReserva.class
 test2\ConsultaEntradasDisponibles.class
 test2\ReservaEntradas.class
+test2\IConsultarEntradas.class
