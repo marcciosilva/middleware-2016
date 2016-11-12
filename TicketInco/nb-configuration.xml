@@ -23,5 +23,7 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
         <org-netbeans-modules-maven-jaxws.generate_5f_nonjsr109>true</org-netbeans-modules-maven-jaxws.generate_5f_nonjsr109>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_NotificarConfirmacionReserva>http://localhost:8084/WSCallback/NotificarConfirmacionReserva?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_NotificarConfirmacionReserva>
+        <org-netbeans-modules-maven-jaxws._5f_S_5f_PagosYa>http://localhost:63081/PagosYa?wsdl</org-netbeans-modules-maven-jaxws._5f_S_5f_PagosYa>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_PagosYa>http://localhost:63081/PagosYa?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_PagosYa>
     </properties>
 </project-shared-configuration>

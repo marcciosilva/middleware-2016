@@ -121,6 +121,42 @@
                         <id>wsimport-generate-NotificarConfirmacionReserva</id>
                         <phase>generate-sources</phase>
                     </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_63081/PagosYa.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.fing.ws</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:63081/PagosYa?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PagosYa.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PagosYa</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_63081/PagosYa.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.fing.ws</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:63081/PagosYa?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PagosYa_1.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PagosYa_1</id>
+                        <phase>generate-sources</phase>
+                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>
