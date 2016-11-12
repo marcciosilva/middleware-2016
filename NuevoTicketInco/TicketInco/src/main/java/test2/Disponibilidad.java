@@ -1,11 +1,11 @@
 package test2;
+
 /**
-*
-* @author Cami
-*/
+ *
+ * @author Cami
+ */
 public class Disponibilidad {
 
-	
 	String sector;
 	double precio;
 	int cantidad;

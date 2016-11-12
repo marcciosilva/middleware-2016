@@ -17,7 +17,8 @@ import org.apache.log4j.Logger;
  *
  * @author javier
  */
-@WebService(serviceName = "ConsultaEntradas")
+@WebService(endpointInterface = "test2",
+serviceName = "ConsultaEntradas")
 public class ConsultaEntradasDisponibles implements IConsultarEntradas {
 
 	final static Logger fgen = Logger.getLogger(
@@ -26,7 +27,6 @@ public class ConsultaEntradasDisponibles implements IConsultarEntradas {
 	/**
 	 * This is a sample web service operation
 	 */
-	@WebMethod(operationName = "ConsultarEntradasDisponibles")
 	public ListaHorariosRetornar ConsultarEntradas(
 			@WebParam(name = "idEvento") int idEvento, @WebParam(name
 					= "fechaEvento") Calendar fechaEvento) throws ParseException {
