@@ -96,28 +96,29 @@
          </arg2>\r
       </tes:reserva_de_entradas>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IReservaEntradas/reserva_de_entradas"/><con:wsrmConfig version="1.2"/></con:call><con:call id="ce65f48a-b4f8-4f63-9f8f-d4848373588c" name="Request 1 con Horario" outgoingWss="outgoing_signed"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/Reserva_Entradas</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <tes:reserva_de_entradas>\r
-         <arg0>1</arg0>\r
-         <!--Optional:-->\r
-         <arg1>2011-11-11T16:00:00</arg1>\r
-         <!--Zero or more repetitions:-->\r
-         <arg2>\r
-            <!--Optional:-->\r
-            <hora>2011-11-11T17:00:00</hora>\r
-            <!--Zero or more repetitions:-->\r
-            <disponibilidades>\r
-               <cantidad>1</cantidad>\r
-               <precio>10</precio>\r
-               <!--Optional:-->\r
-               <sector>Sector 10</sector>\r
-            </disponibilidades>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IReservaEntradas/reserva_de_entradas"/><con:wsrmConfig version="1.2"/></con:call><con:call id="ce65f48a-b4f8-4f63-9f8f-d4848373588c" name="Request 1 con Horario" outgoingWss="outgoing_signed"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/Reserva_Entradas</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tes:reserva_de_entradas>
+         <arg0>1</arg0>
+         <!--Optional:-->
+         <arg1>2011-11-11T16:00:00</arg1>
+         <!--Zero or more repetitions:-->
+         <arg2>
+            <!--Optional:-->
+            <hora>2011-11-11T17:00:00</hora>
+            <!--Zero or more repetitions:-->
+            <disponibilidades>
+               <cantidad>1</cantidad>
+               <precio>10</precio>
+               <!--Optional:-->
+               <sector>Sector 10</sector>
+            </disponibilidades>
+            <!--Optional:-->
             <horario>2011-11-11</horario>
-         </arg2>\r
-      </tes:reserva_de_entradas>\r
-   </soapenv:Body>\r
+         </arg2>
+      </tes:reserva_de_entradas>
+   </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IReservaEntradas/reserva_de_entradas"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="810103bd-834c-4c62-ab7e-b2397c78ec92" wsaVersion="NONE" name="ISecurityBeanServiceSoapBinding" type="wsdl" bindingName="{http://test2/}ISecurityBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/test?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/test?wsdl"><con:part><con:url>http://localhost:8082/test?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ISecurityBeanService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema elementFormDefault="unqualified" targetNamespace="http://test2/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -332,7 +333,7 @@
          <arg0>1</arg0>\r
       </tes:Consulta_EstadoReserva>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConsultarEstadoReserva/Consulta_EstadoReserva"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="f395bbe1-2f94-4d45-ba97-06b0995675c9" wsaVersion="NONE" name="IConfirmacionReservaServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IConfirmacionReservaServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/ConfirmarReserva?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/ConfirmarReserva?wsdl"><con:part><con:url>http://localhost:8082/ConfirmarReserva?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IConfirmacionReservaService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConsultarEstadoReserva/Consulta_EstadoReserva"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="f395bbe1-2f94-4d45-ba97-06b0995675c9" wsaVersion="200508" name="ConfirmacionReservaSoapBinding" type="wsdl" bindingName="{http://test2/}ConfirmacionReservaSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/ConfirmarReserva?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/ConfirmarReserva?wsdl"><con:part><con:url>http://localhost:8082/ConfirmarReserva?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ConfirmacionReserva" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="ConfirmarReserva" type="tns:ConfirmarReserva"/>
@@ -348,7 +349,13 @@
       </xs:complexType>
       <xs:complexType name="ConfirmarReservaResponse">
         <xs:sequence>
-          <xs:element minOccurs="0" name="return" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="idConfirmacion" type="xs:long"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="imagenesBinarias" type="tns:imagenEntrada"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="imagenEntrada">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="entrada" type="xs:base64Binary"/>
         </xs:sequence>
       </xs:complexType>
       <xs:element name="ParseException" type="tns:ParseException"/>
@@ -371,13 +378,15 @@
   </wsdl:message>
   <wsdl:portType name="IConfirmacionReserva">
     <wsdl:operation name="ConfirmarReserva">
-      <wsdl:input message="tns:ConfirmarReserva" name="ConfirmarReserva"></wsdl:input>
-      <wsdl:output message="tns:ConfirmarReservaResponse" name="ConfirmarReservaResponse"></wsdl:output>
-      <wsdl:fault message="tns:ParseException" name="ParseException"></wsdl:fault>
+      <wsdl:input message="tns:ConfirmarReserva" name="ConfirmarReserva" wsam:Action="http://test2/IConfirmacionReserva/ConfirmarReservaRequest" wsaw:Action="http://test2/IConfirmacionReserva/ConfirmarReservaRequest"></wsdl:input>
+      <wsdl:output message="tns:ConfirmarReservaResponse" name="ConfirmarReservaResponse" wsam:Action="http://test2/IConfirmacionReserva/ConfirmarReservaResponse" wsaw:Action="http://test2/IConfirmacionReserva/ConfirmarReservaResponse"></wsdl:output>
+      <wsdl:fault message="tns:ParseException" name="ParseException" wsam:Action="http://test2/IConfirmacionReserva/ConfirmarReserva/Fault/ParseException"></wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="IConfirmacionReservaServiceSoapBinding" type="tns:IConfirmacionReserva">
+  <wsdl:binding name="ConfirmacionReservaSoapBinding" type="tns:IConfirmacionReserva">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsaw:UsingAddressing wsdl:required="true"/>
+    <wsp:PolicyReference URI="#ConfirmacionReservaSoapBinding_WSAM_Addressing_Policy"/>
     <wsdl:operation name="ConfirmarReserva">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="ConfirmarReserva">
@@ -391,17 +400,22 @@
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="IConfirmacionReservaService">
-    <wsdl:port binding="tns:IConfirmacionReservaServiceSoapBinding" name="IConfirmacionReservaPort">
+  <wsdl:service name="ConfirmacionReserva">
+    <wsdl:port binding="tns:ConfirmacionReservaSoapBinding" name="IConfirmacionReservaPort">
       <soap:address location="http://localhost:8082/ConfirmarReserva"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint></con:endpoints><con:operation id="607b8a05-d381-438c-a126-5aa735db97c9" isOneWay="false" action="" name="ConfirmarReserva" bindingOperationName="ConfirmarReserva" type="Request-Response" outputName="ConfirmarReservaResponse" inputName="ConfirmarReserva" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4b08d26a-8940-4eff-90e3-7606a7acbf98" name="Request 1" outgoingWss="outgoing_encrypted"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">
+  <wsp:Policy wsu:Id="ConfirmacionReservaSoapBinding_WSAM_Addressing_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsam:Addressing>
+      <wsp:Policy/>
+    </wsam:Addressing>
+  </wsp:Policy>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint></con:endpoints><con:operation id="607b8a05-d381-438c-a126-5aa735db97c9" isOneWay="false" action="" name="ConfirmarReserva" bindingOperationName="ConfirmarReserva" type="Request-Response" outputName="ConfirmarReservaResponse" inputName="ConfirmarReserva" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4b08d26a-8940-4eff-90e3-7606a7acbf98" name="Request 1" outgoingWss="outgoing_encrypted" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="WsdlSettings@enable-mtom">true</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@expand-mtom-attachments">false</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@disable-multipart-attachments">true</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">
    <soapenv:Header/>
    <soapenv:Body>
       <tes:ConfirmarReserva>
          <arg0>1</arg0>
-         <arg1>2</arg1>
+         <arg1>1000</arg1>
          <!--Optional:-->
          <arg2>"hola"</arg2>
          <!--Optional:-->
@@ -409,4 +423,4 @@
          <arg4>1</arg4>
       </tes:ConfirmarReserva>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConfirmacionReserva/ConfirmarReserva"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:crypto><con:source>C:/workspace/fing/midd/middleware3/middleware-2016/NuevoTicketInco/TicketInco/src/main/resources/keystore.jks</con:source><con:password>keyStorePassword</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing_signed</con:name><con:entry type="Username" username="joe" password="secret"><con:configuration><addCreated>false</addCreated><addNonce>false</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry></con:outgoing><con:outgoing><con:name>outgoing_encrypted</con:name><con:entry type="Username" username="joe" password="secret"><con:configuration><addCreated>false</addCreated><addNonce>false</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry><con:entry type="Encryption" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><symmetricEncAlgorithm/><encKeyTransport/><embeddedKeyName/><embeddedKeyPassword/><encryptionCanonicalization/><encryptSymmetricKey>true</encryptSymmetricKey></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConfirmacionReserva/ConfirmarReserva" replyTo="http://localhost:63071/NotificarReserva" generateMessageId="true"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:crypto><con:source>C:/Users/Cami/Documents/Fing/Middleware/Obligatorio2/CodigoObligatorio2/NuevoTicketInco/TicketInco/src/main/resources/keystore.jks</con:source><con:password>keyStorePassword</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing_signed</con:name><con:entry type="Username" username="joe" password="secret"><con:configuration><addCreated>false</addCreated><addNonce>false</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry></con:outgoing><con:outgoing><con:name>outgoing_encrypted</con:name><con:entry type="Username" username="joe" password="secret"><con:configuration><addCreated>false</addCreated><addNonce>false</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry><con:entry type="Encryption" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><symmetricEncAlgorithm/><encKeyTransport/><embeddedKeyName/><embeddedKeyPassword/><encryptionCanonicalization/><encryptSymmetricKey>true</encryptSymmetricKey></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

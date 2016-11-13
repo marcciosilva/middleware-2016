@@ -64,7 +64,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="/ConfirmarReserva" doc:name="HTTP" />
 		<cxf:jaxws-service serviceClass="test2.IConfirmacionReserva"
-			doc:name="CXF">
+			doc:name="CXF" mtomEnabled="true">
 			<cxf:ws-security>
 				<cxf:ws-config>
 					<cxf:property key="action" value="UsernameToken Signature Encrypt" />

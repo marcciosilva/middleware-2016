@@ -23,8 +23,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.ws.Holder;
 import javax.xml.ws.soap.Addressing;
+import javax.xml.ws.soap.MTOM;
 import javax.xml.ws.soap.MTOMFeature;
 import org.apache.log4j.Logger;
 
@@ -33,8 +36,9 @@ import org.apache.log4j.Logger;
  * @author javier
  */
 @WebService(serviceName = "ConfirmacionReserva")
-@Addressing(required = true)
-//@Addressing(enabled=true, required=true)
+//@Addressing(required = true)
+@MTOM(enabled=true)
+@Addressing(enabled=true, required=true)
 public class ConfirmacionReserva implements IConfirmacionReserva {
 
 	final static Logger fgen = Logger.getLogger(ConfirmacionReserva.class);
@@ -58,7 +62,7 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 
 	 WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 	 cxfEndpoint.getOutInterceptors().add(wssOut);*/
-	public ConfirmarReservaRetornar ConfirmarReserva(@WebParam(name = "idReserva")long idReserva, @WebParam(name = "idMedioPago") long idMedioPago, @WebParam(name = "nroTarjeta") String nroTarjeta, @WebParam(name = "fechaVencimiento") Date fechaVencimiento, @WebParam(name = "digitoVerificador") int digitoVerificador) throws
+	public void ConfirmarReserva(@WebParam(name = "idReserva")long idReserva, @WebParam(name = "idMedioPago") long idMedioPago, @WebParam(name = "nroTarjeta") String nroTarjeta, @WebParam(name = "fechaVencimiento") Date fechaVencimiento, @WebParam(name = "digitoVerificador") int digitoVerificador,@WebParam(name = "idConfirmacion", mode = WebParam.Mode.OUT) Holder<Long> idConfirmacion, @XmlMimeType("multimpart/related") @WebParam(name = "imagenesBinarias", mode = WebParam.Mode.OUT) Holder<ArrayList<ImagenEntrada>> imagenesBinarias) throws
 			ParseException {
 		try {
 			fgen.info("Identificador de la reserva " + idReserva);
@@ -73,14 +77,14 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 		//TODO: Hay que agregar WS-Addressing y WS-Security
 		ListaReservas listaReservas = new ListaReservas();
 		Reserva reserva = listaReservas.buscarReserva(idReserva);
-		ConfirmarReservaRetornar respuestaConfirmar = new ConfirmarReservaRetornar();
+		//ConfirmarReservaRetornar respuestaConfirmar = new ConfirmarReservaRetornar();
 		if (reserva != null) {
 			if (reserva.Estado == 2) {
 				//La reserva ya fue confirmada				
-				respuestaConfirmar.idConfirmacion = -2;
+				idConfirmacion.value = (long) -2;
 			} else if (reserva.Estado == 0) {
 				//La reserva se encuentra en estado cancelado;				
-				respuestaConfirmar.idConfirmacion = 0;
+				idConfirmacion.value = (long) 0;
 			}
 
 			double monto = calcularMonto(reserva);
@@ -102,7 +106,7 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 					pago.idConfPago = Pago.contadorIdConfPagoLocal;
 					ListaPagos listaPagos = new ListaPagos();
 					listaPagos.agregarPago(pago);
-					respuestaConfirmar.idConfirmacion = pago.idConfPago;
+					idConfirmacion.value = pago.idConfPago;
 				} catch (Exception e) {
 					System.out.println("Error " + e.getMessage());
 				}
@@ -123,42 +127,43 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 							digitoVerificador,
 							monto);
 					// Genero una request y obtengo su response.
-					javax.ws.rs.core.Response response = target.request(
-							MediaType.APPLICATION_JSON).post(
-									Entity.json(pagoPagosYa));
+					javax.ws.rs.core.Response response = target.request( MediaType.APPLICATION_JSON).post( Entity.json(pagoPagosYa));
 					String msg = response.readEntity(String.class);
 					client.close();
 
 					if (msg == null) {
 						//return "Todo mal viejo";
-						respuestaConfirmar.idConfirmacion = -1;
+						idConfirmacion.value = (long) -1;
 					} else {
 						//return "PagosYa! dice: " + msg;
 					}
 				} catch (Exception e) {
 
 					fgen.info(e.getMessage());
-					respuestaConfirmar.idConfirmacion = -1;
+					idConfirmacion.value = (long) -1;
 
 				}
 			} else {
 				//return "El medio de pago no existe";
-				respuestaConfirmar.idConfirmacion = -300;
+				idConfirmacion.value = (long) -300;
 			}
 			
 			String pathFile = getClass().getClassLoader().getResource(
-					"resources/Entradas/cinemaTicket.jpg").getPath();
-			ArrayList<ImagenEntrada> imagenesEntradas = new ArrayList<ImagenEntrada>();			
+					"Entradas/cinemaTicket.jpg").getPath();
+			ArrayList<ImagenEntrada> imagenesEntradasBinarias = new ArrayList<ImagenEntrada>();			
 			byte[] imagenBinaria = obtenerByteImagen(pathFile);
 			ImagenEntrada imagen = new ImagenEntrada();
-			imagen.entrada = imagenBinaria;
-			imagenesEntradas.add(imagen);
+			//imagen.entrada = imagenBinaria;
+			//imagenesEntradasBinarias.add(imagen);
 			reserva.Estado = 2;
-			respuestaConfirmar.imagenesBinarias = imagenesEntradas;
-			return respuestaConfirmar;
+			byte[] binarios = {0,1,0,1,1,1,1,0};
+			imagen.entrada = binarios;
+			imagenesEntradasBinarias.add(imagen);
+			imagenesBinarias.value = imagenesEntradasBinarias;	
+			
+			//imagenesBinarias.value = binarios;
 		}		
-		respuestaConfirmar.idConfirmacion = -1;
-		return respuestaConfirmar;
+		//idConfirmacion.value = (long) -1;		
 	}
 
 	private byte[] obtenerByteImagen(String filePath) {
