@@ -16,8 +16,7 @@
 package com.fing.pagosya.rest;
 
 import com.fing.pagosya.dtos.Pago;
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.Date;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -47,14 +46,14 @@ public class PagoEjemplo {
 
 	/**
 	 * Retrieves representation of an instance of
- com.fing.pagosya.dtos.PagoEjemplo
+	 * com.fing.pagosya.dtos.PagoEjemplo
 	 *
 	 * @return an instance of java.lang.String
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getXml() {
-		Pago pago = new Pago(1234, Calendar.getInstance(Locale.FRENCH), 1,
+		Pago pago = new Pago(1234, new Date(1992 - 1900, 0, 1), 1,
 				1000.1);
 		return Response.status(201).entity(pago).build();
 	}

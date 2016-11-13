@@ -18,7 +18,6 @@ package com.fing.pagosya.logica;
 import com.fing.pagosya.dtos.Anulacion;
 import com.fing.pagosya.dtos.Confirmacion;
 import com.fing.pagosya.dtos.Pago;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -33,6 +32,7 @@ public class ProcesadorPagos {
 	// Contador que almacena el id de confirmacion a
 	// presentar ante un pago valido y ya no existente en el sistema.
 	private long idConfirmacionPagoActual;
+	private long idConfirmacionAnulacionActual;
 	final static Logger logger = java.util.logging.Logger.
 			getLogger(ProcesadorPagos.class.getName());
 	private static Map<Long, Pago> pagosConfirmados;
@@ -47,7 +47,8 @@ public class ProcesadorPagos {
 	}
 
 	public ProcesadorPagos() {
-		idConfirmacionPagoActual = 0;
+		idConfirmacionPagoActual = 1;
+		idConfirmacionAnulacionActual = 1;
 		pagosConfirmados = new HashMap<>();
 		anulaciones = new HashMap<>();
 		logger.log(Level.INFO,
@@ -62,11 +63,8 @@ public class ProcesadorPagos {
 		logger.log(Level.INFO, "Numero de tarjeta de credito: {0}", Long.
 				toString(pago.
 						getNumeroTarjeta()));
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"dd/MM/yyyy HH:mm:ss");
-		logger.log(Level.INFO, "Fecha de vencimiento: {0}", simpleDateFormat.
-				format(pago.
-						getFechaVencimiento().getTime()));
+		logger.log(Level.INFO, "Fecha de vencimiento: {0}", pago.
+				getFechaVencimiento().toString());
 		logger.log(Level.INFO, "Digito verificador: {0}", Integer.toString(pago.
 				getDigitoVerificador()));
 		logger.log(Level.INFO, "Monto: {0}", Double.toString(pago.getMonto()));
@@ -78,9 +76,9 @@ public class ProcesadorPagos {
 			}
 			// Si no se tenia un pag, entonces se genera un id de confirmacion.
 			// Se genera un nuevo id.
-			idConfirmacionPagoActual++;
 			pagosConfirmados.put(idConfirmacionPagoActual, pago);
 			confirmacion.setIdConfirmacionPago(idConfirmacionPagoActual);
+			idConfirmacionPagoActual++;
 			logger.info("El pago se confirmó exitosamente.");
 			logger.log(Level.INFO, "Se generó el id de confirmacion: {0}",
 					Long.toString(
@@ -118,7 +116,9 @@ public class ProcesadorPagos {
 			// Si el pago ya no estaba anulado, se genera una anulacion.
 			if (anulacion == null) {
 				anulacion = new Anulacion();
-				anulacion.setIdConfirmacionAnulacionPago(idConfirmacionPago);
+				anulacion.setIdConfirmacionAnulacionPago(
+						idConfirmacionAnulacionActual);
+				idConfirmacionAnulacionActual++;
 				// La agrego al map de anulaciones.
 				anulaciones.put(idConfirmacionPago, anulacion);
 				logger.info("El pago se anuló exitosamente.");

@@ -12,13 +12,14 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import org.apache.log4j.Logger;
-
+import esb.MedioPagoLocalService;
+import esb.MedioPagoLocal;
 /**
  *
  * @author javier
  */
 @WebService(serviceName = "AnulacionReserva")
-public class AnulacionReserva {
+public class AnulacionReserva  implements IAnulacionReserva{
     
     final static Logger fgen = Logger.getLogger(AnulacionReserva.class);
     /**
@@ -48,10 +49,10 @@ public class AnulacionReserva {
             if(idMedioPago == 1000)
             {                
                 //LLamamos al servicio local para anular el pago
-//                MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
-//                MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
+                MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
+                MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
                 String idConfirmacionPagoStr = String.valueOf(idConfirmacionPago);                
-//                medioPagoLocal.anularPago(idConfirmacionPagoStr);
+                medioPagoLocal.anularPago(idConfirmacionPagoStr);
                 Pago.contadorIdConfAnulacionLocal++;
                 pago.idConfAnulacionPago = Pago.contadorIdConfAnulacionLocal;
                 String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
