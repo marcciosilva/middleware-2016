@@ -11,7 +11,7 @@
     <Loggers>
         <!-- CXF is used heavily by Mule for web services -->
         <AsyncLogger name="org.apache.cxf" level="WARN"/>
-
+		<AsyncLogger name="org.mule.module.http.internal.HttpMessageLogger" level="DEBUG"/>
         <!-- Apache Commons tend to make a lot of noise which can clutter the log-->
         <AsyncLogger name="org.apache" level="WARN"/>
 

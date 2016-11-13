@@ -3,15 +3,16 @@
 <mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
 	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.8.2"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
-http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
-<http:listener-config name="listener-config" host="localhost" port="63071"/>
+<http:listener-config name="listener-config" host="localhost" port="63071" doc:name="HTTP Listener Configuration"/>
 <flow name="NotificarReservaService">
-<http:listener config-ref="listener-config" path="NotificarReserva" />
-<cxf:jaxws-service serviceClass="test2.INotificarReserva"/>
-<component class="test2.NotificarReserva" />
-</flow></mule>
+<http:listener config-ref="listener-config" path="NotificarReserva" doc:name="HTTP"/>
+<cxf:jaxws-service serviceClass="test2.INotificarReserva" doc:name="CXF" mtomEnabled="true"/>
+<component class="test2.NotificarReserva" doc:name="Java"/>
+</flow>
+</mule>
