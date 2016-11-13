@@ -12,8 +12,9 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import org.apache.log4j.Logger;
-import esb.MedioPagoLocalService;
-import esb.MedioPagoLocal;
+import esb_mediopagolocal.*;
+import esb_pagosya.*;
+
 /**
  *
  * @author javier
@@ -61,7 +62,18 @@ public class AnulacionReserva  implements IAnulacionReserva{
             else if(idMedioPago == 2000)
             {
                 //Llamar al servicio de PagosYa para anular el pago
-                return "Servicio PagosYa";
+            	
+            	esb_pagosya.PagosYaService pya= new esb_pagosya.PagosYaService();
+            	esb_pagosya.PagosYa pyainterface = pya.getPagosYaPort();
+            	String idConfirmacionPagoStr = String.valueOf(idConfirmacionPago); 
+            	pyainterface.anularPago(idConfirmacionPagoStr);
+            	Pago.contadorIdConfAnulacionLocal++;
+                pago.idConfAnulacionPago = Pago.contadorIdConfAnulacionLocal;
+                String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
+                return idconfAnulacionPagoStr;               
+            	
+            	
+                //return "Servicio PagosYa";
             }
             else
             {

@@ -65,7 +65,18 @@
                 <wsdlOptions>
                     <wsdlOption>
                         <wsdl>${basedir}/src/main/wsdl/MedioPagoLocal.wsdl</wsdl>
-                    </wsdlOption>
+                        <extraargs>
+                		<extraarg>-p</extraarg>
+                		<extraarg>esb_mediopagolocal</extraarg>
+            			</extraargs>
+                    </wsdlOption>                
+                	<wsdlOption>              
+                        <wsdl>${basedir}/src/main/wsdl/PagosYa.wsdl</wsdl>
+                        <extraargs>
+                		<extraarg>-p</extraarg>
+                		<extraarg>esb_pagosya</extraarg> 
+                		</extraargs>  
+                	</wsdlOption>                  
                 </wsdlOptions>
             </configuration>
             <goals>
