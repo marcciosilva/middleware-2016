@@ -58,7 +58,7 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 
 	 WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 	 cxfEndpoint.getOutInterceptors().add(wssOut);*/
-	public byte[] ConfirmarReserva(long idReserva, long idMedioPago, String nroTarjeta, Date fechaVencimiento, int digitoVerificador) throws
+	public ConfirmarReservaRetornar ConfirmarReserva(@WebParam(name = "idReserva")long idReserva, @WebParam(name = "idMedioPago") long idMedioPago, @WebParam(name = "nroTarjeta") String nroTarjeta, @WebParam(name = "fechaVencimiento") Date fechaVencimiento, @WebParam(name = "digitoVerificador") int digitoVerificador) throws
 			ParseException {
 		try {
 			fgen.info("Identificador de la reserva " + idReserva);
@@ -73,16 +73,14 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 		//TODO: Hay que agregar WS-Addressing y WS-Security
 		ListaReservas listaReservas = new ListaReservas();
 		Reserva reserva = listaReservas.buscarReserva(idReserva);
-//		ReservasRetornar entradasRetornar = new ReservasRetornar();
+		ConfirmarReservaRetornar respuestaConfirmar = new ConfirmarReservaRetornar();
 		if (reserva != null) {
 			if (reserva.Estado == 2) {
-				//entradasRetornar.descripcion = "La reserva ya fue confirmada";
-				//entradasRetornar.i = idReserva;
-				//return entradasRetornar;
+				//La reserva ya fue confirmada				
+				respuestaConfirmar.idConfirmacion = -2;
 			} else if (reserva.Estado == 0) {
-				//entradasRetornar.descripcion = "La reserva se encuentra en estado cancelado";
-				//entradasRetornar.idReserva = idReserva;
-				//return entradasRetornar;
+				//La reserva se encuentra en estado cancelado;				
+				respuestaConfirmar.idConfirmacion = 0;
 			}
 
 			double monto = calcularMonto(reserva);
@@ -104,6 +102,7 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 					pago.idConfPago = Pago.contadorIdConfPagoLocal;
 					ListaPagos listaPagos = new ListaPagos();
 					listaPagos.agregarPago(pago);
+					respuestaConfirmar.idConfirmacion = pago.idConfPago;
 				} catch (Exception e) {
 					System.out.println("Error " + e.getMessage());
 				}
@@ -132,50 +131,34 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 
 					if (msg == null) {
 						//return "Todo mal viejo";
+						respuestaConfirmar.idConfirmacion = -1;
 					} else {
 						//return "PagosYa! dice: " + msg;
 					}
 				} catch (Exception e) {
 
 					fgen.info(e.getMessage());
-					//return e.getMessage();
+					respuestaConfirmar.idConfirmacion = -1;
 
 				}
 			} else {
 				//return "El medio de pago no existe";
+				respuestaConfirmar.idConfirmacion = -300;
 			}
-			//Generar entradas en formato binario para enviar a las notificaciones
-			//URL url = new URL("\\resources\\Entradas\\cinemaTicket.jpg");
-			//Image imgEntrada = ImageIO.read(new File("C:\\Users\\Cami\\Documents\\Fing\\Middleware\\Obligatorio2\\ImagenesEntradas\\cinemaTicket.jpg"));
-//                String pathFile = "C:\\Users\\Cami\\Documents\\Fing\\Middleware\\Obligatorio2\\ImagenesEntradas\\cinemaTicket.jpg";
+			
 			String pathFile = getClass().getClassLoader().getResource(
 					"resources/Entradas/cinemaTicket.jpg").getPath();
-			ArrayList<Image> imagenesEntradas = new ArrayList<Image>();
-			//imagenesEntradas.add(imgEntrada);
-			//enable MTOM in client
-
-//			NotificarConfirmacionReserva_Service service
-//					= new NotificarConfirmacionReserva_Service();
-//			NotificarConfirmacionReserva port = service.
-//					getNotificarConfirmacionReservaPort(new MTOMFeature(true));
-			//NotificacionConfirmacionReservaEntrada notificacionWS = new NotificacionConfirmacionReservaEntrada();
-			//BindingProvider bp = (BindingProvider) port;
-			//SOAPBinding binding = (SOAPBinding) bp.getBinding();
-			//binding.setMTOMEnabled(true);
+			ArrayList<ImagenEntrada> imagenesEntradas = new ArrayList<ImagenEntrada>();			
 			byte[] imagenBinaria = obtenerByteImagen(pathFile);
-//			ReservasRetornar retornarNotificacion = port.notificarEntradas(
-//					idReserva, imagenBinaria);
-//			byte[] imagenRet = retornarNotificacion.getImagenEntrada();
+			ImagenEntrada imagen = new ImagenEntrada();
+			imagen.entrada = imagenBinaria;
+			imagenesEntradas.add(imagen);
 			reserva.Estado = 2;
-
-			//entradasRetornar.idReserva = idReserva;
-			//entradasRetornar.respuesta = "Imagenes procesadas con exito";
-			//return null;
-//			return imagenRet;
-			return null;
-		}
-		//return entradasRetornar;
-		return null;
+			respuestaConfirmar.imagenesBinarias = imagenesEntradas;
+			return respuestaConfirmar;
+		}		
+		respuestaConfirmar.idConfirmacion = -1;
+		return respuestaConfirmar;
 	}
 
 	private byte[] obtenerByteImagen(String filePath) {

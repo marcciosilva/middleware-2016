@@ -6,9 +6,14 @@ import java.util.Date;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.ws.soap.Addressing;
+import javax.xml.ws.soap.MTOM;
 
-@WebService
+//@WebService
+@WebService(targetNamespace = "http://test2/", serviceName = "ConfirmacionReserva")
+@Addressing(required = true)
+@MTOM
 public interface IConfirmacionReserva {
 
-	public byte[] ConfirmarReserva(long idReserva, long idMedioPago, String nroTarjeta, Date fechaVencimiento, int digitoVerificador) throws ParseException;
+	public ConfirmarReservaRetornar ConfirmarReserva(long idReserva, long idMedioPago, String nroTarjeta, Date fechaVencimiento, int digitoVerificador) throws ParseException;
 }
