@@ -29,6 +29,9 @@ import javax.xml.ws.soap.Addressing;
 import javax.xml.ws.soap.MTOMFeature;
 import org.apache.log4j.Logger;
 
+import esb_mediopagolocal.MedioPagoLocal;
+import esb_mediopagolocal.MedioPagoLocalService;
+
 /**
  *
  * @author javier
@@ -93,15 +96,14 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 			double monto = calcularMonto(reserva);
 			if (idMedioPago == 1000) {
 				try {
-					// MedioPagoLocalService medioPagoService
-					// = new MedioPagoLocalService();
-					// MedioPagoLocal medioPagoLocal = medioPagoService.
-					// getMedioPagoLocalPort();
+					 MedioPagoLocalService medioPagoService
+					 = new MedioPagoLocalService();
+					 MedioPagoLocal medioPagoLocal = medioPagoService.
+					 getMedioPagoLocalPort();
 					String digitoVerificadorStr = String.valueOf(digitoVerificador);
 					String montoStr = String.valueOf(monto);
-					// medioPagoLocal.confirmarPago(nroTarjeta,
-					// fechaVencimiento.
-					// toString(), digitoVerificadorStr, montoStr);
+					medioPagoLocal.confirmarPago(nroTarjeta, fechaVencimiento.toString(), digitoVerificadorStr,
+							montoStr);
 					reserva.Estado = 2;
 					Pago pago = new Pago();
 					pago.reservas.add(reserva);
@@ -113,8 +115,6 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 				} catch (Exception e) {
 					System.out.println("Error " + e.getMessage());
 				}
-
-				// return "Medio de pago local";
 			} else if (idMedioPago == 2000) {
 				// Ir a al servicio de Pagos Ya
 				try {
@@ -135,7 +135,6 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 					System.out.println("Error " + e.getMessage());
 				}
 			} else {
-				// return "El medio de pago no existe";
 				respuestaConfirmar.idConfirmacion = -300;
 			}
 
