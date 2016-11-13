@@ -1,4 +1,4 @@
-package esb;
+package esb.dtos;
 
 import java.io.Serializable;
 import java.util.Calendar;
