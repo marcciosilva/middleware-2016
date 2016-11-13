@@ -16825,3 +16825,181 @@ org.apache.cxf.interceptor.Fault: No binding operation info while invoking unkno
 *   Batch module default engine                                      *
 *   Wrapper Manager                                                  *
 **********************************************************************
+2016-11-12 21:19:55,889 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'TicketInco'                            +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-12 21:19:57,192 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2016-11-12 21:19:57,433 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2016-11-12 21:19:57,681 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2016-11-12 21:19:57,681 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.8)
+2016-11-12 21:19:57,824 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@715e84: startup date [Sat Nov 12 21:19:57 GMT-03:00 2016]; root of context hierarchy
+2016-11-12 21:20:00,713 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-11-12 21:20:03,254 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2016-11-12 21:20:03,993 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-tx-log\tx2.log
+2016-11-12 21:20:04,032 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-xa-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-xa-tx-log\tx2.log
+2016-11-12 21:20:04,238 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2016-11-12 21:20:04,245 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ConfirmarReserva
+2016-11-12 21:20:04,246 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@14168e1
+2016-11-12 21:20:04,319 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ConfirmarReserva.stage1
+2016-11-12 21:20:04,434 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IConfirmacionReserva
+2016-11-12 21:20:06,081 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.13065217
+2016-11-12 21:20:06,090 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ConsultarEstadoReservaFlow
+2016-11-12 21:20:06,090 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@126a511
+2016-11-12 21:20:06,102 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ConsultarEstadoReservaFlow.stage1
+2016-11-12 21:20:06,103 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IConsultarEstadoReserva
+2016-11-12 21:20:06,183 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.6165463
+2016-11-12 21:20:06,184 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ConsultarEntradasFlow
+2016-11-12 21:20:06,184 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@14012a2
+2016-11-12 21:20:06,197 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ConsultarEntradasFlow.stage1
+2016-11-12 21:20:06,197 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IConsultarEntradas
+2016-11-12 21:20:06,318 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.31567969
+2016-11-12 21:20:06,319 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ReservaEntradasFlow
+2016-11-12 21:20:06,319 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@f6b629
+2016-11-12 21:20:06,332 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ReservaEntradasFlow.stage1
+2016-11-12 21:20:06,334 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IReservaEntradas
+2016-11-12 21:20:06,463 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.4734261
+2016-11-12 21:20:06,465 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: testFlow
+2016-11-12 21:20:06,465 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@1ca3ca8
+2016-11-12 21:20:06,478 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: testFlow.stage1
+2016-11-12 21:20:06,478 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.ISecurityBean
+2016-11-12 21:20:06,524 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.27245364
+2016-11-12 21:20:06,525 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: AnulacionReservaFlow
+2016-11-12 21:20:06,525 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@1866731
+2016-11-12 21:20:06,538 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: AnulacionReservaFlow.stage1
+2016-11-12 21:20:06,538 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IAnulacionReserva
+2016-11-12 21:20:06,596 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.1679585
+2016-11-12 21:20:07,269 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\TicketInco\TicketInco.xml'}]"
+2016-11-12 21:20:07,269 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\TicketInco\TicketInco.xml'}]"
+2016-11-12 21:20:10,313 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'TicketInco'                                +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-12 21:20:10,319 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2016-11-12 21:20:10,319 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2016-11-12 21:20:10,428 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://0.0.0.0:8082
+2016-11-12 21:20:10,434 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-12 21:20:10,440 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2016-11-12 21:20:10,444 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ConfirmarReserva
+2016-11-12 21:20:10,446 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ConfirmarReserva.stage1
+2016-11-12 21:20:10,459 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.13065217
+2016-11-12 21:20:10,466 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ConsultarEstadoReservaFlow
+2016-11-12 21:20:10,466 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ConsultarEstadoReservaFlow.stage1
+2016-11-12 21:20:10,473 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.6165463
+2016-11-12 21:20:10,474 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ConsultarEntradasFlow
+2016-11-12 21:20:10,474 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ConsultarEntradasFlow.stage1
+2016-11-12 21:20:10,488 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.31567969
+2016-11-12 21:20:10,489 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ReservaEntradasFlow
+2016-11-12 21:20:10,489 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ReservaEntradasFlow.stage1
+2016-11-12 21:20:10,497 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.4734261
+2016-11-12 21:20:10,497 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: testFlow
+2016-11-12 21:20:10,497 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: testFlow.stage1
+2016-11-12 21:20:10,505 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.27245364
+2016-11-12 21:20:10,508 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: AnulacionReservaFlow
+2016-11-12 21:20:10,508 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: AnulacionReservaFlow.stage1
+2016-11-12 21:20:10,514 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.1679585
+2016-11-12 21:20:10,604 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2016-11-12 21:20:10,652 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: TicketInco                                            *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Batch module default engine                                      *
+*   Wrapper Manager                                                  *
+**********************************************************************
+2016-11-12 21:21:10,357 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'TicketInco'                            +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-12 21:21:11,445 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2016-11-12 21:21:11,683 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2016-11-12 21:21:11,947 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2016-11-12 21:21:11,947 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.8)
+2016-11-12 21:21:12,094 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@715e84: startup date [Sat Nov 12 21:21:12 GMT-03:00 2016]; root of context hierarchy
+2016-11-12 21:21:14,684 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-11-12 21:21:17,094 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2016-11-12 21:21:17,802 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-tx-log\tx2.log
+2016-11-12 21:21:17,829 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-xa-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\TicketInco\queue-xa-tx-log\tx2.log
+2016-11-12 21:21:18,046 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2016-11-12 21:21:18,054 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ConfirmarReserva
+2016-11-12 21:21:18,054 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@9f0202
+2016-11-12 21:21:18,120 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ConfirmarReserva.stage1
+2016-11-12 21:21:18,223 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IConfirmacionReserva
+2016-11-12 21:21:19,812 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.6800577
+2016-11-12 21:21:19,821 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ConsultarEstadoReservaFlow
+2016-11-12 21:21:19,821 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@2e422c
+2016-11-12 21:21:19,834 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ConsultarEstadoReservaFlow.stage1
+2016-11-12 21:21:19,834 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IConsultarEstadoReserva
+2016-11-12 21:21:19,942 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.14040581
+2016-11-12 21:21:19,943 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ConsultarEntradasFlow
+2016-11-12 21:21:19,943 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@1130ac4
+2016-11-12 21:21:19,957 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ConsultarEntradasFlow.stage1
+2016-11-12 21:21:19,957 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IConsultarEntradas
+2016-11-12 21:21:20,075 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.7933504
+2016-11-12 21:21:20,077 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: ReservaEntradasFlow
+2016-11-12 21:21:20,077 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@1e61112
+2016-11-12 21:21:20,090 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: ReservaEntradasFlow.stage1
+2016-11-12 21:21:20,091 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IReservaEntradas
+2016-11-12 21:21:20,195 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.27859143
+2016-11-12 21:21:20,196 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: testFlow
+2016-11-12 21:21:20,197 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@17554d4
+2016-11-12 21:21:20,222 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: testFlow.stage1
+2016-11-12 21:21:20,222 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.ISecurityBean
+2016-11-12 21:21:20,268 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.23250172
+2016-11-12 21:21:20,269 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: AnulacionReservaFlow
+2016-11-12 21:21:20,269 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@9aa7b2
+2016-11-12 21:21:20,284 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: AnulacionReservaFlow.stage1
+2016-11-12 21:21:20,285 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class test2.IAnulacionReserva
+2016-11-12 21:21:20,337 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.13648851
+2016-11-12 21:21:20,944 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\TicketInco\TicketInco.xml'}]"
+2016-11-12 21:21:20,944 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\TicketInco\TicketInco.xml'}]"
+2016-11-12 21:21:23,988 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'TicketInco'                                +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-12 21:21:23,994 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2016-11-12 21:21:23,994 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2016-11-12 21:21:24,104 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://0.0.0.0:8082
+2016-11-12 21:21:24,109 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-12 21:21:24,116 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2016-11-12 21:21:24,119 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ConfirmarReserva
+2016-11-12 21:21:24,120 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ConfirmarReserva.stage1
+2016-11-12 21:21:24,132 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.6800577
+2016-11-12 21:21:24,139 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ConsultarEstadoReservaFlow
+2016-11-12 21:21:24,139 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ConsultarEstadoReservaFlow.stage1
+2016-11-12 21:21:24,145 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.14040581
+2016-11-12 21:21:24,145 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ConsultarEntradasFlow
+2016-11-12 21:21:24,146 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ConsultarEntradasFlow.stage1
+2016-11-12 21:21:24,152 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.7933504
+2016-11-12 21:21:24,153 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: ReservaEntradasFlow
+2016-11-12 21:21:24,153 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: ReservaEntradasFlow.stage1
+2016-11-12 21:21:24,159 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.27859143
+2016-11-12 21:21:24,160 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: testFlow
+2016-11-12 21:21:24,160 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: testFlow.stage1
+2016-11-12 21:21:24,167 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.23250172
+2016-11-12 21:21:24,173 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: AnulacionReservaFlow
+2016-11-12 21:21:24,173 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: AnulacionReservaFlow.stage1
+2016-11-12 21:21:24,183 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.13648851
+2016-11-12 21:21:24,278 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2016-11-12 21:21:24,333 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: TicketInco                                            *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Batch module default engine                                      *
+*   Wrapper Manager                                                  *
+**********************************************************************
