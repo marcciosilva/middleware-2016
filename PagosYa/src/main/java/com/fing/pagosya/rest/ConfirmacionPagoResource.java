@@ -33,7 +33,7 @@ import javax.ws.rs.core.UriInfo;
  *
  * @author marccio
  */
-@Path("confirmacionPago")
+@Path("confirmacionPagos")
 public class ConfirmacionPagoResource {
 
 	@Context

@@ -23,7 +23,7 @@ import javax.ws.rs.core.UriInfo;
  *
  * @author marccio
  */
-@Path("anulacionPago")
+@Path("anulacionPagos")
 public class AnulacionPagoResource {
 
 	@Context

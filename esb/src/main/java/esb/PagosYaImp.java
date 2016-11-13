@@ -51,7 +51,7 @@ public class PagosYaImp implements PagosYa {
 		} catch (NoSuchAlgorithmException e1) {
 			e1.printStackTrace();
 		}
-		WebTarget webTarget = client.target(BASE_PAGOSYA_URL).path("confirmacionPago");
+		WebTarget webTarget = client.target(BASE_PAGOSYA_URL).path("confirmacionPagos");
 		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 		// Construyo objeto pago a enviar.
 		Pago pago = new Pago();
@@ -88,7 +88,7 @@ public class PagosYaImp implements PagosYa {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		WebTarget webTarget = client.target(BASE_PAGOSYA_URL).path("anulacionPago");
+		WebTarget webTarget = client.target(BASE_PAGOSYA_URL).path("anulacionPagos");
 		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 		// Construyo objeto confirmacion a enviar.
 		Confirmacion confirmacion = new Confirmacion();
