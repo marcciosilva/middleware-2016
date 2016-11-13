@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f357fb76-dcd2-4d7f-a1a6-caa0d512b836" activeEnvironment="Default" name="ConfirmarReservaMtom" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7f0bf9fa-af0d-4948-9ac0-30c7dbace0e6" wsaVersion="200508" name="ConfirmacionReservaSoapBinding" type="wsdl" bindingName="{http://test2/}ConfirmacionReservaSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/ConfirmarReserva?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/ConfirmarReserva?wsdl"><con:part><con:url>http://localhost:8082/ConfirmarReserva?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ConfirmacionReserva" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ConfirmarReserva" type="tns:ConfirmarReserva"/>
+      <xs:element name="ConfirmarReservaResponse" type="tns:ConfirmarReservaResponse"/>
+      <xs:complexType name="ConfirmarReserva">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:long"/>
+          <xs:element name="arg1" type="xs:long"/>
+          <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg3" type="xs:dateTime"/>
+          <xs:element name="arg4" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConfirmarReservaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idConfirmacion" type="xs:long"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="imagenesBinarias" type="tns:imagenEntrada"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="imagenEntrada">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="entrada" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ParseException" type="tns:ParseException"/>
+      <xs:complexType name="ParseException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorOffset" type="xs:int"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ConfirmarReservaResponse">
+    <wsdl:part element="tns:ConfirmarReservaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ParseException">
+    <wsdl:part element="tns:ParseException" name="ParseException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConfirmarReserva">
+    <wsdl:part element="tns:ConfirmarReserva" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IConfirmacionReserva">
+    <wsdl:operation name="ConfirmarReserva">
+      <wsdl:input message="tns:ConfirmarReserva" name="ConfirmarReserva" wsam:Action="http://test2/IConfirmacionReserva/ConfirmarReservaRequest" wsaw:Action="http://test2/IConfirmacionReserva/ConfirmarReservaRequest"></wsdl:input>
+      <wsdl:output message="tns:ConfirmarReservaResponse" name="ConfirmarReservaResponse" wsam:Action="http://test2/IConfirmacionReserva/ConfirmarReservaResponse" wsaw:Action="http://test2/IConfirmacionReserva/ConfirmarReservaResponse"></wsdl:output>
+      <wsdl:fault message="tns:ParseException" name="ParseException" wsam:Action="http://test2/IConfirmacionReserva/ConfirmarReserva/Fault/ParseException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConfirmacionReservaSoapBinding" type="tns:IConfirmacionReserva">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsaw:UsingAddressing wsdl:required="true"/>
+    <wsp:PolicyReference URI="#ConfirmacionReservaSoapBinding_WSAM_Addressing_Policy"/>
+    <wsdl:operation name="ConfirmarReserva">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ConfirmarReserva">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConfirmarReservaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParseException">
+        <soap:fault name="ParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConfirmacionReserva">
+    <wsdl:port binding="tns:ConfirmacionReservaSoapBinding" name="IConfirmacionReservaPort">
+      <soap:address location="http://localhost:8082/ConfirmarReserva"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsp:Policy wsu:Id="ConfirmacionReservaSoapBinding_WSAM_Addressing_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsam:Addressing>
+      <wsp:Policy/>
+    </wsam:Addressing>
+  </wsp:Policy>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint></con:endpoints><con:operation id="4b24267d-400a-48fe-b002-baa167f402f7" isOneWay="false" action="" name="ConfirmarReserva" bindingOperationName="ConfirmarReserva" type="Request-Response" outputName="ConfirmarReservaResponse" inputName="ConfirmarReserva" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bf22baec-62d6-4667-9c03-07ad7c8ce7ee" name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tes:ConfirmarReserva>\r
+         <arg0>?</arg0>\r
+         <arg1>?</arg1>\r
+         <!--Optional:-->\r
+         <arg2>?</arg2>\r
+         <!--Optional:-->\r
+         <arg3>?</arg3>\r
+         <arg4>?</arg4>\r
+      </tes:ConfirmarReserva>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConfirmacionReserva/ConfirmarReservaRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

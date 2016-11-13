@@ -153,12 +153,9 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 			ArrayList<ImagenEntrada> imagenesEntradasBinarias = new ArrayList<ImagenEntrada>();			
 			byte[] imagenBinaria = obtenerByteImagen(pathFile);
 			ImagenEntrada imagen = new ImagenEntrada();
-			//imagen.entrada = imagenBinaria;
-			//imagenesEntradasBinarias.add(imagen);
-			reserva.Estado = 2;
-			byte[] binarios = {0,1,0,1,1,1,1,0};
-			imagen.entrada = binarios;
+			imagen.entrada = imagenBinaria;
 			imagenesEntradasBinarias.add(imagen);
+			reserva.Estado = 2;			
 			imagenesBinarias.value = imagenesEntradasBinarias;	
 			
 			//imagenesBinarias.value = binarios;
