@@ -294,3 +294,11 @@ INFO  2016-11-12 18:36:50,912 [main] org.mule.module.launcher.domain.DefaultMule
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 + Initializing domain 'default'                            +
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2016-11-12 21:14:47,516 [main] org.mule.module.launcher.domain.DefaultMuleDomain: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ New domain 'default'                                     +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2016-11-12 21:14:47,518 [main] org.mule.module.launcher.domain.DefaultMuleDomain: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing domain 'default'                            +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
