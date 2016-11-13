@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="62bf419f-aae3-4e55-8310-d1e1d9d287a1" activeEnvironment="Default" name="Ticketinco" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="ec67e83a-4e37-4f91-b4ae-2c5faeac17b8" wsaVersion="NONE" name="IReservaEntradasServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IReservaEntradasServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/Reserva_Entradas?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/Reserva_Entradas?wsdl"><con:part><con:url>http://localhost:8082/Reserva_Entradas?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IReservaEntradasService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+<con:soapui-project id="62bf419f-aae3-4e55-8310-d1e1d9d287a1" activeEnvironment="Default" name="Ticketinco" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="ec67e83a-4e37-4f91-b4ae-2c5faeac17b8" wsaVersion="NONE" name="IReservaEntradasServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IReservaEntradasServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/Reserva_Entradas?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/Reserva_Entradas?wsdl"><con:part><con:url>http://localhost:8082/Reserva_Entradas?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IReservaEntradasService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="reserva_de_entradas" type="tns:reserva_de_entradas"/>
@@ -96,6 +96,28 @@
          </arg2>\r
       </tes:reserva_de_entradas>\r
    </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IReservaEntradas/reserva_de_entradas"/><con:wsrmConfig version="1.2"/></con:call><con:call id="ce65f48a-b4f8-4f63-9f8f-d4848373588c" name="Request 1 con Horario" outgoingWss="outgoing_signed"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/Reserva_Entradas</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tes:reserva_de_entradas>\r
+         <arg0>1</arg0>\r
+         <!--Optional:-->\r
+         <arg1>2011-11-11T16:00:00</arg1>\r
+         <!--Zero or more repetitions:-->\r
+         <arg2>\r
+            <!--Optional:-->\r
+            <hora>2011-11-11T17:00:00</hora>\r
+            <!--Zero or more repetitions:-->\r
+            <disponibilidades>\r
+               <cantidad>1</cantidad>\r
+               <precio>10</precio>\r
+               <!--Optional:-->\r
+               <sector>Sector 10</sector>\r
+            </disponibilidades>\r
+            <horario>2011-11-11</horario>
+         </arg2>\r
+      </tes:reserva_de_entradas>\r
+   </soapenv:Body>\r
 </soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IReservaEntradas/reserva_de_entradas"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="810103bd-834c-4c62-ab7e-b2397c78ec92" wsaVersion="NONE" name="ISecurityBeanServiceSoapBinding" type="wsdl" bindingName="{http://test2/}ISecurityBeanServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/test?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/test?wsdl"><con:part><con:url>http://localhost:8082/test?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ISecurityBeanService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema elementFormDefault="unqualified" targetNamespace="http://test2/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -150,4 +172,241 @@
          <arg0>?</arg0>\r
       </tes:sayHi>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/ISecurityBean/sayHi"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:crypto><con:source>C:/workspace/fing/midd/middleware3/middleware-2016/NuevoTicketInco/TicketInco/src/main/resources/keystore.jks</con:source><con:password>password</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing_signed</con:name><con:entry type="Username" username="joe" password="password"><con:configuration><addCreated>true</addCreated><addNonce>true</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="alias" password="password"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/ISecurityBean/sayHi"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="3f2423a6-64f8-491b-a0ab-bcb829aec446" wsaVersion="NONE" name="IConsultarEntradasServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IConsultarEntradasServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/Consultar_Entradas?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/Consultar_Entradas?wsdl"><con:part><con:url>http://localhost:8082/Consultar_Entradas?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IConsultarEntradasService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ConsultarEntradas" type="tns:ConsultarEntradas"/>
+      <xs:element name="ConsultarEntradasResponse" type="tns:ConsultarEntradasResponse"/>
+      <xs:complexType name="ConsultarEntradas">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+          <xs:element minOccurs="0" name="arg1" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConsultarEntradasResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:listaHorariosRetornar"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listaHorariosRetornar">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="horarios" type="tns:horario"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="horario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="hora" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="disponibilidades" type="tns:disponibilidad"/>
+          <xs:element minOccurs="0" name="horario" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="disponibilidad">
+        <xs:sequence>
+          <xs:element name="cantidad" type="xs:int"/>
+          <xs:element name="precio" type="xs:double"/>
+          <xs:element minOccurs="0" name="sector" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ParseException" type="tns:ParseException"/>
+      <xs:complexType name="ParseException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorOffset" type="xs:int"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultarEntradasResponse">
+    <wsdl:part element="tns:ConsultarEntradasResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ParseException">
+    <wsdl:part element="tns:ParseException" name="ParseException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarEntradas">
+    <wsdl:part element="tns:ConsultarEntradas" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IConsultarEntradas">
+    <wsdl:operation name="ConsultarEntradas">
+      <wsdl:input message="tns:ConsultarEntradas" name="ConsultarEntradas"></wsdl:input>
+      <wsdl:output message="tns:ConsultarEntradasResponse" name="ConsultarEntradasResponse"></wsdl:output>
+      <wsdl:fault message="tns:ParseException" name="ParseException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IConsultarEntradasServiceSoapBinding" type="tns:IConsultarEntradas">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultarEntradas">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ConsultarEntradas">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConsultarEntradasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParseException">
+        <soap:fault name="ParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IConsultarEntradasService">
+    <wsdl:port binding="tns:IConsultarEntradasServiceSoapBinding" name="IConsultarEntradasPort">
+      <soap:address location="http://localhost:8082/Consultar_Entradas"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/Consultar_Entradas</con:endpoint></con:endpoints><con:operation id="0bec99e7-a85c-4441-9a45-9cc5691fa939" isOneWay="false" action="" name="ConsultarEntradas" bindingOperationName="ConsultarEntradas" type="Request-Response" outputName="ConsultarEntradasResponse" inputName="ConsultarEntradas" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7eeb22bd-b153-4a18-a19f-d0fcfe701050" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/Consultar_Entradas</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tes:ConsultarEntradas>\r
+         <arg0>1</arg0>\r
+      </tes:ConsultarEntradas>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConsultarEntradas/ConsultarEntradas"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="d59f7d10-eb61-42ac-83f9-1fc3bfe94f26" wsaVersion="NONE" name="IConsultarEstadoReservaServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IConsultarEstadoReservaServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/Consulta_EstadoReserva?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/Consulta_EstadoReserva?wsdl"><con:part><con:url>http://localhost:8082/Consulta_EstadoReserva?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IConsultarEstadoReservaService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Consulta_EstadoReserva" type="tns:Consulta_EstadoReserva"/>
+      <xs:element name="Consulta_EstadoReservaResponse" type="tns:Consulta_EstadoReservaResponse"/>
+      <xs:complexType name="Consulta_EstadoReserva">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Consulta_EstadoReservaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:estadoReserva"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="estadoReserva">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errores" type="xs:string"/>
+          <xs:element name="estado" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ParseException" type="tns:ParseException"/>
+      <xs:complexType name="ParseException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorOffset" type="xs:int"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Consulta_EstadoReserva">
+    <wsdl:part element="tns:Consulta_EstadoReserva" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Consulta_EstadoReservaResponse">
+    <wsdl:part element="tns:Consulta_EstadoReservaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ParseException">
+    <wsdl:part element="tns:ParseException" name="ParseException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IConsultarEstadoReserva">
+    <wsdl:operation name="Consulta_EstadoReserva">
+      <wsdl:input message="tns:Consulta_EstadoReserva" name="Consulta_EstadoReserva"></wsdl:input>
+      <wsdl:output message="tns:Consulta_EstadoReservaResponse" name="Consulta_EstadoReservaResponse"></wsdl:output>
+      <wsdl:fault message="tns:ParseException" name="ParseException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IConsultarEstadoReservaServiceSoapBinding" type="tns:IConsultarEstadoReserva">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Consulta_EstadoReserva">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="Consulta_EstadoReserva">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="Consulta_EstadoReservaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParseException">
+        <soap:fault name="ParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IConsultarEstadoReservaService">
+    <wsdl:port binding="tns:IConsultarEstadoReservaServiceSoapBinding" name="IConsultarEstadoReservaPort">
+      <soap:address location="http://localhost:8082/Consulta_EstadoReserva"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/Consulta_EstadoReserva</con:endpoint></con:endpoints><con:operation id="4cbc0273-10d5-4927-8326-9f6a1670483d" isOneWay="false" action="" name="Consulta_EstadoReserva" bindingOperationName="Consulta_EstadoReserva" type="Request-Response" outputName="Consulta_EstadoReservaResponse" inputName="Consulta_EstadoReserva" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a82b5fa8-2bac-4d17-bead-2111275cd48f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/Consulta_EstadoReserva</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tes:Consulta_EstadoReserva>\r
+         <arg0>1</arg0>\r
+      </tes:Consulta_EstadoReserva>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConsultarEstadoReserva/Consulta_EstadoReserva"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="f395bbe1-2f94-4d45-ba97-06b0995675c9" wsaVersion="NONE" name="IConfirmacionReservaServiceSoapBinding" type="wsdl" bindingName="{http://test2/}IConfirmacionReservaServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/ConfirmarReserva?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/ConfirmarReserva?wsdl"><con:part><con:url>http://localhost:8082/ConfirmarReserva?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="IConfirmacionReservaService" targetNamespace="http://test2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test2/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://test2/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ConfirmarReserva" type="tns:ConfirmarReserva"/>
+      <xs:element name="ConfirmarReservaResponse" type="tns:ConfirmarReservaResponse"/>
+      <xs:complexType name="ConfirmarReserva">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:long"/>
+          <xs:element name="arg1" type="xs:long"/>
+          <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+          <xs:element minOccurs="0" name="arg3" type="xs:dateTime"/>
+          <xs:element name="arg4" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConfirmarReservaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ParseException" type="tns:ParseException"/>
+      <xs:complexType name="ParseException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorOffset" type="xs:int"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ConfirmarReservaResponse">
+    <wsdl:part element="tns:ConfirmarReservaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ParseException">
+    <wsdl:part element="tns:ParseException" name="ParseException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConfirmarReserva">
+    <wsdl:part element="tns:ConfirmarReserva" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IConfirmacionReserva">
+    <wsdl:operation name="ConfirmarReserva">
+      <wsdl:input message="tns:ConfirmarReserva" name="ConfirmarReserva"></wsdl:input>
+      <wsdl:output message="tns:ConfirmarReservaResponse" name="ConfirmarReservaResponse"></wsdl:output>
+      <wsdl:fault message="tns:ParseException" name="ParseException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IConfirmacionReservaServiceSoapBinding" type="tns:IConfirmacionReserva">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConfirmarReserva">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ConfirmarReserva">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConfirmarReservaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ParseException">
+        <soap:fault name="ParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IConfirmacionReservaService">
+    <wsdl:port binding="tns:IConfirmacionReservaServiceSoapBinding" name="IConfirmacionReservaPort">
+      <soap:address location="http://localhost:8082/ConfirmarReserva"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint></con:endpoints><con:operation id="607b8a05-d381-438c-a126-5aa735db97c9" isOneWay="false" action="" name="ConfirmarReserva" bindingOperationName="ConfirmarReserva" type="Request-Response" outputName="ConfirmarReservaResponse" inputName="ConfirmarReserva" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4b08d26a-8940-4eff-90e3-7606a7acbf98" name="Request 1" outgoingWss="outgoing_encrypted"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ConfirmarReserva</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tes="http://test2/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tes:ConfirmarReserva>
+         <arg0>1</arg0>
+         <arg1>2</arg1>
+         <!--Optional:-->
+         <arg2>"hola"</arg2>
+         <!--Optional:-->
+         <arg3>2011-11-11T16:00:00</arg3>
+         <arg4>1</arg4>
+      </tes:ConfirmarReserva>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://test2/IConfirmacionReserva/ConfirmarReserva"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:crypto><con:source>C:/workspace/fing/midd/middleware3/middleware-2016/NuevoTicketInco/TicketInco/src/main/resources/keystore.jks</con:source><con:password>keyStorePassword</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing_signed</con:name><con:entry type="Username" username="joe" password="secret"><con:configuration><addCreated>false</addCreated><addNonce>false</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry></con:outgoing><con:outgoing><con:name>outgoing_encrypted</con:name><con:entry type="Username" username="joe" password="secret"><con:configuration><addCreated>false</addCreated><addNonce>false</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Signature" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/></con:configuration></con:entry><con:entry type="Encryption" username="joe" password="secret"><con:configuration><crypto>keystore.jks</crypto><keyIdentifierType>2</keyIdentifierType><symmetricEncAlgorithm/><encKeyTransport/><embeddedKeyName/><embeddedKeyPassword/><encryptionCanonicalization/><encryptSymmetricKey>true</encryptSymmetricKey></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
