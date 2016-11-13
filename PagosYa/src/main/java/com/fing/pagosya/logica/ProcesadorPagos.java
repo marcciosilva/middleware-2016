@@ -18,7 +18,6 @@ package com.fing.pagosya.logica;
 import com.fing.pagosya.dtos.Anulacion;
 import com.fing.pagosya.dtos.Confirmacion;
 import com.fing.pagosya.dtos.Pago;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -62,11 +61,8 @@ public class ProcesadorPagos {
 		logger.log(Level.INFO, "Numero de tarjeta de credito: {0}", Long.
 				toString(pago.
 						getNumeroTarjeta()));
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"dd/MM/yyyy HH:mm:ss");
-		logger.log(Level.INFO, "Fecha de vencimiento: {0}", simpleDateFormat.
-				format(pago.
-						getFechaVencimiento().getTime()));
+		logger.log(Level.INFO, "Fecha de vencimiento: {0}", pago.
+				getFechaVencimiento().toString());
 		logger.log(Level.INFO, "Digito verificador: {0}", Integer.toString(pago.
 				getDigitoVerificador()));
 		logger.log(Level.INFO, "Monto: {0}", Double.toString(pago.getMonto()));
