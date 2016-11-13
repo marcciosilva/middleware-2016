@@ -15,4 +15,22 @@ see implementation details http://jersey.java.net/nonav/documentation/latest/jax
 		<servlet-name>Jersey Web Application</servlet-name>
 		<url-pattern>/servicios/*</url-pattern>
 	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/servicios/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>middleware</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>my-default-realm</realm-name>
+	</login-config>
+
 </web-app>
