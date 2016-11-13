@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
+  <endpoint implementation="com.fing.ticketinco.ConsultaEntradasDisponibles" name="ConsultaEntradas" url-pattern="/ConsultaEntradas"/>
   <endpoint implementation="com.fing.ticketinco.ReservaEntradas" name="ReservaEntradas" url-pattern="/ReservaEntradas"/>
   <endpoint implementation="com.fing.ticketinco.ConsultaEstadoReserva" name="ConsultaEstadoReserva" url-pattern="/ConsultaEstadoReserva"/>
   <endpoint implementation="com.fing.ticketinco.ConfirmacionReserva" name="ConfirmacionReserva" url-pattern="/ConfirmacionReserva"/>
-  <endpoint implementation="com.fing.ticketinco.AnulacionReserva" name="AnulacionReserva" url-pattern="/AnulacionReserva"/>
-  <endpoint implementation="com.fing.ticketinco.ConsultaEntradasDisponibles" name="ConsultaEntradas" url-pattern="/ConsultaEntradas"/>
   <endpoint implementation="com.fing.ticketinco.NotificacionConfirmacionReservaEntrada" name="NotificacionConfirmacionReservaEntrada" url-pattern="/NotificacionConfirmacionReservaEntrada"/>
+  <endpoint implementation="com.fing.ticketinco.AnulacionReserva" name="AnulacionReserva" url-pattern="/AnulacionReserva"/>
 </endpoints>
