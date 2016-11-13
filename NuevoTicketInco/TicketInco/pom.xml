@@ -64,19 +64,26 @@
                 <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
                 <wsdlOptions>
                     <wsdlOption>
-                        <wsdl>${basedir}/src/main/wsdl/MedioPagoLocal.wsdl</wsdl>
+                        <wsdl>${basedir}/src/main/wsdl/MedioPagoLocal2.wsdl</wsdl>
                         <extraargs>
                 		<extraarg>-p</extraarg>
                 		<extraarg>esb_mediopagolocal</extraarg>
             			</extraargs>
                     </wsdlOption>                
                 	<wsdlOption>              
-                        <wsdl>${basedir}/src/main/wsdl/PagosYa.wsdl</wsdl>
+                        <wsdl>${basedir}/src/main/wsdl/PagosYa2.wsdl</wsdl>
                         <extraargs>
                 		<extraarg>-p</extraarg>
                 		<extraarg>esb_pagosya</extraarg> 
                 		</extraargs>  
-                	</wsdlOption>                  
+                	</wsdlOption>
+                	<wsdlOption>              
+                        <wsdl>${basedir}/src/main/wsdl/MedioPagosYa2.wsdl</wsdl>
+                        <extraargs>
+                		<extraarg>-p</extraarg>
+                		<extraarg>esb_mediospagosya</extraarg> 
+                		</extraargs>  
+                	</wsdlOption>                          
                 </wsdlOptions>
             </configuration>
             <goals>

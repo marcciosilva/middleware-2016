@@ -2487,3 +2487,137 @@ java.net.BindException: Address already in use: bind
 * Application "ESB" shut down normally on: 12/11/16 17:44            *
 * Up for: 0 days, 0 hours, 0 mins, 0.874 sec                         *
 **********************************************************************
+2016-11-13 16:43:53,619 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'ESB'                                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-13 16:43:54,108 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2016-11-13 16:43:54,376 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2016-11-13 16:43:54,650 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2016-11-13 16:43:54,650 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.8)
+2016-11-13 16:43:54,809 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@cec793: startup date [Sun Nov 13 16:43:54 GMT-03:00 2016]; root of context hierarchy
+2016-11-13 16:43:57,698 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-11-13 16:43:59,791 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2016-11-13 16:44:00,526 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-tx-log\tx2.log
+2016-11-13 16:44:00,553 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-xa-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-xa-tx-log\tx2.log
+2016-11-13 16:44:00,769 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2016-11-13 16:44:00,776 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: esbFlow
+2016-11-13 16:44:00,777 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@a7e509
+2016-11-13 16:44:00,851 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: esbFlow.stage1
+2016-11-13 16:44:01,368 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class esb.MedioPagoLocal
+2016-11-13 16:44:03,071 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.32763643
+2016-11-13 16:44:03,078 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: MedioPagoLocal
+2016-11-13 16:44:03,079 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@1037e16
+2016-11-13 16:44:03,094 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: MedioPagoLocal.stage1
+2016-11-13 16:44:03,094 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class esb.MedioPagoLocal
+2016-11-13 16:44:03,135 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.12105408
+2016-11-13 16:44:03,136 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: MedioPagosYa
+2016-11-13 16:44:03,137 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@12ec02e
+2016-11-13 16:44:03,150 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: MedioPagosYa.stage1
+2016-11-13 16:44:03,150 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class esb.MedioPagoLocal
+2016-11-13 16:44:03,208 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.16615996
+2016-11-13 16:44:03,873 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\esb.xml'}, ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\projectesb.xml'}]"
+2016-11-13 16:44:03,873 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\esb.xml'}, ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\projectesb.xml'}]"
+2016-11-13 16:44:06,916 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'ESB'                                       +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-13 16:44:06,922 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2016-11-13 16:44:06,922 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2016-11-13 16:44:07,035 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://localhost:63081
+2016-11-13 16:44:07,040 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-13 16:44:07,049 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2016-11-13 16:44:07,052 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: esbFlow
+2016-11-13 16:44:07,053 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: esbFlow.stage1
+2016-11-13 16:44:07,067 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.32763643
+2016-11-13 16:44:07,077 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: MedioPagoLocal
+2016-11-13 16:44:07,077 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: MedioPagoLocal.stage1
+2016-11-13 16:44:07,103 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.12105408
+2016-11-13 16:44:07,103 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: MedioPagosYa
+2016-11-13 16:44:07,103 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: MedioPagosYa.stage1
+2016-11-13 16:44:07,119 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.16615996
+2016-11-13 16:44:07,227 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2016-11-13 16:44:07,270 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: ESB                                                   *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Batch module default engine                                      *
+*   Wrapper Manager                                                  *
+**********************************************************************
+2016-11-13 18:02:26,684 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'ESB'                                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-13 18:02:27,191 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising RegistryBroker
+2016-11-13 18:02:27,439 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Starting discovery of extensions
+2016-11-13 18:02:27,731 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Discovered 1 extensions
+2016-11-13 18:02:27,732 [main] INFO  org.mule.module.extension.internal.manager.DefaultExtensionManager - Registering extension validation (version 3.8)
+2016-11-13 18:02:27,928 [main] INFO  org.mule.config.spring.MuleArtifactContext - Refreshing org.mule.config.spring.MuleArtifactContext@cec793: startup date [Sun Nov 13 18:02:27 GMT-03:00 2016]; root of context hierarchy
+2016-11-13 18:02:31,160 [main] INFO  org.mule.config.spring.processors.NoDevkitInjectorProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-11-13 18:02:33,242 [main] WARN  org.mule.module.ognl.expression.OgnlExpressionEvaluator - OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+2016-11-13 18:02:33,950 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-tx-log\tx2.log
+2016-11-13 18:02:33,990 [main] INFO  org.mule.util.journal.TransactionJournal - Using files for tx logs C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-xa-tx-log\tx1.log and C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\.\.mule\ESB\queue-xa-tx-log\tx2.log
+2016-11-13 18:02:34,188 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Initialising model: _muleSystemModel
+2016-11-13 18:02:34,195 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: esbFlow
+2016-11-13 18:02:34,196 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@a7e509
+2016-11-13 18:02:34,268 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: esbFlow.stage1
+2016-11-13 18:02:34,782 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class esb.MedioPagoLocal
+2016-11-13 18:02:36,456 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.32763643
+2016-11-13 18:02:36,463 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: MedioPagoLocal
+2016-11-13 18:02:36,464 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@1037e16
+2016-11-13 18:02:36,477 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: MedioPagoLocal.stage1
+2016-11-13 18:02:36,478 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class esb.MedioPagoLocal
+2016-11-13 18:02:36,525 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.12105408
+2016-11-13 18:02:36,526 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Initialising flow: MedioPagosYa
+2016-11-13 18:02:36,526 [main] INFO  org.mule.exception.DefaultMessagingExceptionStrategy - Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@12ec02e
+2016-11-13 18:02:36,540 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Initialising service: MedioPagosYa.stage1
+2016-11-13 18:02:36,540 [main] INFO  org.mule.module.cxf.config.WebServiceFactoryBean - Built CXF Inbound MessageProcessor for service class esb.MedioPagoLocal
+2016-11-13 18:02:36,590 [main] INFO  org.mule.component.ComponentLifecycleManager - Initialising component: component.16615996
+2016-11-13 18:02:37,236 [main] INFO  org.mule.config.spring.SpringXmlConfigurationBuilder - Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\esb.xml'}, ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\projectesb.xml'}]"
+2016-11-13 18:02:37,236 [main] INFO  org.mule.config.builders.AutoConfigurationBuilder - Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\esb.xml'}, ConfigResource{resourceName='C:\Users\javier\Desktop\Midd\middleware-2016\NuevoTicketInco\.mule\apps\ESB\projectesb.xml'}]"
+2016-11-13 18:02:40,282 [main] INFO  org.mule.module.launcher.application.DefaultMuleApplication - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'ESB'                                       +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-13 18:02:40,286 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Starting ResourceManager
+2016-11-13 18:02:40,286 [main] INFO  org.mule.util.queue.QueueXaResourceManager - Started ResourceManager
+2016-11-13 18:02:40,441 [main] INFO  org.mule.module.http.internal.listener.DefaultHttpListenerConfig - Listening for requests on http://localhost:63081
+2016-11-13 18:02:40,457 [main] INFO  org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent - 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2016-11-13 18:02:40,463 [main] INFO  org.mule.lifecycle.AbstractLifecycleManager - Starting model: _muleSystemModel
+2016-11-13 18:02:40,465 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: esbFlow
+2016-11-13 18:02:40,466 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: esbFlow.stage1
+2016-11-13 18:02:40,494 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.32763643
+2016-11-13 18:02:40,505 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: MedioPagoLocal
+2016-11-13 18:02:40,505 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: MedioPagoLocal.stage1
+2016-11-13 18:02:40,513 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.12105408
+2016-11-13 18:02:40,516 [main] INFO  org.mule.construct.FlowConstructLifecycleManager - Starting flow: MedioPagosYa
+2016-11-13 18:02:40,516 [main] INFO  org.mule.processor.SedaStageLifecycleManager - Starting service: MedioPagosYa.stage1
+2016-11-13 18:02:40,530 [main] INFO  org.mule.component.ComponentLifecycleManager - Starting component: component.16615996
+2016-11-13 18:02:40,683 [main] INFO  org.mule.module.management.agent.WrapperManagerAgent - This JVM hasn't been launched by the wrapper, the agent will not run.
+2016-11-13 18:02:40,740 [main] INFO  org.mule.DefaultMuleContext - 
+**********************************************************************
+* Application: ESB                                                   *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   JMX Agent                                                        *
+*   Batch module default engine                                      *
+*   Wrapper Manager                                                  *
+**********************************************************************
+2016-11-13 18:04:31,692 [[ESB].listener-config.worker.03] INFO  org.mule.module.http.internal.listener.HttpListenerRegistry - No listener found for request: (GET)//MedioPagoLocal
+2016-11-13 18:04:31,692 [[ESB].listener-config.worker.03] INFO  org.mule.module.http.internal.listener.HttpListenerRegistry - Available listeners are: [(*)/MedioPagosYa/, (*)/PagosYa/, (*)/MedioPagoLocal/]
+2016-11-13 18:06:17,286 [[ESB].listener-config.worker.04] INFO  org.mule.module.http.internal.listener.HttpListenerRegistry - No listener found for request: (GET)//MedioPagosYa
+2016-11-13 18:06:17,286 [[ESB].listener-config.worker.04] INFO  org.mule.module.http.internal.listener.HttpListenerRegistry - Available listeners are: [(*)/MedioPagosYa/, (*)/PagosYa/, (*)/MedioPagoLocal/]

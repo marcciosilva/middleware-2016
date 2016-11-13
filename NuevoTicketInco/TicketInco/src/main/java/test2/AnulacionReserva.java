@@ -14,7 +14,7 @@ import javax.jws.WebParam;
 import org.apache.log4j.Logger;
 import esb_mediopagolocal.*;
 import esb_pagosya.*;
-
+import esb_mediospagosya.*;
 /**
  *
  * @author javier
@@ -50,8 +50,8 @@ public class AnulacionReserva  implements IAnulacionReserva{
             if(idMedioPago == 1000)
             {                
                 //LLamamos al servicio local para anular el pago
-                MedioPagoLocalService medioPagoService = new MedioPagoLocalService();
-                MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
+            	esb_mediopagolocal.MedioPagoLocalService medioPagoService = new esb_mediopagolocal.MedioPagoLocalService();
+                esb_mediopagolocal.MedioPagoLocal medioPagoLocal = medioPagoService.getMedioPagoLocalPort();
                 String idConfirmacionPagoStr = String.valueOf(idConfirmacionPago);                
                 medioPagoLocal.anularPago(idConfirmacionPagoStr);
                 Pago.contadorIdConfAnulacionLocal++;
@@ -63,8 +63,12 @@ public class AnulacionReserva  implements IAnulacionReserva{
             {
                 //Llamar al servicio de PagosYa para anular el pago
             	
-            	esb_pagosya.PagosYaService pya= new esb_pagosya.PagosYaService();
-            	esb_pagosya.PagosYa pyainterface = pya.getPagosYaPort();
+            	esb_mediospagosya.MedioPagoLocalService pya= new esb_mediospagosya.MedioPagoLocalService();
+            	esb_mediospagosya.MedioPagoLocal pyainterface = pya.getMedioPagoLocalPort();
+            	
+            	//esb_pagosya.MedioPagoLocalService pya= new esb_pagosya.MedioPagoLocalService();
+            	//esb_pagosya.MedioPagoLocal pyainterface = pya.getMedioPagoLocalPort();
+            	
             	String idConfirmacionPagoStr = String.valueOf(idConfirmacionPago); 
             	pyainterface.anularPago(idConfirmacionPagoStr);
             	Pago.contadorIdConfAnulacionLocal++;
@@ -82,6 +86,7 @@ public class AnulacionReserva  implements IAnulacionReserva{
         }
         else
         {
+        	
             return "No existe el pago con ese identificador.";
         }
         
