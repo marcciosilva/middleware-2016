@@ -67,7 +67,7 @@ public class PagosYaImp implements PagosYa {
 		pago.setNumeroTarjeta(Long.parseLong(nroTarjeta));
 		logger.info("Pago recibido: " + pago.toString());
 		// Hago request y espero respuesta.
-		Response response = invocationBuilder.post(Entity.json(pago));
+		Response response = invocationBuilder.put(Entity.json(pago));
 		String jsonString = response.readEntity(String.class);
 		logger.info("Mensaje recibido: " + jsonString);
 		// Parseo respuesta.
