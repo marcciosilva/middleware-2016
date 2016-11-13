@@ -17,7 +17,7 @@ public class ServerPasswordCallback implements CallbackHandler {
 	    
 	    public ServerPasswordCallback() {
 	    	passwords.put("myservicekey", "skpass");
-	    	passwords.put("joe", "password");
+	    	passwords.put("joe", "secret");
 	    }
 
 	    public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
