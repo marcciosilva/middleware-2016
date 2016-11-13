@@ -30,7 +30,7 @@ public class ApplicationConfig extends Application {
 	private void addRestResourceClasses(Set<Class<?>> resources) {
 		resources.add(com.fing.pagosya.rest.AnulacionPagoResource.class);
 		resources.add(com.fing.pagosya.rest.ConfirmacionPagoResource.class);
-		resources.add(com.fing.pagosya.rest.PagoEjemplo.class);
+		resources.add(com.fing.pagosya.rest.TestResource.class);
 	}
 
 }

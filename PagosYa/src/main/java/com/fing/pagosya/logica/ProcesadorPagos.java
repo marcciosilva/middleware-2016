@@ -20,6 +20,7 @@ import com.fing.pagosya.dtos.Confirmacion;
 import com.fing.pagosya.dtos.Pago;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,17 +73,26 @@ public class ProcesadorPagos {
 		try {
 			// Si ya hay un pago para la orden se retorna error. {"idConfirmacionPago":-1}
 			if (pagosConfirmados.values().contains(pago)) {
-				throw new Exception("Ya se procesó un pago con datos idénticos.");
+
+				for (Entry<Long, Pago> element : pagosConfirmados.entrySet()) {
+					if (pago.equals(element.getValue())) {
+						confirmacion.setIdConfirmacionPago(
+								element.getKey());
+					}
+				}
+				logger.info(
+						"Ya se procesó un pago con datos idénticos. Se devuelve el mismo id.");
+			} else {
+				// Si no se tenia el pago, entonces se genera un id de confirmacion.
+				// Se genera un nuevo id.
+				pagosConfirmados.put(idConfirmacionPagoActual, pago);
+				confirmacion.setIdConfirmacionPago(idConfirmacionPagoActual);
+				idConfirmacionPagoActual++;
+				logger.info("El pago se confirmó exitosamente.");
+				logger.log(Level.INFO, "Se generó el id de confirmacion: {0}",
+						Long.toString(
+								idConfirmacionPagoActual));
 			}
-			// Si no se tenia un pag, entonces se genera un id de confirmacion.
-			// Se genera un nuevo id.
-			pagosConfirmados.put(idConfirmacionPagoActual, pago);
-			confirmacion.setIdConfirmacionPago(idConfirmacionPagoActual);
-			idConfirmacionPagoActual++;
-			logger.info("El pago se confirmó exitosamente.");
-			logger.log(Level.INFO, "Se generó el id de confirmacion: {0}",
-					Long.toString(
-							idConfirmacionPagoActual));
 		} catch (Exception ex) {
 			logger.info("Ocurrió un error al intentar confirmar el pago.");
 			logger.log(Level.INFO, "Mensaje de excepción:{0}", ex.

@@ -15,15 +15,9 @@
  */
 package com.fing.pagosya.rest;
 
-import com.fing.pagosya.dtos.Pago;
-import java.util.Date;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
@@ -32,8 +26,8 @@ import javax.ws.rs.core.UriInfo;
  *
  * @author marccio
  */
-@Path("pagoEjemplo")
-public class PagoEjemplo {
+@Path("test")
+public class TestResource {
 
 	@Context
 	private UriInfo context;
@@ -41,31 +35,18 @@ public class PagoEjemplo {
 	/**
 	 * Creates a new instance of TestResource
 	 */
-	public PagoEjemplo() {
+	public TestResource() {
 	}
 
 	/**
 	 * Retrieves representation of an instance of
-	 * com.fing.pagosya.dtos.PagoEjemplo
+	 * com.fing.pagosya.dtos.TestResource
 	 *
 	 * @return an instance of java.lang.String
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getXml() {
-		Pago pago = new Pago(1234, new Date(1992 - 1900, 0, 1), 1,
-				1000.1);
-		return Response.status(201).entity(pago).build();
+	public Response get() {
+		return Response.status(201).entity("Test").build();
 	}
 
-	/**
-	 * PUT method for updating or creating an instance of PagoEjemplo
-	 *
-	 * @param content representation for the resource
-	 * @return an HTTP response with content of the updated or created resource.
-	 */
-	@PUT
-	@Consumes("application/xml")
-	public void putXml(String content) {
-	}
 }
