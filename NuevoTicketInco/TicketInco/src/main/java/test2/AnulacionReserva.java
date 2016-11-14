@@ -56,6 +56,8 @@ public class AnulacionReserva implements IAnulacionReserva {
 				Pago.contadorIdConfAnulacionLocal++;
 				pago.idConfAnulacionPago = Pago.contadorIdConfAnulacionLocal;
 				String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
+				System.out.println("Se anulo el pago " + pago.idConfPago + " en el medio de pago local");
+				System.out.println("El id de anulación es " + idconfAnulacionPagoStr);
 				return idconfAnulacionPagoStr;				
 			} else if (idMedioPago == 2000) {
 				// Llamar al servicio de PagosYa para anular el pago
@@ -66,6 +68,8 @@ public class AnulacionReserva implements IAnulacionReserva {
 				Pago.contadorIdConfAnulacionLocal++;
 				pago.idConfAnulacionPago = Pago.contadorIdConfAnulacionLocal;
 				String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
+				System.out.println("Se anulo el pago " + pago.idConfPago + " en PagosYa!");
+				System.out.println("El id de anulación es " + idconfAnulacionPagoStr);
 				return idconfAnulacionPagoStr;
 			} else {
 				return "El medio de pago no existe";
