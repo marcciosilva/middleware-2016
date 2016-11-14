@@ -56,7 +56,7 @@ public class AnulacionReserva implements IAnulacionReserva {
 				Pago.contadorIdConfAnulacionLocal++;
 				pago.idConfAnulacionPago = Pago.contadorIdConfAnulacionLocal;
 				String idconfAnulacionPagoStr = String.valueOf(pago.idConfAnulacionPago);
-				return idconfAnulacionPagoStr;
+				return idconfAnulacionPagoStr;				
 			} else if (idMedioPago == 2000) {
 				// Llamar al servicio de PagosYa para anular el pago
 				esb_pagosya.PagosYaService medioPagoService = new esb_pagosya.PagosYaService();

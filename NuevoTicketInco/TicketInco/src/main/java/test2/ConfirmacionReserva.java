@@ -5,31 +5,27 @@
  */
 package test2;
 
-import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
-import javax.jws.WebMethod;
+
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.ws.Holder;
 import javax.xml.ws.soap.Addressing;
 import javax.xml.ws.soap.MTOM;
-import javax.xml.ws.soap.MTOMFeature;
+
 import org.apache.log4j.Logger;
 
 import esb_mediopagolocal.MedioPagoLocal;
@@ -86,9 +82,11 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 			if (reserva.Estado == 2) {
 				//La reserva ya fue confirmada				
 				idConfirmacion.value = (long) -2;
+				System.out.println("La reserva " + reserva.idReserva + " ya se encuentra confirmada");
 			} else if (reserva.Estado == 0) {
 				//La reserva se encuentra en estado cancelado;				
 				idConfirmacion.value = (long) 0;
+				System.out.println("La reserva " + reserva.idReserva + " se encuentra cancelada");
 			}
 
 			double monto = calcularMonto(reserva);
@@ -110,6 +108,8 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 					ListaPagos listaPagos = new ListaPagos();
 					listaPagos.agregarPago(pago);
 					idConfirmacion.value = pago.idConfPago;
+					System.out.println("Se ha realizado el pago de la reserva " + reserva.idReserva + " exitosamente");
+					System.out.println("El id de confirmacion el pago es: " + pago.idConfPago + " para el medio de pago local");
 				} catch (Exception e) {
 					System.out.println("Error " + e.getMessage());
 				}
@@ -121,7 +121,8 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 					String digitoVerificadorStr = String.valueOf(digitoVerificador);
 					String montoStr = String.valueOf(monto);
 					// Recibo un id de confirmacion de PagosYa.
-					long idConfirmacionRecibido = pagosYa.confirmarPago(nroTarjeta, fechaVencimiento.toString(),
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+					long idConfirmacionRecibido = pagosYa.confirmarPago(nroTarjeta, sdf.format(fechaVencimiento),
 							digitoVerificadorStr, montoStr);
 					reserva.Estado = 2;
 					Pago pago = new Pago();
@@ -129,11 +130,14 @@ public class ConfirmacionReserva implements IConfirmacionReserva {
 					pago.idConfPago = idConfirmacionRecibido;
 					ListaPagos listaPagos = new ListaPagos();
 					listaPagos.agregarPago(pago);
+					System.out.println("Se ha realizado el pago de la reserva " + reserva.idReserva + " exitosamente");
+					System.out.println("El id de confirmacion el pago es: " + pago.idConfPago + " en PagosYa!");
 				} catch (Exception e) {
 					System.out.println("Error " + e.getMessage());
 				}
 			} else {
 				idConfirmacion.value =(long) -300;
+				//System.out.println("La reserva " + reserva.idReserva + )
 			}
 
 			String pathFile = getClass().getClassLoader().getResource(
